@@ -1,6 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        .btn-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 2rem;
+            height: 2rem;
+            background-color: #ffffff;
+            border-radius: 99px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            z-index: 10;
+        }
+        .btn-close:hover {
+            background-color: #f3f4f6;
+        }
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EmpowerHer TransCare Nexus | Dashboard</title>
@@ -30,59 +52,88 @@
 <body class="bg-gray-50 font-sans">
     <div class="flex h-screen overflow-hidden">
         <!-- Sidebar -->
-        <aside class="hidden md:flex flex-col w-64 bg-white border-r border-gray-200">
-            <div class="flex items-center justify-center h-16 border-b border-gray-200">
-                <h1 class="text-xl font-semibold text-primary">EmpowerHer TransCare</h1>
+        <aside class="hidden md:flex flex-col w-64 bg-gradient-to-b from-white to-gray-50 border-r border-gray-200 shadow-lg transition-all duration-300">
+            <div class="flex items-center justify-center h-20 border-b border-gray-200 bg-white">
+                <div class="flex flex-col items-center">
+                    <h1 class="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">EmpowerHer</h1>
+                    <span class="text-sm text-gray-600">TransCare Nexus</span>
+                </div>
             </div>
             
-            <nav class="flex-1 overflow-y-auto">
-                <ul class="p-4 space-y-2">
+            <nav class="flex-1 overflow-y-auto px-3 py-4">
+                <div class="mb-4 px-4">
+                    <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Main Menu</h2>
+                </div>
+                <ul class="space-y-1">
                     <li>
-                        <a href="dash.html" class="flex items-center px-4 py-2 text-gray-700 bg-gray-100 rounded-lg">
-                            <i data-feather="home" class="w-5 h-5 mr-3"></i>
-                            <span data-i18n="nav.home">Home</span>
+                        <a href="dash.html" class="flex items-center px-4 py-3 text-gray-700 bg-primary/10 rounded-lg group relative overflow-hidden">
+                            <span class="absolute inset-0 bg-primary/0 group-hover:bg-primary/5 transition-colors duration-300"></span>
+                            <i data-feather="home" class="w-5 h-5 mr-3 text-primary"></i>
+                            <span data-i18n="nav.home" class="font-medium">Home</span>
+                            <span class="absolute right-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                <i data-feather="chevron-right" class="w-4 h-4 text-primary"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+                    <div class="mt-6 mb-4 px-4">
+                        <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Services</h2>
+                    </div>
+                    
+                    <li>
+                        <a href="schemes.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary/5 rounded-lg group relative overflow-hidden">
+                            <span class="absolute inset-0 bg-gradient-to-r from-primary/0 to-primary/0 group-hover:from-primary/5 group-hover:to-primary/0 transition-all duration-300"></span>
+                            <i data-feather="gift" class="w-5 h-5 mr-3 text-primary/80 group-hover:text-primary transition-colors"></i>
+                            <span data-i18n="nav.schemes" class="group-hover:text-gray-900 transition-colors">Schemes</span>
                         </a>
                     </li>
                     <li>
-                        <a href="schemes.html" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">
-                            <i data-feather="gift" class="w-5 h-5 mr-3"></i>
-                            <span data-i18n="nav.schemes">Schemes</span>
+                        <a href="../ngo1/frontend/ngo.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-secondary/5 rounded-lg group relative overflow-hidden">
+                            <span class="absolute inset-0 bg-gradient-to-r from-secondary/0 to-secondary/0 group-hover:from-secondary/5 group-hover:to-secondary/0 transition-all duration-300"></span>
+                            <i data-feather="users" class="w-5 h-5 mr-3 text-secondary/80 group-hover:text-secondary transition-colors"></i>
+                            <span data-i18n="nav.ngos" class="group-hover:text-gray-900 transition-colors">NGOs</span>
                         </a>
                     </li>
                     <li>
-                        <a href="../ngo1/frontend/ngo.html" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">
-                            <i data-feather="users" class="w-5 h-5 mr-3"></i>
-                            <span data-i18n="nav.ngos">NGOs</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="sos.html" class="flex items-center px-4 py-2 text-gray-700 hover:bg-red-100 rounded-lg">
+                        <a href="sos.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-red-50 rounded-lg group relative overflow-hidden">
+                            <span class="absolute left-0 top-0 h-full w-1 bg-red-500/50"></span>
                             <i data-feather="alert-circle" class="w-5 h-5 mr-3 text-red-500"></i>
-                            <span data-i18n="nav.sos">SOS</span>
+                            <span data-i18n="nav.sos" class="group-hover:text-red-700 transition-colors">SOS</span>
+                            <span class="ml-auto bg-red-100 text-red-600 text-xs px-2 py-1 rounded-full">24/7</span>
                         </a>
                     </li>
-                    <li> <a href="../legalact/legal.html" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">
-                            <i data-feather="book" class="w-5 h-5 mr-3"></i>
-                            <span data-i18n="nav.legal">Legal Acts</span>
-                        </a>
-                       
-                    </li>
+                    
+                    <div class="mt-6 mb-4 px-4">
+                        <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Resources</h2>
+                    </div>
+                    
                     <li>
-                        <a href="../empowerment/education.html" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">
-                            <i data-feather="edit-3" class="w-5 h-5 mr-3"></i>
-                            <span data-i18n="nav.education">Education</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="women-health.html" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">
-                            <i data-feather="heart" class="w-5 h-5 mr-3"></i>
-                            <span data-i18n="nav.women_health">Women Health Care</span>
+                        <a href="../legalact/legal.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-accent/5 rounded-lg group relative overflow-hidden">
+                            <i data-feather="book" class="w-5 h-5 mr-3 text-accent/80 group-hover:text-accent transition-colors"></i>
+                            <span data-i18n="nav.legal" class="group-hover:text-gray-900 transition-colors">Legal Acts</span>
                         </a>
                     </li>
                     <li>
-                        <a href="trans-health.html" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">
-                            <i data-feather="activity" class="w-5 h-5 mr-3"></i>
-                            <span data-i18n="nav.trans_health">Trans Health Care</span>
+                        <a href="../empowerment/education.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary/5 rounded-lg group relative overflow-hidden">
+                            <i data-feather="edit-3" class="w-5 h-5 mr-3 text-primary/80 group-hover:text-primary transition-colors"></i>
+                            <span data-i18n="nav.education" class="group-hover:text-gray-900 transition-colors">Education</span>
+                        </a>
+                    </li>
+                    
+                    <div class="mt-6 mb-4 px-4">
+                        <h2 class="text-xs font-semibold text-gray-400 uppercase tracking-wider">Healthcare</h2>
+                    </div>
+                    
+                    <li>
+                        <a href="women-health.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-secondary/5 rounded-lg group relative overflow-hidden">
+                            <i data-feather="heart" class="w-5 h-5 mr-3 text-secondary/80 group-hover:text-secondary transition-colors"></i>
+                            <span data-i18n="nav.women_health" class="group-hover:text-gray-900 transition-colors">Women Health Care</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="trans-health.html" class="flex items-center px-4 py-3 text-gray-700 hover:bg-primary/5 rounded-lg group relative overflow-hidden">
+                            <i data-feather="activity" class="w-5 h-5 mr-3 text-primary/80 group-hover:text-primary transition-colors"></i>
+                            <span data-i18n="nav.trans_health" class="group-hover:text-gray-900 transition-colors">Trans Health Care</span>
                         </a>
                     </li>
                     <li>
@@ -90,7 +141,7 @@
                 </ul>
             </nav>
         </aside>
-
+         
         <!-- Main Content -->
         <div class="flex-1 flex flex-col overflow-hidden">
             <!-- Top Navigation -->
@@ -101,7 +152,12 @@
                             <i data-feather="menu" class="w-6 h-6"></i>
                         </button>
                         <div class="ml-4 flex items-center">
-                            <input data-i18n-placeholder="header.searchPlaceholder" type="text" placeholder="Search for resources..." class="w-64 px-4 py-2 text-sm text-gray-700 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                            <div class="relative">
+                                <input id="searchInput" data-i18n-placeholder="header.searchPlaceholder" type="text" placeholder="Search for resources..." class="w-64 px-4 py-2 text-sm text-gray-700 bg-gray-100 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                                <div id="searchResults" class="absolute left-0 right-0 mt-2 bg-white rounded-lg shadow-lg z-50 max-h-96 overflow-y-auto hidden">
+                                    <!-- Search results will be populated here -->
+                                </div>
+                            </div>
                             <select id="langSelect" class="ml-3 px-3 py-2 rounded-lg bg-gray-100 text-sm" aria-label="Language selector">
                                 <option value="en">English</option>
                                 <option value="hi">हिन्दी</option>
@@ -141,7 +197,7 @@
                             <div id="heroSlides" class="flex transition-transform duration-700" style="transform: translateX(0%);">                                                                                      
 
                                 <!-- Gauri Sawant Slide -->
-                                <div id="gauriSlide" class="w-full flex-shrink-0 relative bg-cover bg-center h-64 md:h-96" style="background-image: url('https://source.unsplash.com/1600x900/?transgender,activist');" data-story="gauri-sawant">
+                                <div id="gauriSlide" class="w-full flex-shrink-0 relative bg-cover bg-center h-64 md:h-96" style="background-image: url('Gauri Sawant.jpg');" data-story="gauri-sawant">
                                     <div class="absolute inset-0 bg-black/40"></div>
                                     <div class="absolute bottom-6 left-6 text-white max-w-xl">
                                         <span class="inline-block px-3 py-1 bg-primary/80 rounded-full text-xs">Inspiring</span>
@@ -152,7 +208,7 @@
                                 </div>
 
                                 <!-- Cornelia Sorabji Slide -->
-                                <div id="corneliaSlide" class="w-full flex-shrink-0 relative bg-cover bg-center h-64 md:h-96" style="background-image: url('https://source.unsplash.com/1600x900/?lawyer,woman');" data-story="cornelia-sorabji">
+                                <div id="corneliaSlide" class="w-full flex-shrink-0 relative bg-cover bg-center h-64 md:h-96" style="background-image: url('https://www.some.ox.ac.uk/wp-content/uploads/2021/06/Eminent-Somervillians_Cornelia-Sorabji-1.jpg');" data-story="cornelia-sorabji">
                                     <div class="absolute inset-0 bg-black/40"></div>
                                     <div class="absolute bottom-6 left-6 text-white max-w-xl">
                                         <span class="inline-block px-3 py-1 bg-secondary/80 rounded-full text-xs">Pioneer</span>
@@ -163,24 +219,24 @@
                                 </div>
 
                                 <!-- Karnam Malleswari Slide -->
-                                <div id="karnamSlide" class="w-full flex-shrink-0 relative bg-cover bg-center h-64 md:h-96" style="background-image: url('https://source.unsplash.com/1600x900/?weightlifting,athlete');" data-story="karnam-malleswari">
+                                <div id="karnamSlide" class="w-full flex-shrink-0 relative bg-cover bg-center h-64 md:h-96" style="background-image: url('https://sc0.blr1.digitaloceanspaces.com/large/851139-68807-cyzzldcwrf-1505802941.jpg');" data-story="karnam-malleswari">
                                     <div class="absolute inset-0 bg-black/40"></div>
                                     <div class="absolute bottom-6 left-6 text-white max-w-xl">
                                             <span class="inline-block px-3 py-1 bg-accent/80 rounded-full text-xs">Sports</span>
                                             <h2 class="text-2xl md:text-4xl font-bold mt-3">Karnam Malleswari – First Female Olympic Medalist</h2>
                                             <p class="mt-2 text-sm md:text-base">Breaking barriers in sports: From village to Olympic glory (Born 1975).</p>
-                                            <button onclick="showStory('karnam-malleswari-story')" class="inline-block mt-4 px-4 py-2 bg-white text-dark rounded-lg">Read Story</button>
+                                            <button onclick="showStory('karnam-malleswari')" class="inline-block mt-4 px-4 py-2 bg-white text-dark rounded-lg">Read Story</button>
                                     </div>
                                 </div>
 
                                     <!-- Laxmi Narayan Tripathi Slide -->
-                                    <div id="laxmiSlide" class="w-full flex-shrink-0 relative bg-cover bg-center h-64 md:h-96" style="background-image: url('https://images.thequint.com/thequint%2F2015-06%2F6cd54c95-7d4c-4cc7-a512-37e582c5faf8%2Flaxmi-narayan-tripathi.jpg');" data-story="laxmi-tripathi">
+                                    <div id="laxmiSlide" class="w-full flex-shrink-0 relative bg-cover bg-center h-64 md:h-96" style="background-image: url('https://media.assettype.com/outlookindia/2024-05/07cdb08b-c9cd-4df5-9548-6d066b12ee33/laxmi_naina_3_20240528.jpg?w=801&auto=format%2Ccompress&fit=max&format=webp&dpr=1.0');" data-story="laxmi-tripathi">
                                         <div class="absolute inset-0 bg-black/40"></div>
                                         <div class="absolute bottom-6 left-6 text-white max-w-xl">
                                             <span class="inline-block px-3 py-1 bg-primary/80 rounded-full text-xs">Activist</span>
                                             <h2 class="text-2xl md:text-4xl font-bold mt-3">Laxmi Narayan Tripathi – Breaking Gender Barriers</h2>
                                             <p class="mt-2 text-sm md:text-base">From dancer to international activist: Championing transgender rights and dignity (Born 1978).</p>
-                                            <button onclick="showStory('laxmi-tripathi-story')" class="inline-block mt-4 px-4 py-2 bg-white text-dark rounded-lg">Read Story</button>
+                                            <button onclick="showStory('laxmi-tripathi')" class="inline-block mt-4 px-4 py-2 bg-white text-dark rounded-lg">Read Story</button>
                                         </div>
                                     </div>
                             </div>
@@ -198,153 +254,91 @@
                         </div>
                     </section>
 
-                    <!-- Statistics Cards -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                        <div class="bg-white rounded-xl shadow-sm p-6">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="p-2 bg-primary/10 rounded-lg">
-                                    <i data-feather="gift" class="w-6 h-6 text-primary"></i>
-                                </div>
-                                <span class="text-sm font-medium text-green-500">+12%</span>
-                            </div>
-                            <h3 class="text-gray-500 text-sm font-medium">Total Schemes</h3>
-                            <p id="total-schemes" class="text-2xl font-semibold text-gray-900 mt-1">248</p>
-                        </div>
-
-                        <div class="bg-white rounded-xl shadow-sm p-6">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="p-2 bg-secondary/10 rounded-lg">
-                                    <i data-feather="users" class="w-6 h-6 text-secondary"></i>
-                                </div>
-                                <span class="text-sm font-medium text-green-500">+5%</span>
-                            </div>
-                            <h3 class="text-gray-500 text-sm font-medium">Active NGOs</h3>
-                            <p class="text-2xl font-semibold text-gray-900 mt-1">156</p>
-                        </div>
-
-                        <div class="bg-white rounded-xl shadow-sm p-6">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="p-2 bg-accent/10 rounded-lg">
-                                    <i data-feather="book" class="w-6 h-6 text-accent"></i>
-                                </div>
-                                <span class="text-sm font-medium text-green-500">+2</span>
-                            </div>
-                            <h3 class="text-gray-500 text-sm font-medium">Legal Acts</h3>
-                            <p class="text-2xl font-semibold text-gray-900 mt-1">32</p>
-                        </div>
-
-                        <div class="bg-white rounded-xl shadow-sm p-6">
-                            <div class="flex items-center justify-between mb-4">
-                                <div class="p-2 bg-red-100 rounded-lg">
-                                    <i data-feather="bell" class="w-6 h-6 text-red-500"></i>
-                                </div>
-                                <span class="text-sm font-medium text-red-500">Active</span>
-                            </div>
-                            <h3 class="text-gray-500 text-sm font-medium">SOS Alerts</h3>
-                            <p class="text-2xl font-semibold text-gray-900 mt-1">4</p>
-                        </div>
-                    </div>
-
-                    <!-- Quick Access Grid -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                       
-
-                        
-                    </div>
-
-                    <!-- Video Stories Section -->
-                    <div class="mb-8">
-                        <div class="flex items-center justify-between mb-6">
-                            <div>
-                                <h2 class="text-xl font-semibold text-gray-800">Watch Their Journey</h2>
-                                <p class="text-sm text-gray-600 mt-1">Top 5 Inspiring Videos of the Month</p>
-                            </div>
-                        </div>
-                        
+                   
                         <!-- Video Grid -->
                         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                             <!-- Video Card 1 - YouTube -->
-                            <div class="bg-white rounded-xl shadow-sm overflow-hidden group cursor-pointer" data-video-type="youtube" data-video-id="VIDEO_ID_1">
-                                <div class="aspect-video bg-cover bg-center relative" style="background-image: url('https://source.unsplash.com/800x450/?transgender,empowerment');">
+                            <div class="bg-white rounded-xl shadow-sm overflow-hidden group cursor-pointer" data-video-type="youtube" data-video-id="_rLUtGUMaAY">
+                                <div class="aspect-video bg-cover bg-center relative" style="background-image: url('https://i.ytimg.com/vi/MgqG84umiT4/maxresdefault.jpg');">
                                     <div class="absolute inset-0 bg-black/40 opacity-100 group-hover:opacity-75 transition-opacity flex items-center justify-center">
-                                        <button onclick="playVideo('youtube', 'VIDEO_ID_1')" class="p-4 bg-red-600 rounded-full text-white shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
+                                        <button onclick="playVideo('youtube', '_rLUtGUMaAY')" class="p-4 bg-red-600 rounded-full text-white shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
                                             <i data-feather="play" class="w-6 h-6"></i>
                                         </button>
                                     </div>
-                                    <span class="absolute top-2 right-2 px-2 py-1 bg-red-600/90 text-white text-xs rounded-full">1:45</span>
+                                    <span class="absolute top-2 right-2 px-2 py-1 bg-red-600/90 text-white text-xs rounded-full">20:07</span>
                                 </div>
                                 <div class="p-4">
                                     <span class="inline-block px-2 py-1 text-xs bg-red-100 text-red-600 rounded-full">YouTube</span>
-                                    <h3 class="mt-2 font-semibold">Breaking Gender Stereotypes</h3>
-                                    <p class="text-sm text-gray-600 mt-1">A journey of self-discovery and acceptance</p>
+                                    <h3 class="mt-2 font-semibold">Transgender Activist Gauri Sawant Shares Her Story From Ganesh To Gauri| Jayanti Waghdhare | PODCAST</h3>
+                                    <p class="text-sm text-gray-600 mt-1"> By Jayanti Waghdhare </p>
                                 </div>
                             </div>
 
                             <!-- Video Card 2 - Instagram -->
-                            <div class="bg-white rounded-xl shadow-sm overflow-hidden group cursor-pointer" data-video-type="instagram" data-video-id="POST_ID_1">
-                                <div class="aspect-video bg-cover bg-center relative" style="background-image: url('https://source.unsplash.com/800x450/?women,leadership');">
+                            <div class="bg-white rounded-xl shadow-sm overflow-hidden group cursor-pointer" data-video-type="youtube" data-video-id="vjTq9wY44eg">
+                                <div class="aspect-video bg-cover bg-center relative" style="background-image: url('https://i.ytimg.com/vi/vjTq9wY44eg/maxresdefault.jpg');">
                                     <div class="absolute inset-0 bg-black/40 opacity-100 group-hover:opacity-75 transition-opacity flex items-center justify-center">
-                                        <button onclick="playVideo('instagram', 'POST_ID_1')" class="p-4 bg-gradient-to-tr from-purple-600 to-pink-500 rounded-full text-white shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
+                                        <button onclick="playVideo('youtube', 'vjTq9wY44eg')" class="p-4 bg-gradient-to-tr from-purple-600 to-pink-500 rounded-full text-white shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
                                             <i data-feather="play" class="w-6 h-6"></i>
                                         </button>
                                     </div>
-                                    <span class="absolute top-2 right-2 px-2 py-1 bg-black/90 text-white text-xs rounded-full">1:20</span>
+                                    <span class="absolute top-2 right-2 px-2 py-1 bg-black/90 text-white text-xs rounded-full">17:53</span>
                                 </div>
                                 <div class="p-4">
-                                    <span class="inline-block px-2 py-1 text-xs bg-gradient-to-r from-purple-100 to-pink-100 text-pink-600 rounded-full">Instagram</span>
-                                    <h3 class="mt-2 font-semibold">Voices of Change</h3>
-                                    <p class="text-sm text-gray-600 mt-1">Stories that inspire and empower</p>
+                                    <span class="inline-block px-2 py-1 text-xs bg-gradient-to-r from-purple-100 to-pink-100 text-pink-600 rounded-full">youtube</span>
+                                    <h3 class="mt-2 font-semibold">The Transgenders' Battle for Inclusion | Shreegauri Sawant | TEDxYouth@NavrachanaSchoolSama</h3>
+                                    <p class="text-sm text-gray-600 mt-1"> By TEDx Talks</p>
                                 </div>
                             </div>
 
                             <!-- Video Card 3 - Local MP4 -->
-                            <div class="bg-white rounded-xl shadow-sm overflow-hidden group cursor-pointer" data-video-type="local" data-video-src="videos/community-support.mp4">
-                                <div class="aspect-video bg-cover bg-center relative" style="background-image: url('https://source.unsplash.com/800x450/?community,support');">
+                            <div class="bg-white rounded-xl shadow-sm overflow-hidden group cursor-pointer" data-video-type="youtube" data-video-src="dqs_dTG5aUU">
+                                <div class="aspect-video bg-cover bg-center relative" style="background-image: url('https://i.ytimg.com/vi/dqs_dTG5aUU/maxresdefault.jpg');">
                                     <div class="absolute inset-0 bg-black/40 opacity-100 group-hover:opacity-75 transition-opacity flex items-center justify-center">
-                                        <button onclick="playVideo('local', 'videos/community-support.mp4')" class="p-4 bg-primary rounded-full text-white shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
+                                        <button onclick="playVideo('youtube', 'dqs_dTG5aUU')" class="p-4 bg-primary rounded-full text-white shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
                                             <i data-feather="play" class="w-6 h-6"></i>
                                         </button>
                                     </div>
-                                    <span class="absolute top-2 right-2 px-2 py-1 bg-black/90 text-white text-xs rounded-full">2:00</span>
+                                    <span class="absolute top-2 right-2 px-2 py-1 bg-black/90 text-white text-xs rounded-full">23:57</span>
                                 </div>
                                 <div class="p-4">
                                     <span class="inline-block px-2 py-1 text-xs bg-primary/10 text-primary rounded-full">Community</span>
-                                    <h3 class="mt-2 font-semibold">Building Safe Spaces</h3>
-                                    <p class="text-sm text-gray-600 mt-1">Creating inclusive environments for all</p>
+                                    <h3 class="mt-2 font-semibold">Woman of Iron & India's Pride | Dr Padma Shri Karnam Malleswari On The Gaurav Arya Show</h3>
+                                    <p class="text-sm text-gray-600 mt-1">By Republic World</p>
                                 </div>
                             </div>
 
                             <!-- Video Card 4 - YouTube -->
-                            <div class="bg-white rounded-xl shadow-sm overflow-hidden group cursor-pointer" data-video-type="youtube" data-video-id="VIDEO_ID_2">
-                                <div class="aspect-video bg-cover bg-center relative" style="background-image: url('https://source.unsplash.com/800x450/?education,equality');">
+                            <div class="bg-white rounded-xl shadow-sm overflow-hidden group cursor-pointer" data-video-type="youtube" data-video-id="vuMxIdUX108">
+                                <div class="aspect-video bg-cover bg-center relative" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrOcTJ7fLOqVmqol1kPL--vEeVMxhgZbYUJA&s');">
                                     <div class="absolute inset-0 bg-black/40 opacity-100 group-hover:opacity-75 transition-opacity flex items-center justify-center">
-                                        <button onclick="playVideo('youtube', 'VIDEO_ID_2')" class="p-4 bg-red-600 rounded-full text-white shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
+                                        <button onclick="playVideo('youtube', 'vuMxIdUX108')" class="p-4 bg-red-600 rounded-full text-white shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
                                             <i data-feather="play" class="w-6 h-6"></i>
                                         </button>
                                     </div>
-                                    <span class="absolute top-2 right-2 px-2 py-1 bg-red-600/90 text-white text-xs rounded-full">1:30</span>
+                                    <span class="absolute top-2 right-2 px-2 py-1 bg-red-600/90 text-white text-xs rounded-full">3:38</span>
                                 </div>
                                 <div class="p-4">
                                     <span class="inline-block px-2 py-1 text-xs bg-red-100 text-red-600 rounded-full">YouTube</span>
-                                    <h3 class="mt-2 font-semibold">Education for All</h3>
-                                    <p class="text-sm text-gray-600 mt-1">Breaking barriers in education</p>
+                                    <h3 class="mt-2 font-semibold">Cornelia Sorabji: India's first female lawyer | Feminism In India</h3>
+                                    <p class="text-sm text-gray-600 mt-1">By Feminism In India</p>
                                 </div>
                             </div>
 
                             <!-- Video Card 5 - Instagram -->
-                            <div class="bg-white rounded-xl shadow-sm overflow-hidden group cursor-pointer" data-video-type="instagram" data-video-id="POST_ID_2">
-                                <div class="aspect-video bg-cover bg-center relative" style="background-image: url('https://source.unsplash.com/800x450/?healthcare,support');">
+                            <div class="bg-white rounded-xl shadow-sm overflow-hidden group cursor-pointer" data-video-type="youtube" data-video-id="1xHlrHr-IjY">
+                                <div class="aspect-video bg-cover bg-center relative" style="background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTe25oEddQzOtOm9kXmUTLvKjvST4-WOAnrug&s');">
                                     <div class="absolute inset-0 bg-black/40 opacity-100 group-hover:opacity-75 transition-opacity flex items-center justify-center">
-                                        <button onclick="playVideo('instagram', 'POST_ID_2')" class="p-4 bg-gradient-to-tr from-purple-600 to-pink-500 rounded-full text-white shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
+                                        <button onclick="playVideo('youtube', '1xHlrHr-IjY')" class="p-4 bg-gradient-to-tr from-purple-600 to-pink-500 rounded-full text-white shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
                                             <i data-feather="play" class="w-6 h-6"></i>
                                         </button>
                                     </div>
-                                    <span class="absolute top-2 right-2 px-2 py-1 bg-black/90 text-white text-xs rounded-full">1:15</span>
+                                    <span class="absolute top-2 right-2 px-2 py-1 bg-black/90 text-white text-xs rounded-full">2:21</span>
                                 </div>
                                 <div class="p-4">
-                                    <span class="inline-block px-2 py-1 text-xs bg-gradient-to-r from-purple-100 to-pink-100 text-pink-600 rounded-full">Instagram</span>
-                                    <h3 class="mt-2 font-semibold">Healthcare Heroes</h3>
-                                    <p class="text-sm text-gray-600 mt-1">Making healthcare accessible</p>
+                                    <span class="inline-block px-2 py-1 text-xs bg-gradient-to-r from-purple-100 to-pink-100 text-pink-600 rounded-full">youtube</span>
+                                    <h3 class="mt-2 font-semibold">Inspiring Journey Of A Transgender Model | Khushi Shaikh | Motivational Story For Girls</h3>
+                                    <p class="text-sm text-gray-600 mt-1">By Sh Success Step</p>
                                 </div>
                             </div>
                         </div>
@@ -353,12 +347,14 @@
 
                 <!-- Success Story Modal -->
                 <div id="storyModal" class="fixed inset-0 bg-black/70 hidden items-center justify-center z-50 p-4" role="dialog" aria-modal="true" aria-hidden="true">
+                    <button class="btn-close">&times;</button>
                     <div class="bg-white rounded-lg max-w-3xl w-full overflow-hidden p-6" role="document">
                         <!-- Gauri's Story (with background image) -->
-                        <div id="gauri-sawant-story" class="hidden relative bg-cover bg-center" style="background-image: url('https://source.unsplash.com/1200x800/?transgender,activist');">
+                        <div id="gauri-sawant-story" class="hidden relative bg-cover bg-center" style="background-image: url('./assets/gauri-sawant.jpg');">
                             <!-- subtle dark overlay to keep text readable -->
                             <div class="absolute inset-0 bg-black/40"></div>
-
+                            
+                             
                             <!-- inner scrollable content card -->
                             <div class="relative z-10 max-h-[70vh] overflow-auto p-6" role="dialog" aria-modal="true" aria-labelledby="gauriModalTitle">
                                 <div class="bg-white/95 p-6 rounded-lg">
@@ -393,6 +389,7 @@
                                                     <p class="mb-2">❤️ Love, care, and motherhood are beyond gender.</p>
                                                     <p>Her life shows that compassion and courage can redefine what it means to be a parent and a changemaker.</p>
                                                 </div>
+                                                 
                                             </div>
                                         </div>
                                     </div>
@@ -401,6 +398,7 @@
                         </div>                                                         
                        <!-- Cornelia Sorabji's Story -->
                         <div id="cornelia-sorabji-story" class="hidden">
+                             <button class="btn-close">&times;</button>
                             <div class="border-b pb-4 mb-4">
                                 <h2 class="text-2xl md:text-3xl font-bold text-primary">Cornelia Sorabji – Breaking Legal Barriers</h2>
                                 <p class="text-sm text-gray-500 mt-1">India's First Woman Lawyer (1866-1954)</p>
@@ -429,6 +427,7 @@
 
                         <!-- Karnam Malleswari's Story -->
                         <div id="karnam-malleswari-story" class="hidden">
+                            <button class="btn-close">&times;</button>
                             <div class="border-b pb-4 mb-4">
                                 <h2 class="text-2xl md:text-3xl font-bold text-primary">Karnam Malleswari – Breaking Olympic Barriers</h2>
                                 <p class="text-sm text-gray-500 mt-1">India's First Female Olympic Medalist (Born: June 1, 1975)</p>
@@ -455,39 +454,37 @@
                             </div>
                         </div>
 
-                        <div class="mt-6 text-right">
-                                <button id="closeStory" class="px-4 py-2 bg-gray-100 rounded-lg">Close</button>
+                        <!-- Laxmi Narayan Tripathi's Story -->
+                        <div id="laxmi-tripathi-story" class="hidden">
+                            <button class="btn-close">&times;</button>
+                            <div class="border-b pb-4 mb-4">
+                                <h2 class="text-2xl md:text-3xl font-bold text-primary">Laxmi Narayan Tripathi – Breaking Gender Barriers</h2>
+                                <p class="text-sm text-gray-500 mt-1">Pioneering Transgender Rights Activist (Born: November 10, 1978)</p>
                             </div>
-                            <!-- Laxmi Narayan Tripathi's Story -->
-                            <div id="laxmi-tripathi-story" class="hidden">
-                                <div class="border-b pb-4 mb-4">
-                                    <h2 class="text-2xl md:text-3xl font-bold text-primary">Laxmi Narayan Tripathi – Breaking Gender Barriers</h2>
-                                    <p class="text-sm text-gray-500 mt-1">Pioneering Transgender Rights Activist (Born: November 10, 1978)</p>
-                                </div>
+                        
+                            <div class="prose max-w-none">
+                                <h3 class="text-lg font-semibold text-gray-800">Early Life</h3>
+                                <p class="mb-4">Born in Mumbai into a middle-class Maharashtrian family, Laxmi identified as female from an early age. Despite facing social stigma, she pursued her education and developed her talents in classical dance, particularly in Bharatanatyam and Lavani forms.</p>
                             
-                                <div class="prose max-w-none">
-                                    <h3 class="text-lg font-semibold text-gray-800">Early Life</h3>
-                                    <p class="mb-4">Born in Mumbai into a middle-class Maharashtrian family, Laxmi identified as female from an early age. Despite facing social stigma, she pursued her education and developed her talents in classical dance, particularly in Bharatanatyam and Lavani forms.</p>
-                                
-                                    <h3 class="text-lg font-semibold text-gray-800">Journey of Activism</h3>
-                                    <p class="mb-4">Joining the hijra community during adolescence, Laxmi transformed her personal experiences into a powerful platform for advocacy. She became one of India's most prominent transgender rights activists, focusing on education, employment, legal recognition, and healthcare access for the transgender community.</p>
-                                
-                                    <h3 class="text-lg font-semibold text-gray-800">International Recognition</h3>
-                                    <p class="mb-4">Making history as the first transgender woman to represent India at the United Nations, Laxmi spoke passionately about human rights and LGBTQ+ issues. Her advocacy was instrumental in the passage of the Transgender Persons (Protection of Rights) Act, 2019, a landmark legislation in India.</p>
-                                
-                                    <h3 class="text-lg font-semibold text-gray-800">Cultural Impact</h3>
-                                    <p class="mb-4">As an accomplished classical dancer, Laxmi uses performance art to raise awareness about gender diversity and social inclusion. Her story has been featured in numerous media outlets and documentaries, helping to change public perceptions about the transgender community.</p>
-                                
-                                    <div class="mt-6 p-4 bg-primary/5 rounded-lg">
-                                        <h3 class="text-lg font-semibold text-primary">Legacy</h3>
-                                        <p class="mb-2">🌈 "Our existence is our resistance."</p>
-                                        <p>Laxmi continues to inspire transgender youth in India, proving that one's identity should never be a barrier to success and social recognition. Her work has paved the way for greater acceptance and rights for the transgender community.</p>
-                                    </div>
+                                <h3 class="text-lg font-semibold text-gray-800">Journey of Activism</h3>
+                                <p class="mb-4">Joining the hijra community during adolescence, Laxmi transformed her personal experiences into a powerful platform for advocacy. She became one of India's most prominent transgender rights activists, focusing on education, employment, legal recognition, and healthcare access for the transgender community.</p>
+                            
+                                <h3 class="text-lg font-semibold text-gray-800">International Recognition</h3>
+                                <p class="mb-4">Making history as the first transgender woman to represent India at the United Nations, Laxmi spoke passionately about human rights and LGBTQ+ issues. Her advocacy was instrumental in the passage of the Transgender Persons (Protection of Rights) Act, 2019, a landmark legislation in India.</p>
+                            
+                                <h3 class="text-lg font-semibold text-gray-800">Cultural Impact</h3>
+                                <p class="mb-4">As an accomplished classical dancer, Laxmi uses performance art to raise awareness about gender diversity and social inclusion. Her story has been featured in numerous media outlets and documentaries, helping to change public perceptions about the transgender community.</p>
+                            
+                                <div class="mt-6 p-4 bg-primary/5 rounded-lg">
+                                    <h3 class="text-lg font-semibold text-primary">Legacy</h3>
+                                    <p class="mb-2">🌈 "Our existence is our resistance."</p>
+                                    <p>Laxmi continues to inspire transgender youth in India, proving that one's identity should never be a barrier to success and social recognition. Her work has paved the way for greater acceptance and rights for the transgender community.</p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
                 <!-- Video Modal -->
                 <div id="videoModal" class="fixed inset-0 bg-black/90 hidden items-center justify-center z-50 p-4" role="dialog" aria-modal="true" aria-hidden="true">
                     <div class="max-w-4xl w-full relative">
@@ -513,6 +510,43 @@
 
     <script>
         feather.replace();
+
+        // Simple close functionality for story modals
+        function closeStory() {
+            // Hide the story modal
+            const modal = document.getElementById('storyModal');
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                modal.setAttribute('aria-hidden', 'true');
+            }
+            
+            // Show the hero slider
+            const slider = document.getElementById('heroSlider');
+            if (slider) {
+                slider.classList.remove('hidden');
+            }
+        }
+
+        // Update the showStory function to work with close buttons
+        window.showStory = function(id) {
+            // Hide all stories first
+            document.querySelectorAll('[id$="-story"]').forEach(el => el.classList.add('hidden'));
+            // Show requested story
+            const story = document.getElementById(id + '-story');
+            if(story) {
+                story.classList.remove('hidden');
+                const modal = document.getElementById('storyModal');
+                if(modal) {
+                    modal.classList.remove('hidden');
+                    modal.classList.add('flex');
+                    modal.setAttribute('aria-hidden', 'false');
+                }
+                // Hide slider
+                const slider = document.getElementById('heroSlider');
+                if(slider) slider.classList.add('hidden');
+            }
+        };
 
         // Mobile menu toggle
         document.getElementById('mobile-menu').addEventListener('click', () => {
@@ -603,82 +637,6 @@
                 .catch(err => {
                     console.warn('Could not load schemes.json', err);
                 });
-        })();
-
-        // Success Stories Modal Handler
-        (function(){
-            const modal = document.getElementById('storyModal');
-            const closeBtn = document.getElementById('closeStory');
-            let lastActive = null;
-
-            window.showStory = function(id) {
-                // Hide all stories first
-                document.querySelectorAll('[id$="-story"]').forEach(el => el.classList.add('hidden'));
-                // Show requested story
-                const story = document.getElementById(id + '-story');
-                if(story) {
-                    story.classList.remove('hidden');
-                    modal.classList.remove('hidden');
-                    modal.classList.add('flex');
-                    modal.setAttribute('aria-hidden', 'false');
-                    lastActive = document.activeElement;
-                    closeBtn.focus();
-                }
-            };
-
-            const closeStory = () => {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
-                modal.setAttribute('aria-hidden', 'true');
-                if(lastActive) lastActive.focus();
-            };
-
-            closeBtn?.addEventListener('click', closeStory);
-            modal?.addEventListener('click', (e) => { if(e.target === modal) closeStory(); });
-            document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeStory(); });
-        })();
-
-        // Success Stories Slider
-        (function() {
-            const track = document.getElementById('storiesTrack');
-            const prevBtn = document.getElementById('storiesPrev');
-            const nextBtn = document.getElementById('storiesNext');
-            let position = 0;
-            let slideWidth = 100;
-
-            const updateSlideWidth = () => {
-                if (window.innerWidth >= 1024) { // lg breakpoint
-                    slideWidth = 33.333;
-                } else if (window.innerWidth >= 768) { // md breakpoint
-                    slideWidth = 50;
-                } else {
-                    slideWidth = 100;
-                }
-                goTo(position);
-            };
-
-            const goTo = (pos) => {
-                position = pos;
-                if (track) {
-                    track.style.transform = `translateX(-${position * slideWidth}%)`;
-                }
-                updateControls();
-            };
-
-            const updateControls = () => {
-                const maxPosition = Math.ceil(100 / slideWidth) - 1;
-                if (prevBtn) prevBtn.disabled = position <= 0;
-                if (nextBtn) nextBtn.disabled = position >= maxPosition;
-            };
-
-            prevBtn?.addEventListener('click', () => goTo(Math.max(0, position - 1)));
-            nextBtn?.addEventListener('click', () => {
-                const maxPosition = Math.ceil(100 / slideWidth) - 1;
-                goTo(Math.min(maxPosition, position + 1));
-            });
-
-            window.addEventListener('resize', updateSlideWidth);
-            updateSlideWidth();
         })();
 
         // Video Modal Handler
@@ -850,6 +808,190 @@
                 loadLang(v);
             });
         })();
+
+        // Initialize close buttons when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add click events to all close buttons
+            const closeButtons = document.querySelectorAll('.btn-close');
+            closeButtons.forEach(button => {
+                button.addEventListener('click', closeStory);
+            });
+            
+            // Close when clicking outside modal content
+            const modal = document.getElementById('storyModal');
+            if (modal) {
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        closeStory();
+                    }
+                });
+            }
+            
+            // Close with Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeStory();
+                }
+            });
+        });
+
+        // Make function available globally
+        window.closeStory = closeStory;
+
+        // Search Functionality
+        (function() {
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            let schemes = null;
+            let searchTimeout = null;
+
+            // Load schemes data
+            fetch('schemes.json')
+                .then(r => r.json())
+                .then(data => {
+                    schemes = data;
+                })
+                .catch(err => {
+                    console.warn('Could not load schemes data', err);
+                });
+
+            // Helper function to highlight search terms
+            function highlightText(text, term) {
+                if (!term) return text;
+                const regex = new RegExp(`(${term})`, 'gi');
+                return text.replace(regex, '<mark class="bg-yellow-200">$1</mark>');
+            }
+
+            // Function to create a search result item
+            function createSearchResultItem(item, searchTerm) {
+                const div = document.createElement('div');
+                div.className = 'p-4 hover:bg-gray-50 cursor-pointer border-b last:border-b-0';
+                
+                const name = highlightText(item.name, searchTerm);
+                const description = item.description ? highlightText(item.description, searchTerm) : '';
+                
+                div.innerHTML = `
+                    <div class="flex items-start">
+                        <span class="text-2xl mr-3">${item.categoryIcon || '📋'}</span>
+                        <div>
+                            <h3 class="font-medium text-gray-900">${name}</h3>
+                            <p class="text-sm text-gray-600 mt-1">${description}</p>
+                            <div class="flex items-center gap-2 mt-2">
+                                <span class="px-2 py-1 bg-primary/10 text-primary rounded text-xs">${item.category}</span>
+                                <span class="text-xs text-gray-500">${item.department}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                div.addEventListener('click', () => {
+                    if (item.officialWebsite) {
+                        window.open(item.officialWebsite, '_blank');
+                    } else {
+                        // Navigate to schemes page with the scheme highlighted
+                        window.location.href = 'schemes.html?scheme=' + encodeURIComponent(item.name);
+                    }
+                });
+
+                return div;
+            }
+
+            // Search function
+            function performSearch(term) {
+                if (!schemes || !term) {
+                    searchResults.classList.add('hidden');
+                    return;
+                }
+
+                const results = [];
+                const searchTerm = term.toLowerCase();
+
+                // Search in central schemes
+                if (schemes.central) {
+                    schemes.central.forEach(scheme => {
+                        if (
+                            scheme.name.toLowerCase().includes(searchTerm) ||
+                            scheme.description?.toLowerCase().includes(searchTerm) ||
+                            scheme.category.toLowerCase().includes(searchTerm) ||
+                            scheme.department.toLowerCase().includes(searchTerm)
+                        ) {
+                            results.push(scheme);
+                        }
+                    });
+                }
+
+                // Search in state schemes if they exist
+                if (schemes.state) {
+                    schemes.state.forEach(scheme => {
+                        if (
+                            scheme.name.toLowerCase().includes(searchTerm) ||
+                            scheme.description?.toLowerCase().includes(searchTerm) ||
+                            scheme.category.toLowerCase().includes(searchTerm) ||
+                            scheme.department.toLowerCase().includes(searchTerm)
+                        ) {
+                            results.push(scheme);
+                        }
+                    });
+                }
+
+                // Update results UI
+                searchResults.innerHTML = '';
+                
+                if (results.length === 0) {
+                    searchResults.innerHTML = `
+                        <div class="p-4 text-center text-gray-500">
+                            No results found for "${term}"
+                        </div>
+                    `;
+                } else {
+                    results.slice(0, 5).forEach(result => {
+                        searchResults.appendChild(createSearchResultItem(result, term));
+                    });
+
+                    if (results.length > 5) {
+                        const viewAll = document.createElement('div');
+                        viewAll.className = 'p-4 text-center text-primary hover:bg-gray-50 cursor-pointer';
+                        viewAll.textContent = `View all ${results.length} results`;
+                        viewAll.addEventListener('click', () => {
+                            window.location.href = `schemes.html?search=${encodeURIComponent(term)}`;
+                        });
+                        searchResults.appendChild(viewAll);
+                    }
+                }
+
+                searchResults.classList.remove('hidden');
+            }
+
+            // Event listeners
+            if (searchInput) {
+                searchInput.addEventListener('input', (e) => {
+                    const term = e.target.value.trim();
+                    clearTimeout(searchTimeout);
+                    searchTimeout = setTimeout(() => performSearch(term), 300);
+                });
+
+                searchInput.addEventListener('focus', () => {
+                    if (searchInput.value.trim()) {
+                        searchResults.classList.remove('hidden');
+                    }
+                });
+
+                // Close search results when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                        searchResults.classList.add('hidden');
+                    }
+                });
+
+                // Handle keyboard navigation
+                searchInput.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape') {
+                        searchResults.classList.add('hidden');
+                    }
+                });
+            }
+        })();
+        
     </script>
 </body>
 </html>

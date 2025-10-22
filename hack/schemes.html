@@ -24,9 +24,7 @@
         .tag:hover {
             background-color: #008744;
         }
-        #chatbot:hover {
-            transform: scale(1.1);
-        }
+        /* Chatbot removed */
     </style>
 </head>
 <body class="font-poppins bg-gray-50">
@@ -186,10 +184,7 @@
         </div>
     </div>
 
-    <!-- Floating Chatbot -->
-    <div id="chatbot" class="fixed bottom-6 right-6 bg-green-600 text-white p-3 rounded-full shadow-lg cursor-pointer transition-transform duration-300">
-        <i data-feather="message-circle"></i>
-    </div>
+    <!-- Chatbot removed -->
 
     <script>
         // Initialize feather icons
@@ -551,10 +546,7 @@
             renderAll();
         });
 
-        // Chatbot interaction
-        document.getElementById('chatbot').addEventListener('click', () => {
-            alert('Need help finding the right scheme? Our virtual assistant can guide you!');
-        });
+        // Chatbot removed
 
         // Wire search box
         document.querySelector('.bg-white input[type="text"]').addEventListener('input', () => renderAll());
