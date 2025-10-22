@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafeHaven Shield - Women & Transgender Safety Platform</title>
+    <link rel="icon" type="image/x-icon" href="https://static.photos/red/200x200/42">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <!-- TODO: replace YOUR_API_KEY with your Google Maps API key. Include 'geometry' since code uses google.maps.geometry -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places,geometry&callback=initMap"></script>
+    <style>
+        .pulse {
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .chatbot-toggle {
+            transition: all 0.3s ease;
+        }
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Floating SOS Button -->
+    <div class="fixed bottom-10 right-10 z-50">
+        <button id="sosBtn" class="pulse bg-red-600 hover:bg-red-700 text-white font-bold rounded-full h-16 w-16 flex items-center justify-center shadow-xl transition-all">
+            <span class="text-xl font-extrabold">SOS</span>
+        </button>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-md">
+        <div class="container mx-auto px-4 py-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-3 mb-4 md:mb-0">
+                    <i data-feather="shield" class="text-red-600 h-8 w-8"></i>
+                    <h1 class="text-2xl font-bold text-gray-800">SafeHaven Shield</h1>
+                </div>
+                <nav class="flex space-x-1 md:space-x-6">
+                    <a href="#" class="px-3 py-2 text-red-600 font-medium rounded-lg hover:bg-red-50">Home</a>
+                    <a href="#emergency" class="px-3 py-2 text-gray-600 font-medium rounded-lg hover:bg-gray-100">Emergency</a>
+                    <a href="#helplines" class="px-3 py-2 text-gray-600 font-medium rounded-lg hover:bg-gray-100">Helplines</a>
+                    <a href="#rights" class="px-3 py-2 text-gray-600 font-medium rounded-lg hover:bg-gray-100">Your Rights</a>
+                    <a href="#resources" class="px-3 py-2 text-gray-600 font-medium rounded-lg hover:bg-gray-100">Resources</a>
+                </nav>
+                <div class="mt-4 md:mt-0">
+                    <select class="px-3 py-2 border rounded-lg bg-white text-gray-700">
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी</option>
+                        <option value="ta">தமிழ்</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-red-600 to-red-500 text-white py-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6">Your Safety Is Our Priority</h1>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Immediate help, verified resources, and confidential support for women and transgender individuals</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="#emergency" class="bg-white text-red-600 px-6 py-3 rounded-lg font-bold hover:bg-gray-100 transition">Emergency Help</a>
+                <a href="#report" class="bg-transparent border-2 border-white px-6 py-3 rounded-lg font-bold hover:bg-white hover:text-red-600 transition">Report Anonymously</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Section -->
+    <section id="emergency" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Emergency Assistance</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- SOS Button Feature -->
+                <div class="bg-red-50 p-8 rounded-xl shadow-md border border-red-100">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-red-100 p-3 rounded-full mr-4">
+                            <i data-feather="alert-circle" class="text-red-600 h-6 w-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">Emergency SOS</h3>
+                    </div>
+                    <p class="mb-6 text-gray-600">Press the SOS button in any emergency situation to immediately alert authorities and your emergency contacts.</p>
+                    <button onclick="triggerSOS()" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center">
+                        <i data-feather="alert-triangle" class="mr-2"></i> Activate Emergency Alert
+                    </button>
+                </div>
+
+                <!-- Safety Map -->
+                <div class="bg-gray-50 p-8 rounded-xl shadow-md border border-gray-200">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-teal-100 p-3 rounded-full mr-4">
+                            <i data-feather="map-pin" class="text-teal-600 h-6 w-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-800">Find Nearby Help</h3>
+                    </div>
+                    <p class="mb-6 text-gray-600">Locate the nearest police stations, hospitals, and support centers in your area.</p>
+                    <div id="map" class="h-64 rounded-lg bg-gray-200"></div>
+                    <div class="mt-4">
+                        <button id="findHelpBtn" class="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-4 rounded-lg transition flex items-center justify-center">
+                            <i data-feather="compass" class="mr-2"></i> Find Help Near Me
+                        </button>
+                    </div>
+                    <div id="nearbyResults" class="mt-4"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Helpline Directory -->
+    <section id="helplines" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Emergency Helplines</h2>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Police -->
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition border border-gray-200">
+                    <div class="bg-red-100 p-3 rounded-full inline-block mb-4">
+                        <i data-feather="shield" class="text-red-600 h-6 w-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Police</h3>
+                    <p class="text-gray-600 mb-4">Immediate police assistance</p>
+                    <a href="tel:100" class="block bg-red-600 hover:bg-red-700 text-white text-center font-bold py-2 px-4 rounded-lg transition">
+                        <i data-feather="phone" class="inline mr-2"></i> Call 100
+                    </a>
+                </div>
+
+                <!-- Women Helpline -->
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition border border-gray-200">
+                    <div class="bg-pink-100 p-3 rounded-full inline-block mb-4">
+                        <i data-feather="heart" class="text-pink-600 h-6 w-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Women Helpline</h3>
+                    <p class="text-gray-600 mb-4">24/7 support for women</p>
+                    <a href="tel:1091" class="block bg-pink-600 hover:bg-pink-700 text-white text-center font-bold py-2 px-4 rounded-lg transition">
+                        <i data-feather="phone" class="inline mr-2"></i> Call 1091
+                    </a>
+                </div>
+
+                <!-- Transgender Support -->
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition border border-gray-200">
+                    <div class="bg-purple-100 p-3 rounded-full inline-block mb-4">
+                        <i data-feather="users" class="text-purple-600 h-6 w-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Transgender Support</h3>
+                    <p class="text-gray-600 mb-4">Specialized assistance</p>
+                    <a href="tel:7827170170" class="block bg-purple-600 hover:bg-purple-700 text-white text-center font-bold py-2 px-4 rounded-lg transition">
+                        <i data-feather="phone" class="inline mr-2"></i> Call 782-717-0170
+                    </a>
+                </div>
+
+                <!-- Ambulance -->
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition border border-gray-200">
+                    <div class="bg-teal-100 p-3 rounded-full inline-block mb-4">
+                        <i data-feather="crosshair" class="text-teal-600 h-6 w-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Ambulance</h3>
+                    <p class="text-gray-600 mb-4">Medical emergency</p>
+                    <a href="tel:108" class="block bg-teal-600 hover:bg-teal-700 text-white text-center font-bold py-2 px-4 rounded-lg transition">
+                        <i data-feather="phone" class="inline mr-2"></i> Call 108
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Anonymous Report Section -->
+    <section id="report" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Anonymous Incident Report</h2>
+            
+            <div class="max-w-2xl mx-auto bg-gray-50 p-8 rounded-xl shadow-md border border-gray-200">
+                <form id="reportForm">
+                    <div class="mb-6">
+                        <label class="block text-gray-700 font-bold mb-2" for="incidentType">Incident Type</label>
+                        <select id="incidentType" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
+                            <option value="">Select an incident type</option>
+                            <option value="harassment">Harassment</option>
+                            <option value="domestic_abuse">Domestic Abuse</option>
+                            <option value="discrimination">Discrimination</option>
+                            <option value="cyber_bullying">Cyber Bullying</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-gray-700 font-bold mb-2" for="description">Incident Description</label>
+                        <textarea id="description" rows="4" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Please describe what happened..."></textarea>
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-gray-700 font-bold mb-2" for="location">Location (Optional)</label>
+                        <input type="text" id="location" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" placeholder="Where did it happen?">
+                    </div>
+
+                    <div class="mb-6">
+                        <label class="block text-gray-700 font-bold mb-2">Upload Evidence (Optional)</label>
+                        <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center">
+                            <i data-feather="upload" class="mx-auto h-8 w-8 text-gray-400 mb-2"></i>
+                            <p class="text-gray-500 mb-1">Click to upload images or documents</p>
+                            <input type="file" id="evidence" class="hidden">
+                            <label for="evidence" class="text-sm text-red-600 font-medium cursor-pointer">Choose File</label>
+                        </div>
+                    </div>
+
+                    <div class="mb-6">
+                        <div class="flex items-center">
+                            <input type="checkbox" id="anonymous" class="mr-2" checked>
+                            <label for="anonymous" class="text-gray-700">Submit anonymously</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg transition">
+                        <i data-feather="send" class="inline mr-2"></i> Submit Report
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legal Rights Section -->
+    <section id="rights" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Know Your Rights</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Workplace Harassment -->
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition border border-gray-200">
+                    <div class="bg-blue-100 p-3 rounded-full inline-block mb-4">
+                        <i data-feather="briefcase" class="text-blue-600 h-6 w-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Workplace Harassment</h3>
+                    <ul class="space-y-2 text-gray-600 mb-6">
+                        <li class="flex items-start">
+                            <i data-feather="check" class="text-green-500 mr-2 mt-1 flex-shrink-0"></i>
+                            <span>Sexual harassment is illegal under the Sexual Harassment of Women at Workplace (Prevention, Prohibition and Redressal) Act, 2013</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="text-green-500 mr-2 mt-1 flex-shrink-0"></i>
+                            <span>Every workplace with 10+ employees must have an Internal Complaints Committee</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="text-red-600 font-medium flex items-center">
+                        Read More <i data-feather="arrow-right" class="ml-1 h-4 w-4"></i>
+                    </a>
+                </div>
+
+                <!-- Domestic Violence -->
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition border border-gray-200">
+                    <div class="bg-purple-100 p-3 rounded-full inline-block mb-4">
+                        <i data-feather="home" class="text-purple-600 h-6 w-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Domestic Violence</h3>
+                    <ul class="space-y-2 text-gray-600 mb-6">
+                        <li class="flex items-start">
+                            <i data-feather="check" class="text-green-500 mr-2 mt-1 flex-shrink-0"></i>
+                            <span>Protection of Women from Domestic Violence Act, 2005 provides civil remedies</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="text-green-500 mr-2 mt-1 flex-shrink-0"></i>
+                            <span>You can file for protection orders, residence orders, and monetary relief</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="text-red-600 font-medium flex items-center">
+                        Read More <i data-feather="arrow-right" class="ml-1 h-4 w-4"></i>
+                    </a>
+                </div>
+
+                <!-- Transgender Rights -->
+                <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition border border-gray-200">
+                    <div class="bg-pink-100 p-3 rounded-full inline-block mb-4">
+                        <i data-feather="user" class="text-pink-600 h-6 w-6"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-gray-800">Transgender Rights</h3>
+                    <ul class="space-y-2 text-gray-600 mb-6">
+                        <li class="flex items-start">
+                            <i data-feather="check" class="text-green-500 mr-2 mt-1 flex-shrink-0"></i>
+                            <span>Transgender Persons (Protection of Rights) Act, 2019 prohibits discrimination</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="text-green-500 mr-2 mt-1 flex-shrink-0"></i>
+                            <span>Right to self-perceived gender identity and access to all public services</span>
+                        </li>
+                    </ul>
+                    <a href="#" class="text-red-600 font-medium flex items-center">
+                        Read More <i data-feather="arrow-right" class="ml-1 h-4 w-4"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section id="resources" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Safety Resources</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Self-Defense -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
+                    <div class="h-48 bg-red-100 flex items-center justify-center">
+                        <i data-feather="shield" class="text-red-600 h-16 w-16"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Self-Defense Guide</h3>
+                        <p class="text-gray-600 mb-4">Learn basic techniques to protect yourself in dangerous situations.</p>
+                        <a href="#" class="text-red-600 font-medium flex items-center">
+                            View Guide <i data-feather="arrow-right" class="ml-1 h-4 w-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Cyber Safety -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
+                    <div class="h-48 bg-teal-100 flex items-center justify-center">
+                        <i data-feather="lock" class="text-teal-600 h-16 w-16"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Cyber Safety Tips</h3>
+                        <p class="text-gray-600 mb-4">Protect yourself from online harassment and digital threats.</p>
+                        <a href="#" class="text-red-600 font-medium flex items-center">
+                            View Tips <i data-feather="arrow-right" class="ml-1 h-4 w-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Support Groups -->
+                <div class="bg-gray-50 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition">
+                    <div class="h-48 bg-purple-100 flex items-center justify-center">
+                        <i data-feather="users" class="text-purple-600 h-16 w-16"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 text-gray-800">Support Groups</h3>
+                        <p class="text-gray-600 mb-4">Connect with local support groups and communities.</p>
+                        <a href="#" class="text-red-600 font-medium flex items-center">
+                            Find Groups <i data-feather="arrow-right" class="ml-1 h-4 w-4"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NGO Directory -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">NGO & Legal Aid Directory</h2>
+            
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white rounded-lg overflow-hidden">
+                    <thead class="bg-gray-100 text-gray-700">
+                        <tr>
+                            <th class="py-3 px-4 text-left">Organization</th>
+                            <th class="py-3 px-4 text-left">Services</th>
+                            <th class="py-3 px-4 text-left">Contact</th>
+                            <th class="py-3 px-4 text-left">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr>
+                            <td class="py-4 px-4">
+                                <div class="font-medium">Humsafar Trust</div>
+                                <div class="text-sm text-gray-600">LGBTQ+ Support</div>
+                            </td>
+                            <td class="py-4 px-4 text-gray-600">Legal aid, counseling, health services</td>
+                            <td class="py-4 px-4">
+                                <div>+91 22 2667 3800</div>
+                                <div class="text-sm text-gray-600">Mumbai</div>
+                            </td>
+                            <td class="py-4 px-4">
+                                <a href="tel:+912226673800" class="text-red-600 font-medium">
+                                    <i data-feather="phone" class="inline mr-1"></i> Call
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 px-4">
+                                <div class="font-medium">Naz Foundation</div>
+                                <div class="text-sm text-gray-600">Women & Trans Rights</div>
+                            </td>
+                            <td class="py-4 px-4 text-gray-600">Legal support, advocacy, HIV care</td>
+                            <td class="py-4 px-4">
+                                <div>+91 11 2649 3306</div>
+                                <div class="text-sm text-gray-600">Delhi</div>
+                            </td>
+                            <td class="py-4 px-4">
+                                <a href="tel:+911126493306" class="text-red-600 font-medium">
+                                    <i data-feather="phone" class="inline mr-1"></i> Call
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="py-4 px-4">
+                                <div class="font-medium">Majlis Legal Centre</div>
+                                <div class="text-sm text-gray-600">Women's Rights</div>
+                            </td>
+                            <td class="py-4 px-4 text-gray-600">Legal representation, counseling</td>
+                            <td class="py-4 px-4">
+                                <div>+91 22 2666 1296</div>
+                                <div class="text-sm text-gray-600">Mumbai</div>
+                            </td>
+                            <td class="py-4 px-4">
+                                <a href="tel:+912226661296" class="text-red-600 font-medium">
+                                    <i data-feather="phone" class="inline mr-1"></i> Call
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chatbot Toggle -->
+    <div class="fixed bottom-6 right-6 z-40">
+        <button id="chatbotToggle" class="chatbot-toggle bg-teal-600 hover:bg-teal-700 text-white rounded-full h-14 w-14 flex items-center justify-center shadow-xl">
+            <i data-feather="message-square" class="h-6 w-6"></i>
+        </button>
+    </div>
+
+    <!-- Chatbot Container (initially hidden) -->
+    <div id="chatbotContainer" class="fixed bottom-24 right-6 w-80 bg-white rounded-t-xl shadow-xl z-40 hidden border border-gray-200">
+        <div class="bg-teal-600 text-white px-4 py-3 rounded-t-xl flex justify-between items-center">
+            <h3 class="font-bold">Safety Assistant</h3>
+            <button id="closeChatbot" class="text-white">
+                <i data-feather="x" class="h-5 w-5"></i>
+            </button>
+        </div>
+        <div id="chatbotMessages" class="h-64 overflow-y-auto p-4 bg-gray-50">
+            <div class="mb-4">
+                <div class="bg-teal-100 text-gray-800 rounded-lg p-3 max-w-xs">
+                    Hello! I'm your Safety Assistant. How can I help you today?
+                </div>
+            </div>
+        </div>
+        <div class="p-3 border-t">
+            <div class="flex">
+                <input type="text" id="chatbotInput" placeholder="Type your message..." class="flex-1 px-3 py-2 border rounded-l-lg focus:outline-none focus:ring-1 focus:ring-teal-500">
+                <button id="sendChatbotMessage" class="bg-teal-600 text-white px-4 py-2 rounded-r-lg hover:bg-teal-700">
+                    <i data-feather="send" class="h-4 w-4"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">SafeHaven Shield</h3>
+                    <p class="text-gray-400">Empowering women and transgender individuals with safety tools and resources.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="#emergency" class="text-gray-400 hover:text-white transition">Emergency</a></li>
+                        <li><a href="#helplines" class="text-gray-400 hover:text-white transition">Helplines</a></li>
+                        <li><a href="#rights" class="text-gray-400 hover:text-white transition">Your Rights</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Emergency Contacts</h4>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><i data-feather="phone" class="mr-2 h-4 w-4"></i> <span class="text-gray-400">Police: 100</span></li>
+                        <li class="flex items-center"><i data-feather="phone" class="mr-2 h-4 w-4"></i> <span class="text-gray-400">Women Helpline: 1091</span></li>
+                        <li class="flex items-center"><i data-feather="phone" class="mr-2 h-4 w-4"></i> <span class="text-gray-400">Ambulance: 108</span></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold mb-4">Need Help?</h4>
+                    <p class="text-gray-400 mb-4">For immediate danger, please contact local authorities first.</p>
+                    <a href="#report" class="inline-block bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg transition">
+                        Report Incident
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2023 SafeHaven Shield. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SOS Modal -->
+    <div id="sosModal" class="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center hidden">
+        <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4">
+            <div class="text-center">
+                <div class="mx-auto bg-red-100 p-4 rounded-full w-20 h-20 flex items-center justify-center mb-4">
+                    <i data-feather="alert-triangle" class="text-red-600 h-8 w-8"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-2 text-gray-800">Emergency Alert</h3>
+                <p class="text-gray-600 mb-6">Your location is being sent to nearby help centers and emergency contacts.</p>
+                <div class="flex space-x-4">
+                    <button onclick="cancelSOS()" class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-4 rounded-lg transition">
+                        Cancel
+                    </button>
+                    <button onclick="confirmSOS()" class="flex-1 bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-4 rounded-lg transition">
+                        Confirm
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Google Map and Places search
+        let map, placesService, infoWindow, userMarker, markers = [];
+
+        function initMap() {
+            // If Google Maps API is not available, show a friendly placeholder
+            if (typeof google === 'undefined' || !google.maps) {
+                document.getElementById('map').innerHTML = '<div class="text-center p-8"><i data-feather="map" class="mx-auto h-12 w-12 text-gray-400 mb-4"></i><p class="text-gray-500">Map not available. Please add a valid Google Maps API key to enable live maps.</p></div>';
+                return;
+            }
+
+            // Create map centered at a default location until we get geolocation
+            const defaultLocation = { lat: 20.5937, lng: 78.9629 }; // India centroid fallback
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: defaultLocation,
+                zoom: 5,
+                disableDefaultUI: false,
+            });
+
+            placesService = new google.maps.places.PlacesService(map);
+            infoWindow = new google.maps.InfoWindow();
+
+            // Try to get user's location immediately if permission already granted
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    const pos = { lat: position.coords.latitude, lng: position.coords.longitude };
+                    map.setCenter(pos);
+                    map.setZoom(14);
+                    setUserMarker(pos);
+                    // Auto-run a nearby search for help locations
+                    searchNearbyHelp(pos);
+                }, function() {
+                    // Geolocation failed or denied — keep default map
+                });
+            }
+        }
+
+        function setUserMarker(position) {
+            if (userMarker) userMarker.setMap(null);
+            userMarker = new google.maps.Marker({
+                position,
+                map,
+                title: 'You are here',
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    scale: 8,
+                    fillColor: '#00b894',
+                    fillOpacity: 1,
+                    strokeWeight: 2,
+                    strokeColor: '#ffffff'
+                }
+            });
+        }
+
+        function clearMarkers() {
+            markers.forEach(m => m.setMap(null));
+            markers = [];
+        }
+
+        function searchNearbyHelp(location) {
+            if (!placesService) return;
+            clearMarkers();
+            document.getElementById('nearbyResults').innerHTML = '<p class="text-gray-600">Searching for nearby help...</p>';
+
+            const requests = [
+                { type: 'police', keyword: 'police station' },
+                { type: 'hospital', keyword: 'hospital' }
+            ];
+
+            const allResults = [];
+
+            let pending = requests.length;
+
+            requests.forEach(req => {
+                const request = {
+                    location: location,
+                    radius: 5000, // 5km
+                    keyword: req.keyword
+                };
+
+                placesService.nearbySearch(request, function(results, status) {
+                    if (status === google.maps.places.PlacesServiceStatus.OK && results && results.length) {
+                        results.forEach(r => allResults.push({ provider: req.type, place: r }));
+                    }
+
+                    pending -= 1;
+                    if (pending === 0) renderNearbyResults(allResults, location);
+                });
+            });
+        }
+
+        function renderNearbyResults(results, userLocation) {
+            if (!results.length) {
+                document.getElementById('nearbyResults').innerHTML = '<p class="text-gray-600">No nearby help locations found within 5km.</p>';
+                return;
+            }
+
+            // Sort by distance
+            results.forEach(r => {
+                r.distance = google.maps.geometry.spherical.computeDistanceBetween(
+                    new google.maps.LatLng(userLocation.lat, userLocation.lng),
+                    r.place.geometry.location
+                );
+            });
+
+            results.sort((a, b) => a.distance - b.distance);
+
+            const list = document.createElement('div');
+            list.className = 'space-y-3';
+
+            results.slice(0, 10).forEach(r => {
+                const place = r.place;
+                const li = document.createElement('div');
+                li.className = 'p-3 rounded-lg bg-white border border-gray-200 shadow-sm flex items-start';
+
+                const content = document.createElement('div');
+                content.className = 'flex-1';
+
+                const name = document.createElement('div');
+                name.className = 'font-semibold text-gray-800';
+                name.textContent = place.name;
+
+                const addr = document.createElement('div');
+                addr.className = 'text-sm text-gray-600';
+                addr.textContent = place.vicinity || '';
+
+                const actions = document.createElement('div');
+                actions.className = 'ml-3';
+
+                const goBtn = document.createElement('button');
+                goBtn.className = 'bg-teal-600 text-white px-3 py-1 rounded-lg text-sm hover:bg-teal-700';
+                goBtn.textContent = 'View on map';
+                goBtn.addEventListener('click', function() {
+                    map.panTo(place.geometry.location);
+                    map.setZoom(16);
+                    if (place.place_id) {
+                        infoWindow.setContent('<div><strong>' + place.name + '</strong><br>' + (place.vicinity || '') + '</div>');
+                        infoWindow.open(map);
+                        infoWindow.setPosition(place.geometry.location);
+                    }
+                });
+
+                content.appendChild(name);
+                content.appendChild(addr);
+                actions.appendChild(goBtn);
+                li.appendChild(content);
+                li.appendChild(actions);
+                list.appendChild(li);
+
+                // Add marker
+                const marker = new google.maps.Marker({
+                    position: place.geometry.location,
+                    map,
+                    title: place.name
+                });
+
+                marker.addListener('click', function() {
+                    infoWindow.setContent('<div><strong>' + place.name + '</strong><br>' + (place.vicinity || '') + '</div>');
+                    infoWindow.open(map, marker);
+                });
+
+                markers.push(marker);
+            });
+
+            const container = document.getElementById('nearbyResults');
+            container.innerHTML = '';
+            container.appendChild(list);
+        }
+
+
+        // SOS Functionality
+        function triggerSOS() {
+            document.getElementById('sosModal').classList.remove('hidden');
+        }
+
+        function cancelSOS() {
+            document.getElementById('sosModal').classList.add('hidden');
+        }
+
+        function confirmSOS() {
+            alert('Emergency alert sent with your location to authorities and emergency contacts.');
+            document.getElementById('sosModal').classList.add('hidden');
+            // Here you would actually send the alert with location data
+        }
+
+        // Locate User Function - centers map and searches nearby places
+        function locateUser() {
+            if (typeof google === 'undefined' || !google.maps) {
+                alert('Live maps are not available. Please add a valid Google Maps API key to enable this feature.');
+                return;
+            }
+
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+                        const pos = { lat: position.coords.latitude, lng: position.coords.longitude };
+                        map.setCenter(pos);
+                        map.setZoom(14);
+                        setUserMarker(pos);
+                        searchNearbyHelp(pos);
+                    },
+                    function(error) {
+                        alert('Unable to retrieve your location. Please enable location services.');
+                    }
+                );
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        // Chatbot Toggle
+        document.getElementById('chatbotToggle').addEventListener('click', function() {
+            const chatbot = document.getElementById('chatbotContainer');
+            chatbot.classList.toggle('hidden');
+        });
+
+        document.getElementById('closeChatbot').addEventListener('click', function() {
+            document.getElementById('chatbotContainer').classList.add('hidden');
+        });
+
+        // Simple Chatbot Response
+        document.getElementById('sendChatbotMessage').addEventListener('click', function() {
+            const input = document.getElementById('chatbotInput');
+            const messages = document.getElementById('chatbotMessages');
+            
+            if (input.value.trim() === '') return;
+            
+            // Add user message
+            messages.innerHTML += `
+                <div class="mb-4 flex justify-end">
+                    <div class="bg-blue-100 text-gray-800 rounded-lg p-3 max-w-xs">
+                        ${input.value}
+                    </div>
+                </div>
+            `;
+            
+            // Add bot response
+            setTimeout(() => {
+                messages.innerHTML += `
+                    <div class="mb-4">
+                        <div class="bg-teal-100 text-gray-800 rounded-lg p-3 max-w-xs">
+                            I understand you need help. For immediate danger, please use the SOS button. For other concerns, I can guide you to appropriate resources.
+                        </div>
+                    </div>
+                `;
+                messages.scrollTop = messages.scrollHeight;
+            }, 500);
+            
+            input.value = '';
+            messages.scrollTop = messages.scrollHeight;
+        });
+
+            // Initialize map when page loads
+        window.onload = function() {
+            if (typeof feather !== 'undefined' && feather.replace) {
+                try { feather.replace(); } catch (e) { /* ignore */ }
+            }
+
+            // Initialize the Google map (it will show placeholder if API key is missing)
+            try { initMap(); } catch (e) { /* ignore */ }
+
+            // Wire Find Help button
+            const findHelpBtn = document.getElementById('findHelpBtn');
+            if (findHelpBtn) {
+                findHelpBtn.addEventListener('click', function() {
+                    locateUser();
+                });
+            }
+
+            // Allow pressing Enter in chatbot input
+            const chatbotInput = document.getElementById('chatbotInput');
+            if (chatbotInput) {
+                chatbotInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        const sendBtn = document.getElementById('sendChatbotMessage');
+                        if (sendBtn) sendBtn.click();
+                    }
+                });
+            }
+        };
+    </script>
+</body>
+</html>

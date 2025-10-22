@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EmpowerHer TransCare Nexus | Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="components/sidebar.js"></script>
+    <script src="components/navbar.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="components/stats-card.js"></script>
+    <script src="components/quick-access.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B8B',
+                        secondary: '#4ECDC4',
+                        accent: '#FFD166',
+                        dark: '#1A1A2E',
+                        light: '#F9F9F9'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 font-sans">
+    <div class="flex h-screen overflow-hidden">
+        <custom-sidebar></custom-sidebar>
+        
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <custom-navbar></custom-navbar>
+            
+            <main class="flex-1 overflow-y-auto p-6 bg-gradient-to-br from-gray-50 to-gray-100">
+                <div class="max-w-7xl mx-auto">
+                    <h1 class="text-3xl font-bold text-dark mb-6">Dashboard Overview</h1>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <stats-card 
+                            icon="users" 
+                            title="Total Schemes" 
+                            value="248" 
+                            trend="+12%"
+                            color="primary">
+                        </stats-card>
+                        
+                        <stats-card 
+                            icon="heart" 
+                            title="Active NGOs" 
+                            value="156" 
+                            trend="+5%"
+                            color="secondary">
+                        </stats-card>
+                        
+                        <stats-card 
+                            icon="book" 
+                            title="Legal Acts" 
+                            value="32" 
+                            trend="+2"
+                            color="accent">
+                        </stats-card>
+                        
+                        <stats-card 
+                            icon="alert-circle" 
+                            title="SOS Alerts" 
+                            value="4" 
+                            trend="urgent"
+                            color="red-500">
+                        </stats-card>
+                    </div>
+                    
+                    <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                        <h2 class="text-xl font-semibold text-dark mb-4">Quick Access</h2>
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                            <quick-access 
+                                icon="home" 
+                                title="Home" 
+                                link="#">
+                            </quick-access>
+                            
+                            <quick-access 
+                                icon="package" 
+                                title="Schemes" 
+                                link="schemes.html">
+                            </quick-access>
+                            
+                            <quick-access 
+                                icon="users" 
+                                title="NGOs" 
+                                link="ngos.html">
+                            </quick-access>
+                            
+                            <quick-access 
+                                icon="alert-triangle" 
+                                title="SOS" 
+                                link="sos.html">
+                            </quick-access>
+                            
+                            <quick-access 
+                                icon="book" 
+                                title="Legal Acts" 
+                                link="legal-acts.html">
+                            </quick-access>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <div class="bg-white rounded-xl shadow-md p-6">
+                            <h2 class="text-xl font-semibold text-dark mb-4">Recent Success Stories</h2>
+                            <div class="space-y-4">
+                                <div class="flex items-center space-x-4 p-3 hover:bg-gray-50 rounded-lg transition">
+                                    <img src="http://static.photos/people/200x200/1" class="w-16 h-16 rounded-full object-cover">
+                                    <div>
+                                        <h3 class="font-medium">Priya Sharma</h3>
+                                        <p class="text-sm text-gray-600">Started her own business with government scheme support</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center space-x-4 p-3 hover:bg-gray-50 rounded-lg transition">
+                                    <img src="http://static.photos/people/200x200/2" class="w-16 h-16 rounded-full object-cover">
+                                    <div>
+                                        <h3 class="font-medium">Aarav Mehta</h3>
+                                        <p class="text-sm text-gray-600">Found housing and employment through NGO network</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="success-stories.html" class="mt-4 inline-flex items-center text-primary hover:text-primary-600 transition">
+                                View all stories
+                                <i data-feather="chevron-right" class="w-4 h-4 ml-1"></i>
+                            </a>
+                        </div>
+                        
+                        <div class="bg-white rounded-xl shadow-md p-6">
+                            <h2 class="text-xl font-semibold text-dark mb-4">Upcoming Events</h2>
+                            <div class="space-y-4">
+                                <div class="p-3 border-l-4 border-primary bg-gray-50 rounded-r-lg">
+                                    <h3 class="font-medium">Health Awareness Camp</h3>
+                                    <p class="text-sm text-gray-600">15 June 2024 | Delhi</p>
+                                </div>
+                                <div class="p-3 border-l-4 border-secondary bg-gray-50 rounded-r-lg">
+                                    <h3 class="font-medium">Legal Rights Workshop</h3>
+                                    <p class="text-sm text-gray-600">22 June 2024 | Mumbai</p>
+                                </div>
+                            </div>
+                            <a href="#" class="mt-4 inline-flex items-center text-primary hover:text-primary-600 transition">
+                                View all events
+                                <i data-feather="chevron-right" class="w-4 h-4 ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            
+            <custom-footer></custom-footer>
+        </div>
+    </div>
+    
+    <!-- Chatbot Button -->
+    <div class="fixed bottom-6 right-6">
+        <button id="chatbotButton" class="bg-primary text-white p-4 rounded-full shadow-lg hover:bg-primary-600 transition transform hover:scale-110">
+            <i data-feather="message-circle"></i>
+        </button>
+    </div>
+    
+    <script src="script.js"></script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>

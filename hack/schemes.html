@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SchemeSeeker - Find Government Schemes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <style>
+        .filter-section {
+            transition: all 0.3s ease;
+        }
+        .filter-header:hover {
+            background-color: #f0f0f0;
+        }
+        .scheme-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .tag:hover {
+            background-color: #008744;
+        }
+        #chatbot:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="font-poppins bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <div class="bg-green-600 text-white p-2 rounded-lg">
+                    <i data-feather="award"></i>
+                </div>
+                <h1 class="text-xl font-bold text-gray-800">myScheme</h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="text-gray-600 hover:text-green-600 flex items-center">
+                    <i data-feather="globe" class="mr-1 w-4 h-4"></i>
+                    <select id="langSelect" class="bg-transparent text-sm border-none focus:ring-0 focus:outline-none">
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी</option>
+                        <option value="bn">বাংলা</option>
+                        <option value="ta">தமிழ்</option>
+                        <option value="kn">ಕನ್ನಡ</option>
+                        <option value="te">తెలుగు</option>
+                        <option value="as">অসমীয়া</option>
+                        <option value="mr">मराठी</option>
+                    </select>
+                </div>
+                <button class="bg-green-600 text-white px-4 py-1 rounded-md hover:bg-green-700 flex items-center">
+                    <i data-feather="user" class="mr-1 w-4 h-4"></i>
+                    <span>Login</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <div class="container mx-auto px-4 border-b border-gray-200">
+            <div class="flex space-x-4">
+            <button data-view="all" id="viewAll" class="px-4 py-2 font-medium text-green-600 border-b-2 border-green-600" data-i18n="all_schemes">All Schemes</button>
+            <button data-view="state" id="viewState" class="px-4 py-2 font-medium text-gray-600 hover:text-green-600" data-i18n="state_schemes">State Schemes</button>
+            <button data-view="central" id="viewCentral" class="px-4 py-2 font-medium text-gray-600 hover:text-green-600" data-i18n="central_schemes">Central Schemes</button>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 py-6 flex flex-col md:flex-row">
+        <!-- Filters Sidebar -->
+        <div class="w-full md:w-1/4 pr-0 md:pr-6 mb-6 md:mb-0">
+            <div class="bg-white rounded-lg shadow-sm p-4">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="font-semibold text-gray-800" data-i18n="filters">Filters</h2>
+                    <button class="text-green-600 text-sm font-medium hover:underline" data-i18n="reset_all">Reset All</button>
+                </div>
+
+                <!-- State Filter -->
+                <div class="filter-section mb-4">
+                    <div class="filter-header flex justify-between items-center cursor-pointer p-2 rounded-md">
+                        <span class="font-medium text-gray-700" data-i18n="state">State</span>
+                        <i data-feather="chevron-down" class="w-4 h-4 text-gray-500"></i>
+                    </div>
+                    <div class="filter-content mt-2 pl-2">
+                        <select class="w-full p-2 border border-gray-300 rounded-md text-sm">
+                            <option>Select State</option>
+                            <option>Maharashtra</option>
+                            <option>Delhi</option>
+                            <option>Karnataka</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Category Filter -->
+                <div class="filter-section mb-4">
+                    <div class="filter-header flex justify-between items-center cursor-pointer p-2 rounded-md">
+                        <span class="font-medium text-gray-700" data-i18n="scheme_category">Scheme Category</span>
+                        <i data-feather="chevron-down" class="w-4 h-4 text-gray-500"></i>
+                    </div>
+                    <div class="filter-content mt-2 pl-2">
+                        <div class="space-y-2" id="categoryFilters">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="agriculture" data-category="Agriculture" class="mr-2 category-checkbox">
+                                <label for="agriculture" class="text-sm text-gray-600" data-i18n="agriculture">Agriculture</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="education" data-category="Education" class="mr-2 category-checkbox">
+                                <label for="education" class="text-sm text-gray-600" data-i18n="education">Education</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="health" data-category="Health" class="mr-2 category-checkbox">
+                                <label for="health" class="text-sm text-gray-600" data-i18n="health">Health</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gender Filter -->
+                <div class="filter-section mb-4">
+                    <div class="filter-header flex justify-between items-center cursor-pointer p-2 rounded-md">
+                        <span class="font-medium text-gray-700" data-i18n="gender">Gender</span>
+                        <i data-feather="chevron-down" class="w-4 h-4 text-gray-500"></i>
+                    </div>
+                    <div class="filter-content mt-2 pl-2">
+                        <div class="space-y-2" id="genderFilters">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="female" data-gender="women" class="mr-2 gender-checkbox">
+                                <label for="female" class="text-sm text-gray-600" data-i18n="female">Female</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="transgender" data-gender="transgender" class="mr-2 gender-checkbox">
+                                <label for="transgender" class="text-sm text-gray-600" data-i18n="transgender">Transgender</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- More filters would go here similarly -->
+                <div class="flex space-x-2 mt-4">
+                    <button id="applyFiltersBtn" class="flex-1 bg-green-600 text-white py-2 rounded-md hover:bg-green-700 flex items-center justify-center" data-i18n="apply_filters">
+                        <i data-feather="filter" class="mr-2 w-4 h-4"></i>
+                        Apply Filters
+                    </button>
+                    <button id="resetFiltersBtn" class="flex-1 bg-white border border-gray-300 text-gray-700 py-2 rounded-md hover:bg-gray-50" data-i18n="reset_all">Reset All</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="w-full md:w-3/4">
+            <!-- Search and Info Bar -->
+            <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+                <div class="flex justify-between items-center mb-4">
+                    <div class="text-gray-600">
+                            <span class="font-medium" data-i18n="total">Total</span> <span id="totalCount">0</span> <span data-i18n="schemes_available">schemes available</span>
+                        </div>
+                    <div class="relative">
+                        <select class="appearance-none bg-white border border-gray-300 rounded-md px-3 py-1 pr-8 text-sm">
+                            <option>Sort by: Relevance</option>
+                            <option>Newest First</option>
+                            <option>Alphabetical</option>
+                        </select>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <i data-feather="chevron-down" class="w-4 h-4"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <input type="text" placeholder="Search schemes..." class="w-full p-3 border border-gray-300 rounded-md pl-10 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                    <i data-feather="search" class="absolute left-3 top-3.5 text-gray-400 w-4 h-4"></i>
+                </div>
+                <div class="text-xs text-gray-500 mt-1" data-i18n="exact_match">For an exact match, put the words in quotes.</div>
+            </div>
+
+            <!-- Scheme Cards (rendered from schemes.json) -->
+            <div class="space-y-4" id="schemeResults"></div>
+
+            <!-- Pagination -->
+            <div class="flex justify-center mt-8">
+                <div id="pagination" class="inline-flex rounded-md shadow-sm -space-x-px"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Chatbot -->
+    <div id="chatbot" class="fixed bottom-6 right-6 bg-green-600 text-white p-3 rounded-full shadow-lg cursor-pointer transition-transform duration-300">
+        <i data-feather="message-circle"></i>
+    </div>
+
+    <script>
+        // Initialize feather icons
+        feather.replace();
+
+        // Load schemes JSON
+        let schemesData = { central: [], states: {} };
+        async function loadSchemes(){
+            try{
+                const res = await fetch('schemes.json');
+                schemesData = await res.json();
+                populateStateSelect();
+                // initialize view and rendering
+                setView('all');
+            }catch(e){
+                console.error('Failed to load schemes.json', e);
+                document.getElementById('schemeResults').innerHTML = '<div class="bg-red-50 text-red-700 p-4 rounded">Failed to load schemes data.</div>';
+            }
+        }
+
+        function populateStateSelect(){
+            const select = document.querySelector('.filter-content select') || document.querySelector('select');
+            if(!select) return;
+            // clear existing options then add 'All'
+            select.innerHTML = '<option value="">All States</option>' + Object.keys(schemesData.states).map(s => `<option value="${s}">${s}</option>`).join('');
+            // listen to change
+            select.addEventListener('change', () => renderAll());
+        }
+
+        function mergeForState(state){
+            const central = schemesData.central || [];
+            if(state) return central.concat(schemesData.states[state] || []);
+            // no state: return all central + all state schemes
+            return central.concat([].concat(...Object.values(schemesData.states)));
+        }
+
+        function escapeHtml(str){
+            return String(str || '').replace(/[&<>"']/g, function(s){
+                return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"})[s];
+            });
+        }
+
+        function renderCard(s){
+            const benefitsHTML = (s.benefits||[]).map(b => `<li class="list-disc list-inside text-gray-600">${escapeHtml(b)}</li>`).join('');
+            const docsHTML = (s.documentsRequired||[]).map(d => `<li class="list-disc list-inside text-gray-600">${escapeHtml(d)}</li>`).join('');
+            return `
+                <div class="scheme-card bg-white rounded-lg shadow-sm p-5 transition-all duration-300">
+                    <div class="flex items-start justify-between mb-2">
+                        <div>
+                            <h3 class="text-lg font-semibold text-green-600 mb-1">${escapeHtml(s.name)}</h3>
+                            <div class="text-sm text-gray-500 mb-2">${escapeHtml(s.department || s.source || '')}</div>
+                            <p class="text-gray-700 mb-3">${escapeHtml(s.description)}</p>
+                        </div>
+                        <div class="flex flex-col items-end gap-2">
+                            <a href="${s.applyLink||s.officialWebsite||'#'}" ${s.applyLink||s.officialWebsite? 'target="_blank" rel="noopener noreferrer"':''} class="bg-green-600 text-white px-3 py-2 rounded-md text-sm">${escapeHtml(getT('apply'))}</a>
+                            <div class="text-xs text-gray-500">${escapeHtml(s.target || s.audience || '')}</div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <h4 class="font-medium text-gray-700">${escapeHtml(getT('eligibility'))}</h4>
+                            <p class="text-gray-600 text-sm">${escapeHtml(s.eligibility || '')}</p>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-gray-700">${escapeHtml(getT('benefits'))}</h4>
+                            <ul>${benefitsHTML}</ul>
+                        </div>
+                    </div>
+                    <div class="mt-3 grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-600">
+                        <div>
+                            <strong>${escapeHtml(getT('how_to_apply'))}</strong>
+                            <p>${escapeHtml(s.howToApply || '')}</p>
+                        </div>
+                        <div>
+                            <strong>${escapeHtml(getT('documents'))}</strong>
+                            <ul>${docsHTML}</ul>
+                        </div>
+                    </div>
+                    <div class="mt-3 text-sm text-gray-500 flex items-center justify-between">
+                        <div><strong>${escapeHtml(getT('contact'))}</strong> ${escapeHtml(s.contact || 'N/A')}</div>
+                        <div><a class="text-green-600 hover:underline" href="${s.officialWebsite||'#'}" ${s.officialWebsite? 'target="_blank" rel="noopener noreferrer"':''}>${escapeHtml(getT('official_website'))}</a></div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // --- i18n: translations and helpers (UI-only) ---
+        const translations = {
+            en: {
+                all_schemes: 'All Schemes', state_schemes: 'State Schemes', central_schemes: 'Central Schemes',
+                filters: 'Filters', reset_all: 'Reset All', state: 'State', scheme_category: 'Scheme Category',
+                agriculture: 'Agriculture', education: 'Education', health: 'Health', gender: 'Gender',
+                female: 'Female', transgender: 'Transgender', apply_filters: 'Apply Filters', total: 'Total',
+                schemes_available: 'schemes available', exact_match: 'For an exact match, put the words in quotes.',
+                eligibility: 'Eligibility', benefits: 'Benefits', how_to_apply: 'How to apply:', documents: 'Documents:',
+                contact: 'Contact:', official_website: 'Official Website', apply: 'Apply'
+            },
+            hi: {
+                all_schemes: 'सभी योजनाएँ', state_schemes: 'राज्य योजनाएँ', central_schemes: 'केंद्रीय योजनाएँ',
+                filters: 'फ़िल्टर', reset_all: 'सभी रीसेट करें', state: 'राज्य', scheme_category: 'योजना श्रेणी',
+                agriculture: 'कृषि', education: 'शिक्षा', health: 'स्वास्थ्य', gender: 'लिंग',
+                female: 'महिला', transgender: 'ट्रांसजेंडर', apply_filters: 'फ़िल्टर लागू करें', total: 'कुल',
+                schemes_available: 'उपलब्ध योजनाएँ', exact_match: 'सटीक मिलान के लिए, शब्दों को उद्धरण में रखें।',
+                eligibility: 'पात्रता', benefits: 'लाभ', how_to_apply: 'आवेदन कैसे करें:', documents: 'दस्तावेज़:',
+                contact: 'संपर्क:', official_website: 'आधिकारिक वेबसाइट', apply: 'आवेदन'
+            },
+            bn: {
+                all_schemes: 'সমস্ত স্কীম', state_schemes: 'রাজ্য স্কীম', central_schemes: 'কেন্দ্রীয় স্কীম',
+                filters: 'ফিল্টার', reset_all: 'সব রিসেট করো', state: 'রাজ্য', scheme_category: 'স্কীম শ্রেণী',
+                agriculture: 'কৃষি', education: 'শিক্ষা', health: 'স্বাস্থ্য', gender: 'লিঙ্গ',
+                female: 'মহিলা', transgender: 'ট্রান্সজেন্ডার', apply_filters: 'ফিল্টার প্রয়োগ করুন', total: 'মোট',
+                schemes_available: 'উপলব্ধ স্কীম', exact_match: 'ঠিক মিলের জন্য, শব্দগুলো উদ্ধৃতিতে রাখুন।',
+                eligibility: 'যোগ্যতা', benefits: 'লাভ', how_to_apply: 'আবেদন কীভাবে করবেন:', documents: 'নথিপত্র:',
+                contact: 'যোগাযোগ:', official_website: 'অফিশিয়াল ওয়েবসাইট', apply: 'আবেদন'
+            },
+            ta: {
+                all_schemes: 'அனைத்து திட்டங்கள்', state_schemes: 'மாநில திட்டங்கள்', central_schemes: 'மத்திய திட்டங்கள்',
+                filters: 'வடிகட்டிகள்', reset_all: 'அனைத்தையும் மீட்டமைக்கவும்', state: 'மாநிலம்', scheme_category: 'திட்ட வகை',
+                agriculture: 'விவசாயம்', education: 'கல்வி', health: 'ஆரோக்கியம்', gender: 'பாலினம்',
+                female: 'பெணி', transgender: 'இயற்பியல் மாற்றம்', apply_filters: 'வடிகட்டிகளைப் பயன்படுத்தவும்', total: 'மொத்தம்',
+                schemes_available: 'கிடைக்கும் திட்டங்கள்', exact_match: 'துல்லியமான பொருத்தத்திற்கு, வார்த்தைகளை மேற்கோள்களில் வைக்கவும்.',
+                eligibility: 'தகுதி', benefits: 'நன்மைகள்', how_to_apply: 'விண்ணப்பிப்பது எப்படி:', documents: 'ஆவணங்கள்:',
+                contact: 'தொடர்பு:', official_website: 'அதிகாரப்பூர்வ இணையதளம்', apply: 'விண்ணப்பிக்க'
+            },
+            kn: {
+                all_schemes: 'ಎಲ್ಲಾ ಯೋಜನೆಗಳು', state_schemes: 'ರಾಜ್ಯ ಯೋಜನೆಗಳು', central_schemes: 'ಕೇಂದ್ರ ಯೋಜನೆಗಳು',
+                filters: 'ಫಿಲ್ಟರ್‌ಗಳು', reset_all: 'ಎಲ್ಲಾವನ್ನೂ ಮರುಹೆರೆ', state: 'ರಾಜ್ಯ', scheme_category: 'ಯೋಜನೆ ವರ್ಗ',
+                agriculture: 'ಕೃಷಿ', education: 'ಶಿಕ್ಷಣ', health: 'ಆರೋಗ್ಯ', gender: 'ಲಿಂಗ',
+                female: 'ಮಹಿಳೆ', transgender: 'ಟ್ರಾನ್ಸ್‌ಜೆಂಡರ್', apply_filters: 'ಫಿಲ್ಟರ್ ಅನ್ವಯಿಸು', total: 'ಒಟ್ಟು',
+                schemes_available: 'ಲಭ್ಯವಿರುವ ಯೋಜನೆಗಳು', exact_match: 'ಖಾತ್ರಿ ಹೊಂದಾಣಿಕೆಗೆ, ಪದಗಳನ್ನು ಉಲ್ಲೇಖಗಳಲ್ಲಿಟ್ಟು.',
+                eligibility: 'ಅರ್ಹತೆ', benefits: 'ಲಾಭಗಳು', how_to_apply: 'ಅರ್ಜೀ ಹೇಗೆ ಹಾಕಬೇಕು:', documents: 'ದಾಖಲೆಗಳು:',
+                contact: 'ಸಂಪರ್ಕ:', official_website: 'ಅಧಿಕೃತ ವೆಬ್‌ಸೈಟ್', apply: 'ಅರ್ಜಿ ಹಾಕಿ'
+            },
+            te: {
+                all_schemes: 'అన్ని పథకాలు', state_schemes: 'రాష్ట్ర పథకాలు', central_schemes: 'కేంద్రీయ పథకాలు',
+                filters: 'ఫిల్టర్లు', reset_all: 'అన్నింటిని రీసెట్ చేయి', state: 'రాష్ట్రం', scheme_category: 'పథకం వర్గం',
+                agriculture: 'వ్యవసాయం', education: 'శిక్షణ', health: 'ఆరోగ్యము', gender: 'లింగం',
+                female: 'స్త్రీ', transgender: 'ట్రాన్స్‌జెండర్', apply_filters: 'ఫిల్టర్లు వర్తింపజేయి', total: 'మొత్తం',
+                schemes_available: 'లభ్యమైన పథకాలు', exact_match: 'ఖచ్చితమైన సరిపోలికకు, పదాలను ఉల్లేఖనాల్లో ఉంచండి.',
+                eligibility: 'అర్హత', benefits: 'ఫలితాలు', how_to_apply: 'దరఖాస్తు ఎలా చేయాలి:', documents: 'పత్రాలు:',
+                contact: 'సంప్రదించండి:', official_website: 'అధికారిక వెబ్‌సైట్', apply: 'అప్లై'
+            },
+            as: {
+                all_schemes: 'সকল আঁচনি', state_schemes: 'রাজ্য আঁচনি', central_schemes: 'কেন্দ্ৰীয় আঁচনি',
+                filters: 'ফিল্টাৰ', reset_all: 'সকলো ৰিছেট কৰক', state: 'ৰাজ্য', scheme_category: 'আঁচনি শ্ৰেণী',
+                agriculture: 'কৃষি', education: 'শিক্ষা', health: 'স্বাস্থ্য', gender: 'লিংগ',
+                female: 'মহিলা', transgender: 'ট্রান্সজেণ্ডাৰ', apply_filters: 'ফিল্টাৰ প্ৰযোজ্য কৰক', total: 'মুঠ',
+                schemes_available: 'উপলব্ধ আঁচনি', exact_match: 'ঠিক মিলৰ বাবে, শব্দসমূহ উদ্ধৃতি চিহ্নত ৰাখক।',
+                eligibility: 'যোগ্যতা', benefits: 'লাভ', how_to_apply: 'আবেদন কেনেকৈ কৰিব:', documents: 'নথিপত্ৰ:',
+                contact: 'যোগাযোগ:', official_website: 'অফিশিয়াল ৱেবছাইট', apply: 'আবেদন'
+            },
+            mr: {
+                all_schemes: 'सर्व योजना', state_schemes: 'राज्य योजना', central_schemes: 'केंद्रिय योजना',
+                filters: 'फिल्टर', reset_all: 'सर्व रिसेट करा', state: 'राज्य', scheme_category: 'योजना प्रकार',
+                agriculture: 'कृषि', education: 'शिक्षण', health: 'आरोग्य', gender: 'लिंग',
+                female: 'स्त्री', transgender: 'ट्रान्सजेंडर', apply_filters: 'फिल्टर लागू करा', total: 'एकूण',
+                schemes_available: 'उपलब्ध योजना', exact_match: 'योग्य जुळणीसाठी, शब्द उद्धरणात ठेवा.',
+                eligibility: 'पात्रता', benefits: 'फायदे', how_to_apply: 'अर्ज कसा करावा:', documents: 'कागदपत्रे:',
+                contact: 'संपर्क:', official_website: 'अधिकृत संकेतस्थळ', apply: 'अर्ज करा'
+            }
+        };
+
+        // active language
+        let currentLang = localStorage.getItem('site_lang') || 'en';
+
+        function getT(key){
+            return (translations[currentLang] && translations[currentLang][key]) || translations['en'][key] || key;
+        }
+
+        function translatePage(){
+            // translate static elements: nav buttons, headings, filter labels (simple approach)
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const k = el.getAttribute('data-i18n');
+                el.textContent = getT(k);
+            });
+            // update search placeholder
+            const search = document.querySelector('.bg-white input[type="text"]');
+            if(search) search.placeholder = currentLang === 'hi' ? 'योजना खोजें...' : (currentLang==='bn'? 'স্কীম খুঁজুন...' : (currentLang==='ta'? 'திட்டம் தேடவும்...' : (currentLang==='kn'? 'ಯೋಜನೆಯನ್ನು ಹುಡುಕಿ...' : (currentLang==='te'? 'పథకాన్ని శోధించండి...' : (currentLang==='as'? 'আঁচনি সন্ধান কৰক...' : (currentLang==='mr'? 'योजना शोधा...' : 'Search schemes...'))))));
+        }
+
+        // wire the language selector
+        const langSel = document.getElementById('langSelect');
+        if(langSel){
+            langSel.value = currentLang;
+            langSel.addEventListener('change', (e) =>{
+                currentLang = e.target.value;
+                localStorage.setItem('site_lang', currentLang);
+                translatePage();
+                renderAll();
+            });
+        }
+
+        // current view: 'all' | 'state' | 'central'
+        let currentView = 'all';
+        // pagination
+        const pageSize = 6; // items per page
+        let currentPage = 1;
+
+        function renderPagination(totalItems){
+            const totalPages = Math.max(1, Math.ceil(totalItems / pageSize));
+            const container = document.getElementById('pagination');
+            if(!container) return;
+            let html = '';
+            // prev button
+            html += `<button aria-label="Previous" class="px-3 py-1 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50" ${currentPage===1? 'disabled':''} data-page="${Math.max(1,currentPage-1)}"><i data-feather="chevron-left" class="w-4 h-4"></i></button>`;
+            // page numbers (show up to 7 with ellipsis)
+            const maxButtons = 7;
+            let start = Math.max(1, currentPage - Math.floor(maxButtons/2));
+            let end = start + maxButtons - 1;
+            if(end > totalPages){ end = totalPages; start = Math.max(1, end - maxButtons + 1); }
+            if(start > 1){ html += `<button class="px-3 py-1 border border-gray-300 bg-white text-sm font-medium text-gray-700">...</button>`; }
+            for(let p = start; p <= end; p++){
+                const isActive = p === currentPage;
+                html += `<button data-page="${p}" class="px-3 py-1 border border-gray-300 bg-white text-sm font-medium ${isActive? 'text-green-600 bg-green-50':''}">${p}</button>`;
+            }
+            if(end < totalPages){ html += `<button class="px-3 py-1 border border-gray-300 bg-white text-sm font-medium text-gray-700">...</button>`; }
+            // next button
+            html += `<button aria-label="Next" class="px-3 py-1 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50" ${currentPage===totalPages? 'disabled':''} data-page="${Math.min(totalPages,currentPage+1)}"><i data-feather="chevron-right" class="w-4 h-4"></i></button>`;
+            container.innerHTML = html;
+            // wire clicks
+            container.querySelectorAll('button[data-page]').forEach(b => b.addEventListener('click', (e) => {
+                const p = Number(b.getAttribute('data-page'));
+                goToPage(p);
+            }));
+            feather.replace();
+        }
+
+        function goToPage(p){
+            currentPage = Math.max(1, p);
+            renderAll();
+        }
+
+        function setView(view){
+            currentView = view;
+            // update nav button styles
+            document.querySelectorAll('[data-view]').forEach(btn => {
+                if(btn.getAttribute('data-view') === view){
+                    btn.classList.add('text-green-600');
+                    btn.classList.remove('text-gray-600');
+                    btn.classList.add('border-b-2','border-green-600');
+                } else {
+                    btn.classList.remove('text-green-600','border-b-2','border-green-600');
+                    btn.classList.add('text-gray-600');
+                }
+            });
+            renderAll();
+        }
+
+        // Return an object describing active filters
+        function getActiveFilters(){
+            const categories = Array.from(document.querySelectorAll('.category-checkbox:checked')).map(i => i.getAttribute('data-category'));
+            const genders = Array.from(document.querySelectorAll('.gender-checkbox:checked')).map(i => i.getAttribute('data-gender'));
+            const stateSelect = document.querySelector('.filter-content select') || document.querySelector('select');
+            const state = stateSelect ? stateSelect.value : '';
+            const q = (document.querySelector('.bg-white input[type="text"]') && document.querySelector('.bg-white input[type="text"]').value) || '';
+            return { categories, genders, state, q };
+        }
+
+        function matchesFilters(s, filters){
+            // category filter: if categories selected, scheme.category must match one
+            if(filters.categories && filters.categories.length){
+                const cat = (s.category || '').toString().toLowerCase();
+                const cats = filters.categories.map(c => c.toString().toLowerCase());
+                // match if any selected category is a substring of scheme category or equals it
+                const okCat = cats.some(c => cat.includes(c));
+                if(!okCat) return false;
+            }
+            // gender/audience filter: if selected, scheme.audience or target should match at least one selected gender
+            if(filters.genders && filters.genders.length){
+                const aud = (s.audience || s.target || '').toString().toLowerCase();
+                const cats = filters.genders.map(g => g.toString().toLowerCase());
+                // if scheme is marked as 'both' or similar, treat it as matching any gender filter
+                if(aud.includes('both') || aud.includes('all')){
+                    // match
+                } else {
+                    const ok = cats.some(g => aud.includes(g));
+                    if(!ok) return false;
+                }
+            }
+            // search query
+            if(filters.q){
+                const low = filters.q.toLowerCase();
+                if(!((s.name||'').toLowerCase().includes(low) || (s.description||'').toLowerCase().includes(low))) return false;
+            }
+            // state filter is applied earlier when building the list (we don't re-check here)
+            return true;
+        }
+
+        function renderAll(){
+            const results = document.getElementById('schemeResults');
+            const filters = getActiveFilters();
+            let list = [];
+            if(currentView === 'all'){
+                list = mergeForState(filters.state);
+            } else if(currentView === 'central'){
+                list = schemesData.central || [];
+            } else if(currentView === 'state'){
+                if(!filters.state){
+                    // No single state selected — show schemes from all states (only state schemes)
+                    list = [].concat(...Object.values(schemesData.states));
+                } else {
+                    list = schemesData.states[filters.state] || [];
+                }
+            }
+            // Apply filters
+            const filtered = list.filter(s => matchesFilters(s, filters));
+            // Update total count before pagination
+            const totalCountEl = document.getElementById('totalCount');
+            if(totalCountEl) totalCountEl.textContent = filtered.length;
+            // compute pagination
+            const totalItems = filtered.length;
+            const totalPages = Math.max(1, Math.ceil(totalItems / pageSize));
+            if(currentPage > totalPages) currentPage = totalPages;
+            const startIdx = (currentPage - 1) * pageSize;
+            const endIdx = startIdx + pageSize;
+            const pageItems = filtered.slice(startIdx, endIdx);
+            // Optionally show filtered count as tooltip/title
+            if(totalCountEl) totalCountEl.title = `${filtered.length} shown after filters`;
+            if(filtered.length === 0){
+                results.innerHTML = '<div class="bg-white p-6 rounded">No results found</div>';
+                return;
+            }
+
+            // Add a small heading to indicate current view/state
+            let heading = '';
+            if(currentView === 'central') heading = '<div class="text-sm text-gray-600 mb-3">Showing central schemes</div>';
+            else if(currentView === 'state') heading = filters.state ? `<div class="text-sm text-gray-600 mb-3">Showing state schemes — ${escapeHtml(filters.state)}</div>` : '<div class="text-sm text-gray-600 mb-3">Showing state schemes — All states</div>';
+            else heading = filters.state ? `<div class="text-sm text-gray-600 mb-3">Showing central + ${escapeHtml(filters.state)} schemes</div>` : '<div class="text-sm text-gray-600 mb-3">Showing central + all state schemes</div>';
+
+            results.innerHTML = heading + pageItems.map(renderCard).join('');
+            // render pagination controls
+            renderPagination(totalItems);
+            feather.replace();
+        }
+
+        // Filter headers toggle
+        document.querySelectorAll('.filter-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                if (content.style.display === 'none' || !content.style.display) content.style.display = 'block'; else content.style.display = 'none';
+                feather.replace();
+            });
+        });
+
+        // Apply and Reset buttons
+        const applyBtn = document.getElementById('applyFiltersBtn');
+        const resetBtn = document.getElementById('resetFiltersBtn');
+        if(applyBtn) applyBtn.addEventListener('click', () => { currentPage = 1; renderAll(); });
+        if(resetBtn) resetBtn.addEventListener('click', () => {
+            // uncheck category and gender checkboxes
+            document.querySelectorAll('.category-checkbox, .gender-checkbox').forEach(cb => cb.checked = false);
+            // reset state select
+            const sel = document.querySelector('.filter-content select') || document.querySelector('select');
+            if(sel) sel.value = '';
+            // clear search
+            const searchEl = document.querySelector('.bg-white input[type="text"]');
+            if(searchEl) searchEl.value = '';
+            currentPage = 1;
+            renderAll();
+        });
+
+        // Chatbot interaction
+        document.getElementById('chatbot').addEventListener('click', () => {
+            alert('Need help finding the right scheme? Our virtual assistant can guide you!');
+        });
+
+        // Wire search box
+        document.querySelector('.bg-white input[type="text"]').addEventListener('input', () => renderAll());
+
+        // wire nav buttons
+        document.querySelectorAll('[data-view]').forEach(btn => {
+            btn.addEventListener('click', () => setView(btn.getAttribute('data-view')));
+        });
+
+        // Ensure filters re-render when individual checkboxes change
+        document.addEventListener('change', (e) => {
+            if(e.target && (e.target.classList.contains('category-checkbox') || e.target.classList.contains('gender-checkbox') || e.target.tagName === 'SELECT')){
+                currentPage = 1;
+                // do not auto-render for performance unless user wants; we'll render immediately
+                renderAll();
+            }
+        });
+
+    // apply translations for static UI elements immediately
+    translatePage();
+    loadSchemes();
+    </script>
+</body>
+</html>

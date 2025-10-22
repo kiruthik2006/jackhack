@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Know Your Legal Rights | Empowering Women & Transgender Persons</title>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .card:hover .card-content {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .fade-in {
+            animation: fadeIn 0.8s ease-in forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Visual tweaks for complaint area and portal buttons */
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.45rem 0.8rem;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+            transition: transform 0.18s ease, box-shadow 0.18s ease;
+        }
+        .portal-btn {
+            display: block;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 0.75rem;
+            color: white !important;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.12s ease;
+        }
+        .portal-btn:focus, .btn-action:focus {
+            outline: 3px solid rgba(99,102,241,0.18);
+            outline-offset: 2px;
+        }
+        .portal-btn:hover, .btn-action:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(16,24,40,0.08);
+        }
+        /* Checklist spacing */
+        #complaint-checklist label { margin-bottom: 8px; }
+        /* Template box style already applied via classes; ensure readability */
+        textarea#complaint-template { resize: vertical; }
+        /* Typography tweaks */
+        h2 { font-size: 1.45rem; }
+        h3, h4 { font-size: 1.05rem; }
+        body, p, li { font-size: 0.96rem; }
+        /* Responsive: ensure portals stack under content on small screens (grid handles this by default) */
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="sticky top-0 z-50 bg-white shadow-md">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <i data-feather="scale" class="text-purple-600 w-8 h-8 mr-2"></i>
+                    <h1 id="header-title" class="text-2xl font-bold text-gray-800">Know Your Legal Rights</h1>
+                </div>
+                <div class="flex items-center gap-4">
+                    <p id="header-sub" class="text-sm text-gray-600 md:text-right">Empowering Women & Transgender Persons Through Awareness</p>
+                    <label for="lang-select" class="sr-only">Language</label>
+                    <select id="lang-select" class="lang-select border rounded-md p-1 text-sm" aria-label="Select language">
+                        <option value="en">English</option>
+                        <option value="hi">हिन्दी</option>
+                        <option value="ta">தமிழ்</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative text-white py-20" style="background:linear-gradient(180deg, rgba(124,58,237,0.12), rgba(20,184,166,0.06));">
+        <!-- hero background covers entire section for a full-bleed image effect -->
+        <div id="hero-bg" class="absolute inset-0 bg-center bg-cover transition-opacity duration-700" style="filter:brightness(0.55) saturate(0.95);"></div>
+        <!-- soft overlay to keep contrast -->
+        <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.08) 40%, rgba(0,0,0,0.28) 100%);"></div>
+        <!-- subtle silhouettes for decoration -->
+        <svg class="absolute left-6 bottom-6 opacity-10 w-44 h-44" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M32 2C25 2 20 7 20 14c0 7 5 12 12 12s12-5 12-12C44 7 39 2 32 2zM16 50c0-8 8-14 16-14s16 6 16 14v8H16v-8z" fill="white"/>
+        </svg>
+        <svg class="absolute right-6 bottom-6 opacity-10 w-44 h-44" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M36 2h6v6h6v6h-6v6h-6v-6h-6V8h6V2zM32 18a10 10 0 100 20 10 10 0 000-20zm0 8a2 2 0 110 4 2 2 0 010-4zM20 44h24v4H20z" fill="white"/>
+        </svg>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col md:flex-row items-center md:items-stretch justify-between">
+                <div class="md:w-2/3 text-left py-8 md:py-12">
+                    <h2 id="hero-title" data-i18n="hero.title" class="text-3xl md:text-5xl font-bold mb-4">Your Rights, Your Power</h2>
+                    <p id="hero-sub" data-i18n="hero.sub" class="text-lg md:text-xl mb-6 max-w-2xl">Discover essential legal protections for women and transgender individuals in India</p>
+                </div>
+
+                <!-- Quote slider on the right that slides horizontally -->
+                <div class="md:w-1/3 w-full py-8 md:py-12">
+                    <div class="relative bg-white/6 rounded-2xl overflow-hidden" aria-live="polite">
+                        <div class="relative">
+                            <div id="quote-viewport" class="overflow-hidden">
+                                <div id="quote-track" class="flex transition-transform duration-500">
+                                    <!-- Slides will be generated via JS -->
+                                </div>
+                            </div>
+                            <!-- small gradient inside the quote box for depth -->
+                            <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.06));"></div>
+                        </div>
+                        <div class="flex items-center justify-between p-4">
+                            <div id="quote-dots" class="flex gap-2"></div>
+                            <div class="flex gap-2">
+                                <button id="quote-prev" class="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white" aria-label="Previous quote">
+                                    <svg class="w-4 h-4 text-white" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 4L6 10l6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </button>
+                                <button id="quote-next" class="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white" aria-label="Next quote">
+                                    <svg class="w-4 h-4 text-white" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 4l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-12">
+        <!-- Women's Rights Section (Slider) -->
+        <section class="mb-16">
+            <div class="flex items-center mb-8">
+                <i data-feather="users" class="text-purple-600 w-8 h-8 mr-3"></i>
+                <h2 data-i18n="women.title" class="text-2xl font-bold text-gray-800">Women's Legal Rights</h2>
+            </div>
+
+            <div class="relative">
+                <div id="women-slider" class="overflow-hidden">
+                    <div id="women-track" class="flex transition-transform duration-500">
+                        <!-- Slide 1 -->
+                        <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-2">
+                            <div class="card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
+                                <div class="bg-gray-100 p-3 flex items-center justify-center">
+                                    <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=1f6b947a2c1f7e6a7f6b6f8d3c9b2b6f" alt="Safe home" loading="lazy" class="w-full max-h-48 md:max-h-64 lg:max-h-80 object-contain rounded-t-xl">
+                                </div>
+                                <div class="card-content p-6">
+                                    <div class="flex items-center mb-4">
+                                        <div class="bg-purple-100 p-3 rounded-full">
+                                            <i data-feather="shield" class="text-purple-600 w-6 h-6"></i>
+                                        </div>
+                                            <h3 class="text-lg font-semibold ml-3">Did you know?</h3>
+                                    </div>
+                                    <p class="text-gray-600 mb-4">Did you know women can seek protection orders, residence orders, and monetary relief under the Protection of Women from Domestic Violence Act, 2005?</p>
+                                    <button class="text-purple-600 font-medium flex items-center hover:text-purple-700 transition">
+                                        Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2 -->
+                        <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-2">
+                            <div class="card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
+                                <div class="bg-gray-100 p-3 flex items-center justify-center">
+                                    <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=7f6b7f3c6a9c2a3d7b8e9f1a2b3c4d5e" alt="Dowry awareness" loading="lazy" class="w-full max-h-48 md:max-h-64 lg:max-h-80 object-contain rounded-t-xl">
+                                </div>
+                                <div class="card-content p-6">
+                                    <div class="flex items-center mb-4">
+                                        <div class="bg-purple-100 p-3 rounded-full">
+                                            <i data-feather="dollar-sign" class="text-purple-600 w-6 h-6"></i>
+                                        </div>
+                                        <h3 class="text-lg font-semibold ml-3">Did you know?</h3>
+                                    </div>
+                                    <p class="text-gray-600 mb-4">Did you know giving or taking dowry is a punishable offense under the Dowry Prohibition Act, 1961, and victims can file an FIR?</p>
+                                    <button class="text-purple-600 font-medium flex items-center hover:text-purple-700 transition">
+                                        Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3 -->
+                        <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-2">
+                            <div class="card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
+                                <div class="bg-gray-100 p-3 flex items-center justify-center">
+                                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=2a3b4c5d6e7f8g9h0i1j2k3l4m5n6o7p" alt="Workplace" loading="lazy" class="w-full max-h-48 md:max-h-64 lg:max-h-80 object-contain rounded-t-xl">
+                                </div>
+                                <div class="card-content p-6">
+                                    <div class="flex items-center mb-4">
+                                        <div class="bg-purple-100 p-3 rounded-full">
+                                            <i data-feather="briefcase" class="text-purple-600 w-6 h-6"></i>
+                                        </div>
+                                        <h3 class="text-lg font-semibold ml-3">Did you know?</h3>
+                                    </div>
+                                    <p class="text-gray-600 mb-4">Did you know every workplace with 10+ employees must have an Internal Complaints Committee under the POSH Act to address sexual harassment complaints?</p>
+                                    <button class="text-purple-600 font-medium flex items-center hover:text-purple-700 transition">
+                                        Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 4 -->
+                        <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-2">
+                            <div class="card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
+                                <div class="bg-gray-100 p-3 flex items-center justify-center">
+                                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=3b4c5d6e7f8g9h0i1j2k3l4m5n6o7p8q" alt="Equal pay" loading="lazy" class="w-full max-h-48 md:max-h-64 lg:max-h-80 object-contain rounded-t-xl">
+                                </div>
+                                <div class="card-content p-6">
+                                    <div class="flex items-center mb-4">
+                                        <div class="bg-purple-100 p-3 rounded-full">
+                                            <i data-feather="dollar-sign" class="text-purple-600 w-6 h-6"></i>
+                                        </div>
+                                        <h3 class="text-lg font-semibold ml-3">Did you know?</h3>
+                                    </div>
+                                    <p class="text-gray-600 mb-4">Did you know women are entitled to equal pay for equal work under the Equal Remuneration Act, 1976, and can raise complaints if discriminated against?</p>
+                                    <button class="text-purple-600 font-medium flex items-center hover:text-purple-700 transition">
+                                        Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 5 -->
+                        <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-2">
+                            <div class="card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
+                                <div class="bg-gray-100 p-3 flex items-center justify-center">
+                                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=4c5d6e7f8g9h0i1j2k3l4m5n6o7p8q9r" alt="Maternity" loading="lazy" class="w-full max-h-48 md:max-h-64 lg:max-h-80 object-contain rounded-t-xl">
+                                </div>
+                                <div class="card-content p-6">
+                                    <div class="flex items-center mb-4">
+                                        <div class="bg-purple-100 p-3 rounded-full">
+                                            <i data-feather="heart" class="text-purple-600 w-6 h-6"></i>
+                                        </div>
+                                        <h3 class="text-lg font-semibold ml-3">Did you know?</h3>
+                                    </div>
+                                    <p class="text-gray-600 mb-4">Did you know women are entitled to paid maternity leave (as per the Maternity Benefit Act) and protection from dismissal during maternity?</p>
+                                    <button class="text-purple-600 font-medium flex items-center hover:text-purple-700 transition">
+                                        Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 6 -->
+                        <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-2">
+                            <div class="card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
+                                <div class="bg-gray-100 p-3 flex items-center justify-center">
+                                    <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=1f6b947a2c1f7e6a7f6b6f8d3c9b2b6f" alt="Law and justice" loading="lazy" class="w-full max-h-48 md:max-h-64 lg:max-h-80 object-contain rounded-t-xl">
+                                </div>
+                                <div class="card-content p-6">
+                                    <div class="flex items-center mb-4">
+                                        <div class="bg-purple-100 p-3 rounded-full">
+                                            <i data-feather="alert-triangle" class="text-purple-600 w-6 h-6"></i>
+                                        </div>
+                                        <h3 class="text-lg font-semibold ml-3">Did you know?</h3>
+                                    </div>
+                                    <p class="text-gray-600 mb-4">Did you know offenses like assault and rape are covered under IPC Sections (including 354 and 376) and victims can approach police and legal aid services?</p>
+                                    <button class="text-purple-600 font-medium flex items-center hover:text-purple-700 transition">
+                                        Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <button id="women-prev" aria-label="Previous" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md -translate-x-2 hover:bg-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <button id="women-next" aria-label="Next" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md translate-x-2 hover:bg-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </button>
+
+                <!-- Dots -->
+                <div id="women-dots" class="flex justify-center gap-2 mt-4"></div>
+            </div>
+        </section>
+
+     
+
+        <!-- Transgender Rights Section -->
+        <section class="mb-16">
+            <div class="flex items-center mb-8">
+                <i data-feather="user" class="text-teal-600 w-8 h-8 mr-3"></i>
+                <h2 data-i18n="trans.title" class="text-2xl font-bold text-gray-800">Transgender Legal Rights</h2>
+            </div>
+            
+            <div class="relative">
+                <div id="trans-slider" class="overflow-hidden">
+                    <div id="trans-track" class="flex transition-transform duration-500">
+                        <!-- Slide 1 -->
+                        <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-2">
+                            <div class="card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
+                                <div class="bg-gray-100 p-3 flex items-center justify-center">
+                                    <img src="https://images.unsplash.com/photo-1524368535927-1b1c1b1b1b1b?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=5a6b7c8d9e0f1a2b3c4d5e6f7g8h9i0" alt="Transgender rights" loading="lazy" class="w-full max-h-48 md:max-h-64 lg:max-h-80 object-contain rounded-t-xl">
+                                </div>
+                                <div class="card-content p-6">
+                                    <div class="flex items-center mb-4">
+                                        <div class="bg-teal-100 p-3 rounded-full">
+                                            <i data-feather="shield" class="text-teal-600 w-6 h-6"></i>
+                                        </div>
+                                        <h3 class="text-lg font-semibold ml-3">Did you know?</h3>
+                                    </div>
+                                    <p class="text-gray-600 mb-4">Did you know the Transgender Persons (Protection of Rights) Act, 2019 prohibits discrimination in education, employment, and healthcare?</p>
+                                    <button class="text-teal-600 font-medium flex items-center hover:text-teal-700 transition">
+                                        Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 2 -->
+                        <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-2">
+                            <div class="card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
+                                <div class="bg-gray-100 p-3 flex items-center justify-center">
+                                    <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=7f6b7f3c6a9c2a3d7b8e9f1a2b3c4d5e" alt="Trans identity" loading="lazy" class="w-full max-h-48 md:max-h-64 lg:max-h-80 object-contain rounded-t-xl">
+                                </div>
+                                <div class="card-content p-6">
+                                    <div class="flex items-center mb-4">
+                                        <div class="bg-teal-100 p-3 rounded-full">
+                                            <i data-feather="file-text" class="text-teal-600 w-6 h-6"></i>
+                                        </div>
+                                        <h3 class="text-lg font-semibold ml-3">Did you know?</h3>
+                                    </div>
+                                    <p class="text-gray-600 mb-4">Did you know there are procedures to obtain identity documents recognizing gender identity under the Transgender Rules, 2020?</p>
+                                    <button class="text-teal-600 font-medium flex items-center hover:text-teal-700 transition">
+                                        Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 3 -->
+                        <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-2">
+                            <div class="card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
+                                <div class="bg-gray-100 p-3 flex items-center justify-center">
+                                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=2a3b4c5d6e7f8g9h0i1j2k3l4m5n6o7p" alt="NALSA" loading="lazy" class="w-full max-h-48 md:max-h-64 lg:max-h-80 object-contain rounded-t-xl">
+                                </div>
+                                <div class="card-content p-6">
+                                    <div class="flex items-center mb-4">
+                                        <div class="bg-teal-100 p-3 rounded-full">
+                                            <i data-feather="award" class="text-teal-600 w-6 h-6"></i>
+                                        </div>
+                                        <h3 class="text-lg font-semibold ml-3">Did you know?</h3>
+                                    </div>
+                                    <p class="text-gray-600 mb-4">Did you know the NALSA judgment (2014) legally recognized transgender persons as a third gender and affirmed their rights?</p>
+                                    <button class="text-teal-600 font-medium flex items-center hover:text-teal-700 transition">
+                                        Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 4 -->
+                        <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-2">
+                            <div class="card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
+                                <div class="bg-gray-100 p-3 flex items-center justify-center">
+                                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=3b4c5d6e7f8g9h0i1j2k3l4m5n6o7p8q" alt="Equality" loading="lazy" class="w-full max-h-48 md:max-h-64 lg:max-h-80 object-contain rounded-t-xl">
+                                </div>
+                                <div class="card-content p-6">
+                                    <div class="flex items-center mb-4">
+                                        <div class="bg-teal-100 p-3 rounded-full">
+                                            <i data-feather="balance-scale" class="text-teal-600 w-6 h-6"></i>
+                                        </div>
+                                        <h3 class="text-lg font-semibold ml-3">Did you know?</h3>
+                                    </div>
+                                    <p class="text-gray-600 mb-4">Did you know constitutional rights (like Articles 14–18) protect transgender persons from discrimination and ensure equality before the law?</p>
+                                    <button class="text-teal-600 font-medium flex items-center hover:text-teal-700 transition">
+                                        Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slide 5 -->
+                        <div class="w-full md:w-1/2 lg:w-1/3 flex-shrink-0 px-2">
+                            <div class="card bg-white rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-all duration-300">
+                                <div class="bg-gray-100 p-3 flex items-center justify-center">
+                                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=4c5d6e7f8g9h0i1j2k3l4m5n6o7p8q9r" alt="Privacy" loading="lazy" class="w-full max-h-48 md:max-h-64 lg:max-h-80 object-contain rounded-t-xl">
+                                </div>
+                                <div class="card-content p-6">
+                                    <div class="flex items-center mb-4">
+                                        <div class="bg-teal-100 p-3 rounded-full">
+                                            <i data-feather="lock" class="text-teal-600 w-6 h-6"></i>
+                                        </div>
+                                        <h3 class="text-lg font-semibold ml-3">Did you know?</h3>
+                                    </div>
+                                    <p class="text-gray-600 mb-4">Did you know the Right to Privacy (Puttaswamy judgment) supports personal autonomy including choices about gender identity and expression?</p>
+                                    <button class="text-teal-600 font-medium flex items-center hover:text-teal-700 transition">
+                                        Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Controls -->
+                <button id="trans-prev" aria-label="Previous" class="absolute left-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md -translate-x-2 hover:bg-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+                </button>
+                <button id="trans-next" aria-label="Next" class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md translate-x-2 hover:bg-gray-100">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </button>
+
+                <!-- Dots -->
+                <div id="trans-dots" class="flex justify-center gap-2 mt-4"></div>
+            </div>
+        </section>
+   <!-- File an Official Complaint (placed under Transgender Legal Rights) -->
+        <section class="mb-16">
+            <div class="flex items-center mb-6">
+                <i data-feather="file-text" class="text-teal-600 w-8 h-8 mr-3"></i>
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-800">File an Official Complaint</h2>
+                    <p class="text-sm text-gray-600">Know Your Legal Rights — File Safely & Confidently</p>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Left: Step-by-step + checklist + template -->
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">How to file — simple steps</h3>
+                        <ol class="list-decimal pl-5 space-y-2 text-gray-700 mb-4">
+                            <li>Gather evidence: dates, times, locations, names, witnesses, and files (photos, messages, medical reports).</li>
+                            <li>Use an official portal or local police station depending on the nature of the complaint.</li>
+                            <li>Fill out the form carefully; attach evidence and keep a copy of the submission reference number.</li>
+                            <li>If unsure, contact legal aid or the ministry grievance cell for guidance before submitting.</li>
+                        </ol>
+
+                        <p class="text-sm text-gray-600 mb-3">Click any official link below to continue filing online.</p>
+
+                        <h4 class="font-semibold mb-2">Before filing, make sure you have:</h4>
+                        <div id="complaint-checklist" class="mb-4 text-sm text-gray-700">
+                            <label class="flex items-center mb-2"><input type="checkbox" class="mr-2" /> Date(s) and time(s) recorded</label>
+                            <label class="flex items-center mb-2"><input type="checkbox" class="mr-2" /> Names / descriptions of involved persons</label>
+                            <label class="flex items-center mb-2"><input type="checkbox" class="mr-2" /> Witness contact details</label>
+                            <label class="flex items-center mb-2"><input type="checkbox" class="mr-2" /> Photos, screenshots, medical reports attached</label>
+                            <label class="flex items-center mb-2"><input type="checkbox" class="mr-2" /> Backup of submission reference saved</label>
+                        </div>
+
+                        <h4 class="font-semibold mb-2 text-lg">Complaint template (copy & edit)</h4>
+                        <div>
+                            <textarea id="complaint-template" class="w-full bg-[#f8f9fa] border rounded-lg p-4 text-sm text-gray-800 h-40" readonly>
+To: [Authority / Portal]
+
+Subject: Complaint regarding [brief description]
+
+I, [Your name], resident of [City, State], wish to file a complaint regarding [short summary of incident]. The incident occurred on [date] at [location]. Details: [detailed timeline and facts].
+
+Attached evidence: [list of files]. Please provide the reference number for this complaint and guidance on next steps.
+
+Sincerely,
+[Your name]
+[Contact details]
+                            </textarea>
+
+                            <div class="mt-3 flex items-center justify-between gap-2">
+                                <div class="flex items-center gap-2">
+                                    <button id="copy-template" aria-label="Copy complaint template" class="btn-action bg-teal-600 text-white">📋 Copy</button>
+                                    <button id="download-template" aria-label="Download complaint template" class="btn-action bg-gray-100 text-gray-800">⬇️ Download</button>
+                                    <button id="print-template" aria-label="Print complaint template" class="btn-action bg-gray-100 text-gray-800">🖨️ Print</button>
+                                </div>
+                                <p id="copy-msg" class="text-sm text-green-600 mt-0 hidden">Template copied to clipboard</p>
+                            </div>
+
+                            <!-- Accessible live region for announcements -->
+                            <div id="complaint-live" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+                        </div>
+                    </div>
+
+                    <!-- Right: portals, contacts, what to expect -->
+                    <div>
+                        <h3 class="text-lg font-semibold mb-3">Official portals & actions</h3>
+                        <div class="grid gap-3 mb-4">
+                            <div class="flex items-center gap-2">
+                                <a href="https://ncwapps.nic.in/" target="_blank" rel="noopener" aria-label="National Commission for Women" data-portal="ncw" class="portal-btn bg-green-600">🟢 NCW — File a complaint (women)</a>
+                                <button class="text-sm text-gray-600 hover:text-gray-800" data-info="ncw" aria-label="More about NCW">ℹ️</button>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <a href="https://cybercrime.gov.in/" target="_blank" rel="noopener" aria-label="Cyber Crime Reporting Portal" data-portal="cyber" class="portal-btn bg-purple-600">🟣 Cyber Crime Reporting Portal — Report online</a>
+                                <button class="text-sm text-gray-600 hover:text-gray-800" data-info="cyber" aria-label="More about Cyber Crime Portal">ℹ️</button>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <a href="https://transgender.dosje.gov.in/" target="_blank" rel="noopener" aria-label="Transgender Complaint Portal" data-portal="trans" class="portal-btn bg-blue-600">🔵 Transgender Complaint Portal — Register grievance</a>
+                                <button class="text-sm text-gray-600 hover:text-gray-800" data-info="trans" aria-label="More about Transgender Portal">ℹ️</button>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <a href="https://pgportal.gov.in/" target="_blank" rel="noopener" aria-label="National Portal for Public Grievances" data-portal="pg" class="portal-btn bg-gray-200 text-gray-800">🚨 National Portal for Public Grievances — PG Portal</a>
+                                <button class="text-sm text-gray-600 hover:text-gray-800" data-info="pg" aria-label="More about PG Portal">ℹ️</button>
+                            </div>
+                        </div>
+
+                        <h4 class="font-semibold mb-2">What happens after filing?</h4>
+                        <ul class="list-disc pl-5 text-gray-700 mb-4 text-sm">
+                            <li>You should receive a reference / complaint number — save it.</li>
+                            <li>The authority will review and may ask for additional information.</li>
+                            <li>Investigations or mediation steps are initiated depending on the complaint.</li>
+                            <li>If you need legal representation, NALSA or state legal services can help.</li>
+                        </ul>
+
+                        <div class="bg-gray-50 border rounded-md p-4 text-sm">
+                            <p class="font-semibold mb-2">Important contacts</p>
+                            <p class="mb-1">📧 Ministry grievance: <a href="mailto:grievance@socialjustice.gov.in" class="text-teal-600">grievance@socialjustice.gov.in</a></p>
+                            <p class="mb-1">� NCW / National Women's Helpline: <a href="tel:181" class="text-teal-600">181</a> (women's helpline)</p>
+                            <p class="mb-1">🖥️ Cyber Crime Helpline: <a href="tel:1930" class="text-purple-600">1930</a> (report online at cybercrime.gov.in)</p>
+                            <p class="mb-1">�📞 NALSA helpline: <a href="tel:1033" class="text-indigo-600">1033</a> (state-level numbers vary)</p>
+                            <p class="mb-0">🚨 For emergencies call local police or <a href="tel:112" class="text-gray-800">112</a></p>
+                        </div>
+                        <p class="text-xs text-gray-500 mt-3">Disclaimer: This website does not collect or process complaints directly. All links lead to verified government portals for your safety.</p>
+                        <p class="text-xs text-gray-500 mt-2">Last updated: October 2025</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+      
+
+        <!-- Additional Features -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            <!-- Quiz Section -->
+            <div class="bg-white rounded-xl shadow-md p-6 flex flex-col">
+                <div class="flex items-center mb-4">
+                    <div class="bg-purple-100 p-3 rounded-full mr-3">
+                        <i data-feather="help-circle" class="text-purple-600 w-6 h-6"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-gray-800">Know Your Rights Quiz</h2>
+                </div>
+                <p class="text-gray-600 mb-6">Test your knowledge about legal rights with our interactive quiz</p>
+                <button id="start-quiz-btn" class="mt-auto bg-purple-600 hover:bg-purple-700 text-white py-2 px-6 rounded-lg transition self-start">
+                    Start Quiz
+                </button>
+            </div>
+            
+            <!-- Query Form -->
+            <div class="bg-white rounded-xl shadow-md p-6 flex flex-col">
+                <div class="flex items-center mb-4">
+                    <div class="bg-teal-100 p-3 rounded-full mr-3">
+                        <i data-feather="mail" class="text-teal-600 w-6 h-6"></i>
+                    </div>
+                    <h2 class="text-xl font-bold text-gray-800">Ask a Legal Question</h2>
+                </div>
+                <p class="text-gray-600 mb-6">Submit anonymous queries about your rights and get information</p>
+                <button class="mt-auto bg-teal-600 hover:bg-teal-700 text-white py-2 px-6 rounded-lg transition self-start">
+                    Ask Now
+                </button>
+            </div>
+        </section>
+
+        <!-- Portal Info Modal -->
+        <div id="portal-info-modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+            <div class="bg-white rounded-lg shadow-xl w-11/12 max-w-lg p-6">
+                <div class="flex justify-between items-start">
+                    <h3 id="portal-info-title" class="text-lg font-semibold">Portal info</h3>
+                    <button id="portal-info-close" aria-label="Close portal info" class="text-gray-600 hover:text-gray-800">✖</button>
+                </div>
+                <div id="portal-info-body" class="mt-4 text-sm text-gray-700"></div>
+                <div class="mt-6 text-right">
+                    <button id="portal-info-open" class="btn-action bg-gray-100 text-gray-800">Open portal</button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            (function(){
+                const infoMap = {
+                    ncw: {
+                        title: 'National Commission for Women (NCW)',
+                        body: 'For women to file complaints related to harassment, violence, discrimination, dowry, and related issues. Use this portal to lodge formal complaints and track case status.' ,
+                        url: 'https://ncwapps.nic.in/'
+                    },
+                    cyber: {
+                        title: 'Cyber Crime Reporting Portal',
+                        body: 'For reporting cyber crimes, online abuse, stalking, and blackmail. Use this portal to report incidents especially affecting women and children; it connects you to local investigation units.',
+                        url: 'https://cybercrime.gov.in/'
+                    },
+                    trans: {
+                        title: 'Transgender Complaint Portal (Ministry of Social Justice)',
+                        body: 'Official portal for transgender persons to register grievances, apply for ID cards, and get support from the ministry.',
+                        url: 'https://transgender.dosje.gov.in/'
+                    },
+                    pg: {
+                        title: 'National Portal for Public Grievances (PG Portal)',
+                        body: 'General grievance redressal platform for citizen issues involving government offices. Use this portal for cross-department complaints and tracking.',
+                        url: 'https://pgportal.gov.in/'
+                    }
+                };
+
+                const modal = document.getElementById('portal-info-modal');
+                const titleEl = document.getElementById('portal-info-title');
+                const bodyEl = document.getElementById('portal-info-body');
+                const openBtn = document.getElementById('portal-info-open');
+                const closeBtn = document.getElementById('portal-info-close');
+                let currentUrl = null;
+
+                document.querySelectorAll('[data-info]').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const key = btn.getAttribute('data-info');
+                        const info = infoMap[key];
+                        if (!info) return;
+                        titleEl.textContent = info.title;
+                        bodyEl.textContent = info.body;
+                        currentUrl = info.url;
+                        modal.classList.remove('hidden');
+                        modal.classList.add('flex');
+                    });
+                });
+
+                closeBtn.addEventListener('click', () => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                });
+
+                openBtn.addEventListener('click', () => {
+                    if (currentUrl) window.open(currentUrl, '_blank', 'noopener');
+                });
+
+                // click outside to close
+                modal.addEventListener('click', (e) => { if (e.target === modal) { modal.classList.add('hidden'); modal.classList.remove('flex'); } });
+            })();
+        </script>
+
+        <!-- Recent Updates -->
+        <section>
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Recent Legal Updates</h2>
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="p-6 border-b border-gray-100">
+                    <h3 class="text-lg font-semibold text-purple-600 mb-2">Transgender Persons Rules Updated</h3>
+                    <p class="text-gray-600 mb-2">The Ministry of Social Justice and Empowerment notified amendments to the Transgender Persons Rules, 2020.</p>
+                    <p class="text-sm text-gray-500">Updated: June 15, 2023</p>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-lg font-semibold text-purple-600 mb-2">Expansion of Maternity Benefits</h3>
+                    <p class="text-gray-600 mb-2">The government has proposed extending maternity leave benefits to more categories of working women.</p>
+                    <p class="text-sm text-gray-500">Updated: April 28, 2023</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">Legal Lighthouse</h3>
+                    <p class="text-gray-400">Empowering individuals through legal awareness and rights education.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Home</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Women's Rights</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Transgender Rights</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white transition">Helplines</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Download Resources</h3>
+                    <div class="space-y-2">
+                        <a href="#" class="inline-flex items-center text-gray-400 hover:text-white transition">
+                            <i data-feather="download" class="w-4 h-4 mr-2"></i>
+                            Women's Rights Handbook
+                        </a>
+                        <br>
+                        <a href="#" class="inline-flex items-center text-gray-400 hover:text-white transition">
+                            <i data-feather="download" class="w-4 h-4 mr-2"></i>
+                            Transgender Rights Guide
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2023 Legal Lighthouse. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        feather.replace();
+        
+        // Animation for cards on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.fade-in');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeIn 0.8s ease-in forwards';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            cards.forEach(card => {
+                observer.observe(card);
+            });
+        
+            // Women's slider setup
+            const track = document.getElementById('women-track');
+            const prev = document.getElementById('women-prev');
+            const next = document.getElementById('women-next');
+            const dotsContainer = document.getElementById('women-dots');
+            let slideIndex = 0;
+            // Each slide element (we used flex children)
+            const slides = Array.from(track.children);
+
+            // Determine slidesPerView based on viewport
+            function slidesPerView() {
+                if (window.innerWidth >= 1024) return 3; // lg
+                if (window.innerWidth >= 768) return 2; // md
+                return 1; // sm
+            }
+
+            function updateTrack() {
+                const spv = slidesPerView();
+                // clamp slideIndex so the last page shows the final slide fully
+                const maxIndex = Math.max(0, slides.length - spv);
+                slideIndex = Math.max(0, Math.min(slideIndex, maxIndex));
+                // translate based on the actual rendered slide width so alignment is exact
+                if (slides.length === 0) return;
+                const slideEl = slides[0];
+                const slideWidth = slideEl.getBoundingClientRect().width;
+                const viewportWidth = track.parentElement.getBoundingClientRect().width;
+                const percent = (slideWidth * slideIndex) / viewportWidth * 100;
+                track.style.transform = `translateX(-${percent}%)`;
+                updateDots();
+            }
+
+            function createDots() {
+                dotsContainer.innerHTML = '';
+                const spv = slidesPerView();
+                // number of start positions (pages) where a new group begins
+                const pages = Math.max(1, slides.length - spv + 1);
+                const maxIndex = Math.max(0, slides.length - spv);
+                for (let i = 0; i < pages; i++) {
+                    const btn = document.createElement('button');
+                    btn.className = 'w-3 h-3 rounded-full bg-gray-300';
+                    btn.setAttribute('aria-label', `Go to slide ${i+1}`);
+                    btn.addEventListener('click', () => { slideIndex = i; updateTrack(); });
+                    dotsContainer.appendChild(btn);
+                }
+                // extra clicker: jump directly to the final start index (last page)
+                const extra = document.createElement('button');
+                extra.className = 'w-3 h-3 rounded-full bg-gray-300';
+                extra.setAttribute('aria-label', 'Go to last slides');
+                extra.title = 'Go to last slides';
+                extra.addEventListener('click', () => { slideIndex = maxIndex; updateTrack(); });
+                dotsContainer.appendChild(extra);
+            }
+
+            function updateDots() {
+                const spv = slidesPerView();
+                const pages = Math.max(1, slides.length - spv + 1);
+                const maxIndex = Math.max(0, slides.length - spv);
+                Array.from(dotsContainer.children).forEach((d, i) => {
+                    // if it's one of the primary page dots
+                    if (i < pages) {
+                        d.classList.toggle('bg-gray-700', i === slideIndex);
+                        d.classList.toggle('bg-gray-300', i !== slideIndex);
+                    } else {
+                        // the extra clicker (last child) represents the final page
+                        d.classList.toggle('bg-gray-700', slideIndex === maxIndex);
+                        d.classList.toggle('bg-gray-300', slideIndex !== maxIndex);
+                    }
+                });
+            }
+
+            prev.addEventListener('click', () => { slideIndex -= 1; updateTrack(); });
+            next.addEventListener('click', () => { slideIndex += 1; updateTrack(); });
+
+            // touch drag support
+            let startX = 0; let currentX = 0; let dragging = false;
+            track.addEventListener('pointerdown', (e) => { dragging = true; startX = e.clientX; track.setPointerCapture(e.pointerId); });
+            track.addEventListener('pointermove', (e) => { if (!dragging) return; currentX = e.clientX; });
+            track.addEventListener('pointerup', (e) => { if (!dragging) return; dragging = false; const dx = e.clientX - startX; if (dx < -40) slideIndex += 1; else if (dx > 40) slideIndex -= 1; updateTrack(); });
+
+            // rebuild dots and layout on resize
+            window.addEventListener('resize', () => { createDots(); updateTrack(); });
+            // init
+            createDots(); updateTrack();
+
+            // Transgender slider setup (mirror behavior)
+            const transTrack = document.getElementById('trans-track');
+            const transPrev = document.getElementById('trans-prev');
+            const transNext = document.getElementById('trans-next');
+            const transDots = document.getElementById('trans-dots');
+            let transIndex = 0;
+            const transSlides = transTrack ? Array.from(transTrack.children) : [];
+
+            function createTransDots() {
+                if (!transDots) return;
+                transDots.innerHTML = '';
+                const spv = slidesPerView();
+                const pages = Math.max(1, transSlides.length - spv + 1);
+                const maxIndex = Math.max(0, transSlides.length - spv);
+                for (let i = 0; i < pages; i++) {
+                    const btn = document.createElement('button');
+                    btn.className = 'w-3 h-3 rounded-full bg-gray-300';
+                    btn.setAttribute('aria-label', `Go to slide ${i+1}`);
+                    btn.addEventListener('click', () => { transIndex = i; updateTransTrack(); });
+                    transDots.appendChild(btn);
+                }
+                // extra clicker to jump to final start index for trans slides
+                const extraT = document.createElement('button');
+                extraT.className = 'w-3 h-3 rounded-full bg-gray-300';
+                extraT.setAttribute('aria-label', 'Go to last slides');
+                extraT.title = 'Go to last slides';
+                extraT.addEventListener('click', () => { transIndex = maxIndex; updateTransTrack(); });
+                transDots.appendChild(extraT);
+            }
+
+            function updateTransTrack() {
+                if (!transTrack) return;
+                const spv = slidesPerView();
+                const maxIndex = Math.max(0, transSlides.length - spv);
+                transIndex = Math.max(0, Math.min(transIndex, maxIndex));
+                if (transSlides.length === 0) return;
+                const tSlideEl = transSlides[0];
+                const tSlideWidth = tSlideEl.getBoundingClientRect().width;
+                const tViewportWidth = transTrack.parentElement.getBoundingClientRect().width;
+                const percent = (tSlideWidth * transIndex) / tViewportWidth * 100;
+                transTrack.style.transform = `translateX(-${percent}%)`;
+                if (transDots) {
+                    const pages = Math.max(1, transSlides.length - spv + 1);
+                    const maxIndex = Math.max(0, transSlides.length - spv);
+                    Array.from(transDots.children).forEach((d, i) => {
+                        if (i < pages) {
+                            d.classList.toggle('bg-gray-700', i === transIndex);
+                            d.classList.toggle('bg-gray-300', i !== transIndex);
+                        } else {
+                            d.classList.toggle('bg-gray-700', transIndex === maxIndex);
+                            d.classList.toggle('bg-gray-300', transIndex !== maxIndex);
+                        }
+                    });
+                }
+            }
+
+            if (transPrev) transPrev.addEventListener('click', () => { transIndex -= 1; updateTransTrack(); });
+            if (transNext) transNext.addEventListener('click', () => { transIndex += 1; updateTransTrack(); });
+
+            // trans touch support
+            if (transTrack) {
+                let tStartX = 0; let tDragging = false;
+                transTrack.addEventListener('pointerdown', (e) => { tDragging = true; tStartX = e.clientX; transTrack.setPointerCapture(e.pointerId); });
+                transTrack.addEventListener('pointerup', (e) => { if (!tDragging) return; tDragging = false; const dx = e.clientX - tStartX; if (dx < -40) transIndex += 1; else if (dx > 40) transIndex -= 1; updateTransTrack(); });
+            }
+
+            // init trans
+            createTransDots(); updateTransTrack();
+
+            // Hero quote rotation (right-side sliding carousel)
+            const quotes = [
+                { text: 'Empower a woman, empower a nation.', author: '— Activist', img: 'https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=1' },
+                { text: 'Equality is not a privilege, it\'s a right.', author: '— Constitution', img: './jai%20bhim.webp' },
+                { text: 'Be proud of who you are — the law stands with you.', author: '— Advocate', img: 'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=3' },
+                { text: 'Justice and dignity belong to everyone.', author: '— Human Rights Leader', img: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=4' }
+            ];
+
+            const quoteTrack = document.getElementById('quote-track');
+            const quoteDots = document.getElementById('quote-dots');
+            const quotePrev = document.getElementById('quote-prev');
+            const quoteNext = document.getElementById('quote-next');
+            const quoteViewport = document.getElementById('quote-viewport');
+            const heroBg = document.getElementById('hero-bg');
+
+            let qIndex = 0;
+
+            // build slide elements inside the track
+            function buildQuoteSlides() {
+                if (!quoteTrack) return;
+                quoteTrack.innerHTML = '';
+                quotes.forEach((q, i) => {
+                    const slide = document.createElement('div');
+                    slide.className = 'w-full flex-shrink-0 p-6';
+                    slide.innerHTML = `
+                        <div class="text-left">
+                            <p class="text-base md:text-lg font-semibold leading-relaxed text-white">“${q.text}”</p>
+                            <p class="mt-3 text-sm text-white/90">${q.author}</p>
+                        </div>
+                    `;
+                    quoteTrack.appendChild(slide);
+                });
+                // set track width to number of slides
+                quoteTrack.style.width = `${quotes.length * 100}%`;
+                Array.from(quoteTrack.children).forEach((c) => { c.style.width = `${100 / quotes.length}%`; });
+            }
+
+            function createQuoteDots() {
+                if (!quoteDots) return;
+                quoteDots.innerHTML = '';
+                quotes.forEach((q, i) => {
+                    const b = document.createElement('button');
+                    b.className = 'w-3 h-3 rounded-full bg-white/40';
+                    b.setAttribute('aria-label', `Show quote ${i+1}`);
+                    b.dataset.index = i;
+                    b.addEventListener('click', (ev) => {
+                        const idx = parseInt(ev.currentTarget.dataset.index, 10);
+                        goToQuote(idx);
+                        resetQuoteTimer();
+                    });
+                    quoteDots.appendChild(b);
+                });
+            }
+
+            function updateDotsActive() {
+                if (!quoteDots) return;
+                Array.from(quoteDots.children).forEach((d, i) => {
+                    d.classList.toggle('bg-white', i === qIndex);
+                    d.classList.toggle('bg-white/40', i !== qIndex);
+                });
+            }
+
+            // preload images
+            function preloadImages() {
+                quotes.forEach(q => { const i = new Image(); i.src = q.img; });
+            }
+
+            function goToQuote(i) {
+                qIndex = (i + quotes.length) % quotes.length;
+                const percent = (qIndex * (100 / quotes.length));
+                if (quoteTrack) quoteTrack.style.transform = `translateX(-${percent}%)`;
+                // update background image with a small fade
+                if (heroBg) {
+                    heroBg.style.transition = 'opacity 300ms ease';
+                    heroBg.style.opacity = '0';
+                }
+                setTimeout(() => {
+                    if (heroBg) {
+                        // Set background robustly (cover + center) to ensure external images render correctly
+                        try {
+                            heroBg.style.backgroundImage = `url("${quotes[qIndex].img}")`;
+                            heroBg.style.backgroundSize = 'cover';
+                            heroBg.style.backgroundPosition = 'center';
+                            heroBg.style.backgroundRepeat = 'no-repeat';
+                        } catch (e) {
+                            // fallback: clear background on error
+                            heroBg.style.backgroundImage = '';
+                        }
+                        heroBg.style.opacity = '1';
+                    }
+                    updateDotsActive();
+                }, 260);
+            }
+
+            // navigation
+            function prevQuote() { goToQuote(qIndex - 1); }
+            function nextQuote() { goToQuote(qIndex + 1); }
+
+            // keyboard navigation limited to when quoteViewport or controls are focused
+            document.addEventListener('keydown', (e) => {
+                const active = document.activeElement;
+                if (active && (quoteViewport.contains(active) || active === quotePrev || active === quoteNext)) {
+                    if (e.key === 'ArrowLeft') { prevQuote(); resetQuoteTimer(); }
+                    if (e.key === 'ArrowRight') { nextQuote(); resetQuoteTimer(); }
+                }
+            });
+
+            if (quotePrev) { quotePrev.addEventListener('click', () => { prevQuote(); resetQuoteTimer(); }); quotePrev.tabIndex = 0; }
+            if (quoteNext) { quoteNext.addEventListener('click', () => { nextQuote(); resetQuoteTimer(); }); quoteNext.tabIndex = 0; }
+
+            preloadImages();
+            buildQuoteSlides();
+            createQuoteDots();
+            goToQuote(0);
+
+            let quoteTimer = setInterval(() => { nextQuote(); }, 5500);
+            function resetQuoteTimer() { clearInterval(quoteTimer); quoteTimer = setInterval(() => { nextQuote(); }, 5500); }
+        });
+    </script>
+
+    <script>
+        // Full translations engine: scans data-i18n attributes and replaces textContent/value.
+        (function(){
+            const translations = {
+                en: {
+                    // header / hero
+                    'header.title': 'Know Your Legal Rights',
+                    'header.sub': 'Empowering Women & Transgender Persons Through Awareness',
+                    'hero.title': 'Your Rights, Your Power',
+                    'hero.sub': 'Discover essential legal protections for women and transgender individuals in India',
+                    // sections
+                    'women.title': "Women's Legal Rights",
+                    'trans.title': 'Transgender Legal Rights',
+                    // complaint
+                    'complaint.stepsTitle': 'How to file — simple steps',
+                    'complaint.step1': 'Gather evidence: dates, times, locations, names, witnesses, and files (photos, messages, medical reports).',
+                    'complaint.step2': 'Use an official portal or local police station depending on the nature of the complaint.',
+                    'complaint.step3': 'Fill out the form carefully; attach evidence and keep a copy of the submission reference number.',
+                    'complaint.step4': 'If unsure, contact legal aid or the ministry grievance cell for guidance before submitting.',
+                    'complaint.clickPortal': 'Click any official link below to continue filing online.',
+                    'complaint.checklistTitle': 'Before filing, make sure you have:',
+                    'check.dateText': 'Date(s) and time(s) recorded',
+                    'check.namesText': 'Names / descriptions of involved persons',
+                    'check.witnessText': 'Witness contact details',
+                    'check.evidenceText': 'Photos, screenshots, medical reports attached',
+                    'check.backupText': 'Backup of submission reference saved',
+                    'complaint.templateTitle': 'Complaint template (copy & edit)',
+                    'button.copy': '📋 Copy',
+                    'button.download': '⬇️ Download',
+                    'button.print': '🖨️ Print',
+                    // portals
+                    'portals.title': 'Official portals & actions',
+                    'portal.ncw': '🟢 NCW — File a complaint (women)',
+                    'portal.cyber': '🟣 Cyber Crime Reporting Portal — Report online',
+                    'portal.trans': '🔵 Transgender Complaint Portal — Register grievance',
+                    'portal.pg': '🚨 National Portal for Public Grievances — PG Portal',
+                    // contacts
+                    'contacts.email': '📧 Ministry grievance: grievance@socialjustice.gov.in',
+                    'contacts.ncw': '📧 NCW / National Women\'s Helpline: 181',
+                    'contacts.cyber': '🖥️ Cyber Crime Helpline: 1930 (report online at cybercrime.gov.in)',
+                    'contacts.nalsa': '📞 NALSA helpline: 1033 (state-level numbers vary)',
+                    'contacts.emergency': '🚨 For emergencies call local police or 112',
+                    // modal
+                    'modal.openPortal': 'Open portal',
+                    // recent / footer
+                    'recent.title': 'Recent Legal Updates',
+                    'footer.brand': 'Legal Lighthouse',
+                    'footer.copy': '© 2023 Legal Lighthouse. All rights reserved.'
+                },
+                hi: {
+                    'header.title': 'अपने कानूनी अधिकार जानें',
+                    'header.sub': 'सुरक्षा और जागरूकता के माध्यम से महिलाओं और ट्रांसजेंडर व्यक्तियों को सशक्त बनाना',
+                    'hero.title': 'आपके अधिकार, आपकी शक्ति',
+                    'hero.sub': 'भारत में महिलाओं और ट्रांसजेंडर व्यक्तियों के लिए आवश्यक कानूनी संरक्षणों का पता लगाएं',
+                    'women.title': 'महिलाओं के कानूनी अधिकार',
+                    'trans.title': 'ट्रांसजेंडर कानूनी अधिकार',
+                    'complaint.stepsTitle': 'कैसे दर्ज करें — सरल चरण',
+                    'complaint.step1': 'सबूत इकट्ठा करें: तिथियाँ, समय, स्थान, नाम, गवाह और फ़ाइलें (फ़ोटो, संदेश, मेडिकल रिपोर्ट)।',
+                    'complaint.step2': 'शिकायत की प्रकृति के अनुसार आधिकारिक पोर्टल या स्थानीय पुलिस स्टेशन का उपयोग करें।',
+                    'complaint.step3': 'फ़ॉर्म ध्यानपूर्वक भरें; प्रमाण संलग्न करें और सबमिशन संदर्भ संख्या की एक कॉपी रखें।',
+                    'complaint.step4': 'यदि संदेह है, तो जमा करने से पहले मार्गदर्शन के लिए कानूनी सहायता या मंत्रालय से संपर्क करें।',
+                    'complaint.clickPortal': 'ऑनलाइन फाइलिंग जारी रखने के लिए नीचे किसी आधिकारिक लिंक पर क्लिक करें।',
+                    'complaint.checklistTitle': 'फ़ाइल करने से पहले सुनिश्चित करें कि आपके पास हैं:',
+                    'check.dateText': 'तिथियाँ और समय रिकॉर्ड किए गए हैं',
+                    'check.namesText': 'शामिल व्यक्तियों के नाम / विवरण',
+                    'check.witnessText': 'गवाह संपर्क विवरण',
+                    'check.evidenceText': 'फ़ोटो, स्क्रीनशॉट, मेडिकल रिपोर्ट संलग्न',
+                    'check.backupText': 'सबमिशन संदर्भ का बैकअप सहेजा गया है',
+                    'complaint.templateTitle': 'शिकायत टेम्पलेट (कॉपी और संपादित करें)',
+                    'button.copy': '📋 कॉपी',
+                    'button.download': '⬇️ डाउनलोड',
+                    'button.print': '🖨️ प्रिंट',
+                    'portals.title': 'आधिकारिक पोर्टल और कार्य',
+                    'portal.ncw': '🟢 NCW — शिकायत दर्ज करें (महिलाएँ)',
+                    'portal.cyber': '🟣 साइबर क्राइम रिपोर्टिंग पोर्टल — ऑनलाइन रिपोर्ट करें',
+                    'portal.trans': '🔵 ट्रांसजेंडर शिकायत पोर्टल — शिकायत दर्ज करें',
+                    'portal.pg': '🚨 राष्ट्रीय जन शिकायत पोर्टल — PG पोर्टल',
+                    'contacts.email': '📧 मंत्रालय शिकायत: grievance@socialjustice.gov.in',
+                    'contacts.ncw': '📧 NCW / राष्ट्रीय महिला हेल्पलाइन: 181',
+                    'contacts.cyber': '🖥️ साइबर क्राइम हेल्पलाइन: 1930 (ऑनलाइन रिपोर्ट करें)',
+                    'contacts.nalsa': '📞 NALSA हेल्पलाइन: 1033 (राज्य-स्तरीय नंबर बदलते हैं)',
+                    'contacts.emergency': '🚨 आपातकाल के लिए स्थानीय पुलिस या 112 पर कॉल करें',
+                    'modal.openPortal': 'पोर्टल खोलें',
+                    'recent.title': 'हालिया कानूनी अपडेट',
+                    'footer.brand': 'लीगल लाइटहाउस',
+                    'footer.copy': '© 2023 लीगल लाइटहाउस. सभी अधिकार सुरक्षित।'
+                },
+                ta: {
+                    'header.title': 'உங்கள் சட்ட உரிமைகளை அறிக',
+                    'header.sub': 'பெண்கள் மற்றும் துளை மக்களை விழிப்புணர்வால் அதிகாரப்படுத்தல்',
+                    'hero.title': 'உங்கள் உரிமைகள், உங்கள் சக்தி',
+                    'hero.sub': 'இந்தியாவில் பெண்கள் மற்றும் ட்ரான்ஸ்ஜெண்டர் நபர்களுக்கு முக்கிய சட்ட பாதுகாப்புகளை அறியவும்',
+                    'women.title': 'பெண்களின் சட்ட உரிமைகள்',
+                    'trans.title': 'திருநங்கை சட்ட உரிமைகள்',
+                    'complaint.stepsTitle': 'எவ்வாறு புகார் அளிப்பது — எளிய படிகள்',
+                    'complaint.step1': 'சான்றுகளை திரட்டவும்: தேதிகள், நேரம், இடம், பெயர்கள், சாட்சிகள் மற்றும் கோப்புகள் (புகைப்படங்கள், செய்திகள், மருத்துவக் கூறுகள்).',
+                    'complaint.step2': 'புகாரின் இயல்பின்படி அதிகாரப்பூர்வ போர்டல் அல்லது உள்ளூர் போலீஸ் நிலையத்தை பயன்படுத்தவும்.',
+                    'complaint.step3': 'படிவத்தை கவனமாக நிரப்பவும்; ஆதாரங்களை இணைக்கவும் மற்றும் சமர்ப்பிப்பு குறிப்பின் ஒரு நகலை வைத்துக் கொள்ளவும்.',
+                    'complaint.step4': 'சந்தேகம் இருப்பின், சமர்ப்பிக்குமுன் வழிகாட்டலுக்கு சட்ட உதவியை அல்லது அமைச்சிடம் அணுகவும்.',
+                    'complaint.clickPortal': 'ஆன்லைனில் தொடர கீழே உள்ள அதிகாரப்பூர்வ இணைப்புகளில் ஒன்றை கிளிக் செய்க.',
+                    'complaint.checklistTitle': 'சமர்ப்பிக்க மும்முன், உங்களுக்கு இதைகள் உள்ளதாக உறுதிசெய்க:',
+                    'check.dateText': 'தேதிகள் மற்றும் நேரம் பதிவுசெய்யப்பட்டவை',
+                    'check.namesText': 'இறங்கிய நபர்களின் பெயர்கள் / விவரங்கள்',
+                    'check.witnessText': 'சாட்சி தொடர்பு விவரங்கள்',
+                    'check.evidenceText': 'புகைப்படங்கள், ஸ்கிரீன்ஷாட்கள், மருத்துவ அறிக்கைகள் இணைக்கப்பட்டுள்ளது',
+                    'check.backupText': 'சமர்ப்பிப்பு குறிப்பின் காப்பு சேமிக்கப்பட்டது',
+                    'complaint.templateTitle': 'புகார் மாதிரியின் (நகலெடு & திருத்து)',
+                    'button.copy': '📋 நகல்',
+                    'button.download': '⬇️ பதிவிறக்கு',
+                    'button.print': '🖨️ அச்சு',
+                    'portals.title': 'அதிகாரப்பூர்வ போர்ட்டல்கள் & நடவடிக்கைகள்',
+                    'portal.ncw': '🟢 NCW — புகார் அளிக்க (பெண்கள்)',
+                    'portal.cyber': '🟣 சைபர் குற்ற रिपोर्टிங் போர்டல் — ஆன்லைனில் புகார் செய்ய',
+                    'portal.trans': '🔵 திருநங்கை புகார் போர்டல் — புகார் பதிவு செய்க',
+                    'portal.pg': '🚨 தேசிய பொதுமக்கள் குறைதீர் போர்டல் — PG போர்டல்',
+                    'contacts.email': '📧 அமைச்சு குறைதி: grievance@socialjustice.gov.in',
+                    'contacts.ncw': '📧 NCW / தேசிய மகளிர் ஹெல்ப்லைன்: 181',
+                    'contacts.cyber': '🖥️ சைபர் குற்ற ஹெல்ப்லைன்: 1930 (cybercrime.gov.in இல் ஆன்லைனில் புகார் செய்யவும்)',
+                    'contacts.nalsa': '📞 NALSA ஹெல்ப்லைன்: 1033 (மாநில அளவிலான எண்கள் மாறுபடலாம்)',
+                    'contacts.emergency': '🚨 அவசர நிலைக்கு உள்ளூர் காவல் அல்லது 112-அை அழைக்கவும்',
+                    'modal.openPortal': 'போர்டல் திறக்க',
+                    'recent.title': ' சமீபத்திய சட்ட updates',
+                    'footer.brand': 'லீகல் லைட்ஹவுஸ்',
+                    'footer.copy': '© 2023 லீகல் லைட்ஹவுஸ். அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.'
+                }
+            };
+
+            // portal localized info bodies (short) — titles/bodies per portal per language
+            const portalInfoLocalized = {
+                en: {
+                    ncw: { title: 'National Commission for Women (NCW)', body: 'For women to file complaints related to harassment, violence, discrimination and dowry. Lodge formal complaints and track status.' },
+                    cyber: { title: 'Cyber Crime Reporting Portal', body: 'Report cyber crimes, online abuse, stalking and blackmail. Connects to local investigation units.' },
+                    trans: { title: 'Transgender Complaint Portal', body: 'Register grievances, apply for ID card support and access ministry resources.' },
+                    pg: { title: 'PG Portal', body: 'General grievance redressal platform for citizen issues across government departments.' }
+                },
+                hi: {
+                    ncw: { title: 'राष्ट्रीय आयोग महिला (NCW)', body: 'यह महिलाओं के लिए उत्पीड़न, हिंसा, भेदभाव और दहेज से संबंधित शिकायतें दर्ज करने के लिए है। प्राथमिकी दर्ज करें और स्थिति ट्रैक करें।' },
+                    cyber: { title: 'साइबर क्राइम रिपोर्टिंग पोर्टल', body: 'साइबर अपराध, ऑनलाइन दुरुपयोग, स्टॉकिंग और ब्लैकमेल की रिपोर्ट करें। स्थानीय जांच इकाइयों से जुड़ता है।' },
+                    trans: { title: 'ट्रांसजेंडर शिकायत पोर्टल', body: 'शिकायत दर्ज करें, आईडी कार्ड के लिए आवेदन करें और मंत्रालय से सहायता प्राप्त करें।' },
+                    pg: { title: 'पीजी पोर्टल', body: 'सरकारी विभागों से संबंधित नागरिक मुद्दों के लिए सामान्य शिकायत निवारण प्लेटफ़ॉर्म।' }
+                },
+                ta: {
+                    ncw: { title: 'தேசிய மகள் கமிஷன் (NCW)', body: 'பெண்களுக்கு தொடர்நிலை, வன்முறை, பாகுபாடு மற்றும் மாத்திரை தொடர்பான புகார்கள் பதிவு செய்ய இது பயன்படும்.' },
+                    cyber: { title: 'சைபர் குற்றம் பதிவு போர்டல்', body: 'ஆன்லைன் வன்முறை, துன்புறுத்தல்கள் மற்றும் பிளாக்கிங் சம்பவங்களை வழங்கவும்.' },
+                    trans: { title: 'திருநங்கை புகார் போர்டல்', body: 'புகார்கள் பதிவு செய்ய, ஐடி கார்டுகளுக்கு விண்ணப்பிக்க மற்றும் அமைச்சு ஆதரவை பெற.' },
+                    pg: { title: 'பி.ஜி. போர்டல்', body: 'அரசு துறைகளில் உள்ள பொதுமக்கள் புகார்கள் பதிவிற்கான பொது தளம்.' }
+                }
+            };
+
+            const sel = document.getElementById('lang-select');
+            if (!sel) return;
+
+            function applyLang(code) {
+                const dict = translations[code] || translations.en;
+                // translate elements marked with data-i18n
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    const text = dict[key] || translations.en[key] || '';
+                    if (!text) return;
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        if (el.tagName === 'TEXTAREA') el.value = text;
+                        else el.placeholder = text;
+                    } else {
+                        el.textContent = text;
+                    }
+                });
+
+                // translate elements that may not have data-i18n but have IDs
+                const idMap = {
+                    'header-title': dict['header.title'] || translations.en['header.title'],
+                    'header-sub': dict['header.sub'] || translations.en['header.sub'],
+                    'hero-title': dict['hero.title'] || translations.en['hero.title'],
+                    'hero-sub': dict['hero.sub'] || translations.en['hero.sub'],
+                    'recent-title': dict['recent.title'] || translations.en['recent.title'],
+                    'footer-brand': dict['footer.brand'] || translations.en['footer.brand']
+                };
+                Object.keys(idMap).forEach(id => {
+                    const el = document.getElementById(id);
+                    if (el && idMap[id]) el.textContent = idMap[id];
+                });
+
+                // update portal modal localized data
+                window._portalInfo = portalInfoLocalized[code] || portalInfoLocalized.en;
+            }
+
+            // initialize
+            const saved = localStorage.getItem('site-lang') || 'en';
+            sel.value = saved;
+            applyLang(saved);
+
+            sel.addEventListener('change', (e) => {
+                const v = e.target.value || 'en';
+                localStorage.setItem('site-lang', v);
+                applyLang(v);
+            });
+        })();
+    </script>
+
+    <script>
+        // Complaint section helpers: copy template, download, print and persist checklist
+        document.addEventListener('DOMContentLoaded', () => {
+            const copyBtn = document.getElementById('copy-template');
+            const downloadBtn = document.getElementById('download-template');
+            const printBtn = document.getElementById('print-template');
+            const template = document.getElementById('complaint-template');
+            const copyMsg = document.getElementById('copy-msg');
+            const live = document.getElementById('complaint-live');
+            const checklist = document.querySelectorAll('#complaint-checklist input[type="checkbox"]');
+
+            function announce(msg) {
+                if (live) {
+                    live.textContent = '';
+                    // slight delay ensures assistive tech notices the change
+                    setTimeout(() => { live.textContent = msg; }, 50);
+                }
+            }
+
+            // restore checklist from localStorage
+            try {
+                const saved = JSON.parse(localStorage.getItem('complaint-checklist') || 'null');
+                if (saved && Array.isArray(saved)) {
+                    checklist.forEach((cb, i) => { if (saved[i]) cb.checked = true; });
+                }
+            } catch (e) { /* ignore */ }
+
+            checklist.forEach((cb, i) => {
+                cb.addEventListener('change', () => {
+                    const state = Array.from(checklist).map(c => c.checked);
+                    try { localStorage.setItem('complaint-checklist', JSON.stringify(state)); } catch (e) {}
+                });
+            });
+
+            async function doCopy() {
+                if (!template) return;
+                try {
+                    await navigator.clipboard.writeText(template.value.trim());
+                    copyMsg.classList.remove('hidden');
+                    announce('Template copied to clipboard');
+                    setTimeout(() => copyMsg.classList.add('hidden'), 2500);
+                } catch (err) {
+                    // fallback: select and prompt
+                    template.removeAttribute('readonly');
+                    template.select();
+                    document.execCommand('copy');
+                    template.setAttribute('readonly', true);
+                    copyMsg.classList.remove('hidden');
+                    announce('Template copied to clipboard');
+                    setTimeout(() => copyMsg.classList.add('hidden'), 2500);
+                }
+            }
+
+            function doDownload() {
+                if (!template) return;
+                const text = template.value.trim();
+                const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'complaint-template.txt';
+                document.body.appendChild(a);
+                a.click();
+                a.remove();
+                URL.revokeObjectURL(url);
+                announce('Template downloaded');
+            }
+
+            function doPrint() {
+                if (!template) return;
+                const w = window.open('', '_blank');
+                const escaped = template.value.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+                w.document.write('<pre style="font-family: system-ui, -apple-system, Roboto, "Poppins", sans-serif; white-space: pre-wrap;">' + escaped + '</pre>');
+                w.document.close();
+                w.focus();
+                w.print();
+                // close window after print dialog
+                setTimeout(() => { w.close(); }, 500);
+                announce('Print dialog opened');
+            }
+
+            if (copyBtn) copyBtn.addEventListener('click', doCopy);
+            if (downloadBtn) downloadBtn.addEventListener('click', doDownload);
+            if (printBtn) printBtn.addEventListener('click', doPrint);
+        });
+    </script>
+
+    <!-- Quiz Modal -->
+    <div id="quiz-modal" class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
+        <div class="bg-white rounded-xl w-11/12 md:w-3/4 lg:w-1/2 shadow-xl overflow-hidden">
+            <div class="p-6 border-b">
+                <h3 class="text-xl font-bold">Know Your Legal Acts — Quiz</h3>
+                <p class="text-sm text-gray-600">Answer the questions to test your understanding of key legal acts.</p>
+            </div>
+            <div id="quiz-content" class="p-6">
+                <!-- dynamic quiz content goes here -->
+            </div>
+            <div class="p-4 border-t flex items-center justify-between">
+                <div>
+                    <button id="quiz-prev" class="bg-gray-100 hover:bg-gray-200 text-gray-800 py-2 px-4 rounded-md" disabled>Previous</button>
+                    <button id="quiz-next" class="bg-purple-600 hover:bg-purple-700 text-white py-2 px-4 rounded-md">Next</button>
+                </div>
+                <div>
+                    <button id="quiz-close" class="text-sm text-gray-600 hover:text-gray-800">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Quiz data: 8 questions about legal acts
+        const quizQuestions = [
+            {
+                q: 'Which act addresses protection against domestic violence in India?',
+                choices: ['Protection of Women from Domestic Violence Act, 2005', 'Dowry Prohibition Act, 1961', 'Maternity Benefit Act, 1961', 'Equal Remuneration Act, 1976'],
+                a: 0
+            },
+            {
+                q: 'Which act prohibits the giving or taking of dowry?',
+                choices: ['Indian Penal Code', 'Dowry Prohibition Act, 1961', 'Protection of Women from Domestic Violence Act, 2005', 'Transgender Persons (Protection of Rights) Act, 2019'],
+                a: 1
+            },
+            {
+                q: 'Which law mandates an Internal Complaints Committee for sexual harassment at workplaces?',
+                choices: ['Maternity Benefit Act', 'Equal Remuneration Act', 'POSH (Prevention of Sexual Harassment) Act', 'Dowry Prohibition Act'],
+                a: 2
+            },
+            {
+                q: 'Which act provides for paid maternity leave and protection during pregnancy?',
+                choices: ['Maternity Benefit Act', 'Protection of Women from Domestic Violence Act', 'Equal Remuneration Act', 'Dowry Prohibition Act'],
+                a: 0
+            },
+            {
+                q: 'Which act explicitly addresses rights and discrimination protections for transgender persons?',
+                choices: ['Transgender Persons (Protection of Rights) Act, 2019', 'Protection of Women from Domestic Violence Act, 2005', 'Dowry Prohibition Act, 1961', 'POSH Act'],
+                a: 0
+            },
+            {
+                q: 'Which legislation ensures equal pay for equal work?',
+                choices: ['Equal Remuneration Act, 1976', 'Maternity Benefit Act', 'Dowry Prohibition Act', 'Transgender Persons Act'],
+                a: 0
+            },
+            {
+                q: 'Under which law can victims obtain protection orders and monetary relief in domestic situations?',
+                choices: ['Protection of Women from Domestic Violence Act, 2005', 'Indian Penal Code', 'Equal Remuneration Act', 'Dowry Prohibition Act'],
+                a: 0
+            },
+            {
+                q: 'Which is a landmark judgment that recognized transgender persons as a third gender in India?',
+                choices: ['NALSA v. Union of India (2014)', 'Puttaswamy (2017)', 'K.S. Puttaswamy (2017)', 'Vishaka (1997)'],
+                a: 0
+            }
+        ];
+
+        (function() {
+            const startBtn = document.getElementById('start-quiz-btn');
+            const modal = document.getElementById('quiz-modal');
+            const content = document.getElementById('quiz-content');
+            const prevBtn = document.getElementById('quiz-prev');
+            const nextBtn = document.getElementById('quiz-next');
+            const closeBtn = document.getElementById('quiz-close');
+
+            let current = 0;
+            const answers = new Array(quizQuestions.length).fill(null);
+
+            function renderQuestion(i) {
+                const item = quizQuestions[i];
+                let html = `<div class="mb-4"><h4 class="text-lg font-semibold">Question ${i+1} of ${quizQuestions.length}</h4><p class="mt-2 text-gray-700">${item.q}</p></div>`;
+                html += '<div class="space-y-3">';
+                item.choices.forEach((c, idx) => {
+                    const checked = answers[i] === idx ? 'ring-2 ring-purple-200' : '';
+                    html += `
+                        <label class="flex items-center p-3 border rounded-md cursor-pointer ${checked} bg-white">
+                            <input type="radio" name="qchoice" value="${idx}" class="mr-3" ${answers[i]===idx? 'checked' : ''} />
+                            <span class="text-gray-800">${c}</span>
+                        </label>
+                    `;
+                });
+                html += '</div>';
+                content.innerHTML = html;
+
+                // update buttons
+                prevBtn.disabled = i === 0;
+                nextBtn.textContent = i === quizQuestions.length - 1 ? 'Submit' : 'Next';
+            }
+
+            function openQuiz() {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                current = 0;
+                answers.fill(null);
+                renderQuestion(0);
+                // focus first input if any
+                setTimeout(() => {
+                    const first = content.querySelector('input[name="qchoice"]');
+                    if (first) first.focus();
+                }, 120);
+            }
+
+            function closeQuiz() {
+                modal.classList.remove('flex');
+                modal.classList.add('hidden');
+            }
+
+            startBtn.addEventListener('click', openQuiz);
+
+            closeBtn.addEventListener('click', closeQuiz);
+
+            // click outside to close
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeQuiz();
+            });
+
+            // choice selection
+            content.addEventListener('change', (e) => {
+                if (e.target.name === 'qchoice') {
+                    answers[current] = parseInt(e.target.value, 10);
+                    // highlight selected label
+                    Array.from(content.querySelectorAll('label')).forEach((lab, idx) => {
+                        lab.classList.toggle('ring-2 ring-purple-200', answers[current] === idx);
+                    });
+                }
+            });
+
+            prevBtn.addEventListener('click', () => {
+                if (current > 0) { current -= 1; renderQuestion(current); }
+            });
+
+            nextBtn.addEventListener('click', () => {
+                // if last, submit
+                if (current === quizQuestions.length - 1) {
+                    // compute score
+                    let score = 0;
+                    quizQuestions.forEach((q, i) => { if (answers[i] === q.a) score += 1; });
+                    // show result
+                    content.innerHTML = `<div class="text-center py-12"><h3 class="text-2xl font-bold">You scored ${score} / ${quizQuestions.length}</h3><p class="mt-3 text-gray-600">${Math.round((score/quizQuestions.length)*100)}% correct</p><div class=\"mt-6\"><button id=\"quiz-retry\" class=\"bg-purple-600 text-white py-2 px-4 rounded-md\">Retry</button> <button id=\"quiz-close-2\" class=\"ml-3 text-gray-600\">Close</button></div></div>`;
+                    document.getElementById('quiz-retry').addEventListener('click', () => { current = 0; answers.fill(null); renderQuestion(0); });
+                    document.getElementById('quiz-close-2').addEventListener('click', closeQuiz);
+                    return;
+                }
+                // ensure an answer is selected before moving on
+                if (answers[current] === null) {
+                    // small validation
+                    const warn = document.createElement('div');
+                    warn.className = 'text-sm text-red-600 mt-3';
+                    warn.textContent = 'Please select an answer to proceed.';
+                    // remove existing warnings then append
+                    const existing = content.querySelector('.text-red-600');
+                    if (existing) existing.remove();
+                    content.appendChild(warn);
+                    return;
+                }
+                current += 1;
+                renderQuestion(current);
+            });
+        })();
+    </script>
+</body>
+</html>
