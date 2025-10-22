@@ -1,0 +1,286 @@
+:root {
+  /* Theme Colors */
+  --primary-dark: #1a2035;
+  --primary-light: #1f2940;
+  --text-primary: rgba(255, 255, 255, 0.87);
+  --text-on-accent: #ffffff;
+  --text-on-danger: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.6);
+  --accent-color: #3a8fff;
+  --accent-hover: #2574db;
+  --danger-color: #dc3545;
+  --danger-hover: #bb2d3b;
+  --success-color: #2ecc71;
+  --warning-color: #ffc107;
+  --warning-text: #000000;
+  --muted: rgba(255, 255, 255, 0.6);
+  
+  /* Gradients */
+  --bg-gradient: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+  --accent-gradient: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-hover) 100%);
+  --glass-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  --glow-gradient: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+  
+  /* Glass Effect */
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.2);
+  --glass-blur: blur(10px);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+  --glass-shadow-hover: 0 12px 36px 0 rgba(0, 0, 0, 0.3);
+  --glass-highlight: rgba(255, 255, 255, 0.15);
+  
+  /* Buttons & Controls */
+  --button-shadow: 0 4px 12px rgba(58, 143, 255, 0.2);
+  --button-shadow-hover: 0 8px 16px rgba(58, 143, 255, 0.3);
+  --border-radius: 12px;
+  
+  /* Layout */
+  --max-width: 1200px;
+  --header-height: 70px;
+  --sidebar-width: 250px;
+  
+  /* Transitions */
+  --transition-timing: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-duration: 0.3s;
+  
+  /* Rendering */
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* Base Theme */
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  color: var(--text-primary);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+a {
+  font-weight: 500;
+  color: var(--accent-color);
+  text-decoration: inherit;
+  transition: color var(--transition-duration) var(--transition-timing);
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+button {
+  border-radius: var(--border-radius);
+  border: var(--glass-border);
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background: var(--glass-gradient);
+  backdrop-filter: var(--glass-blur);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all var(--transition-duration) var(--transition-timing);
+}
+
+button:hover {
+  background: var(--glass-highlight);
+  transform: translateY(-1px);
+  box-shadow: var(--glass-shadow);
+}
+
+button:focus,
+button:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+button.primary {
+  background: var(--accent-gradient);
+  color: var(--text-on-accent);
+  border: none;
+  box-shadow: var(--button-shadow);
+}
+
+button.primary:hover {
+  box-shadow: var(--button-shadow-hover);
+  transform: translateY(-1px);
+}
+
+/* Form controls should inherit the visible text color */
+input, textarea, select, button {
+  color: inherit;
+}
+
+/* Optional: Add styles for better form control appearance in dark theme */
+input, textarea, select {
+  background: var(--glass-bg);
+  border: var(--glass-border);
+  border-radius: var(--border-radius);
+  padding: 0.5em;
+  color: var(--text-primary);
+  backdrop-filter: var(--glass-blur);
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 2px;
+  border-color: var(--accent-color);
+}
+
+/* Dashboard Specific Styles */
+.dashboard {
+  padding: 2rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.dashboard-header {
+  margin-bottom: 2rem;
+}
+
+.stats-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.stat-card {
+  background: var(--glass-gradient);
+  backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  box-shadow: var(--glass-shadow);
+  color: var(--text-primary);
+}
+
+.stat-card h3 {
+  font-size: 1.1em;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+}
+
+.stat-value {
+  font-size: 2.5em;
+  font-weight: 600;
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--glass-bg);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--accent-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-on-accent);
+  font-size: 0.8em;
+  font-weight: 500;
+}
+
+.progress-label {
+  color: var(--text-on-accent);
+}
+
+.projects-section {
+  background: var(--glass-gradient);
+  backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.section-header h2 {
+  margin: 0;
+  color: var(--text-primary);
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.project-card {
+  background: var(--glass-bg);
+  border: var(--glass-border);
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all var(--transition-duration) var(--transition-timing);
+  color: var(--text-primary);
+  box-shadow: var(--glass-shadow);
+}
+
+.project-card:hover {
+  background: var(--glass-highlight);
+  transform: translateY(-2px);
+  box-shadow: var(--glass-shadow-hover);
+}
+
+.project-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.3em;
+  color: var(--text-primary);
+}
+
+.project-location,
+.project-carbon {
+  margin: 0 0 0.5rem 0;
+  color: var(--text-secondary);
+  font-size: 0.95em;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8em;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.status-active {
+  background: var(--success-color);
+  color: var(--text-on-accent);
+}
+
+.status-planning {
+  background: var(--warning-color);
+  color: var(--warning-text);
+}

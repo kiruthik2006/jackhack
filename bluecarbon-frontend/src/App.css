@@ -1,0 +1,144 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: var(--font-family);
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+  color: var(--text-primary);
+  min-height: 100vh;
+}
+
+/* Common Components */
+.glass-panel {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  box-shadow: var(--glass-shadow);
+}
+
+.glass-button {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  color: var(--text-primary);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition-normal);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+}
+
+.glass-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+/* App Layout */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+}
+
+.main-container {
+  flex: 1;
+  display: flex;
+  margin-top: 70px;
+  position: relative;
+  z-index: 1;
+}
+
+.content {
+  flex: 1;
+  min-height: calc(100vh - 70px);
+  margin-left: 0;
+  transition: var(--transition-normal);
+  width: 100%;
+  overflow-x: hidden;
+  padding: 2rem;
+  position: relative;
+}
+
+/* When sidebar is open: use main-container modifier (App.jsx adds 'sidebar-open') */
+.main-container.sidebar-open .content {
+  margin-left: var(--sidebar-width, 280px);
+}
+
+@media (max-width: 768px) {
+  .content { padding: 1rem; }
+  /* On small screens the sidebar overlays content so don't push */
+  .main-container.sidebar-open .content { margin-left: 0; }
+}
+ 
+/* Header styles moved to component CSS (src/components/Header.css) */
+
+/* Main Layout */
+.main-content { display: flex; flex: 1; overflow: hidden; }
+
+/* Sidebar styles are component-scoped in src/components/Sidebar.css */
+
+/* Page Content */
+.page-content { flex: 1; padding: 24px; background: transparent; overflow-y: auto; }
+
+/* Footer styles moved to component CSS (src/components/Footer.css) */
+
+/* Modules */
+.module-box {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 6px rgba(0,0,0,0.1);
+  margin-bottom: 20px;
+}
+
+/* Buttons */
+.primary-btn {
+  background: #059669;
+  color: white;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.primary-btn:hover {
+  background: #047857;
+  transform: scale(1.05);
+}
+
+.secondary-btn {
+  background: #e5e7eb;
+  color: #1f2937;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.secondary-btn:hover {
+  background: #d1d5db;
+}
+
+/* File Input */
+.file-input {
+  margin-bottom: 12px;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
