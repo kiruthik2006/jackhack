@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agri AI Chatbot</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f6f8fa;
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+            gap: 2px;
+        }
+        .sidebar {
+            width: 250px;
+            background: #0d9488;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            padding: 1rem 0 0 0;
+            box-sizing: border-box;
+            flex-shrink: 0;
+            border-top-right-radius: 1.25rem;
+            border-bottom-right-radius: 1.25rem;
+            box-shadow: 2px 0 16px 0 rgba(0,0,0,0.08), 0 1px 2px 0 rgba(0,0,0,0.03);
+            height: 100vh;
+        }
+        .sidebar-profile {
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            gap: 0.75rem;
+            padding: 0 1.2rem 1.1rem 1.2rem;
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.13);
+        }
+        .sidebar-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #0d9488;
+            font-weight: 700;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+        }
+        .sidebar-username {
+            font-size: 1.07rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .sidebar-chats-area {
+            flex: 1 1 auto;
+            overflow-y: auto;
+            padding: 0.5rem 0;
+            margin-bottom: 1rem;
+        }
+        .sidebar-chat-session {
+            padding: 0.65rem 1.5rem;
+            font-size: 1rem;
+            color: #d1fae5;
+            cursor: pointer;
+            transition: background 0.17s;
+            border: none;
+            background: transparent;
+            text-align: left;
+            width: 100%;
+            outline: none;
+        }
+        .sidebar-chat-session:hover,
+        .sidebar-chat-session.active {
+            background: rgba(255,255,255,0.13);
+            color: #fff;
+        }
+        .sidebar-buttons-section {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+            padding-bottom: 1rem;
+        }
+        .sidebar-header {
+            font-size: 1.25rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+            user-select: none;
+        }
+        .sidebar-button {
+            background: transparent;
+            border: none;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            text-align: left;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            width: 100%;
+            outline: none;
+            user-select: none;
+        }
+        .sidebar-button:hover {
+            background: rgba(255, 255, 255, 0.15);
+        }
+        .chat-container {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            background: #fff;
+            overflow: hidden;
+        }
+        .chat-header {
+            background: #0d9488;
+            color: #fff;
+            padding: 0.75rem 1rem;
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            user-select: none;
+            border-top-left-radius: 1rem;
+            border-top-right-radius: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+            margin-left: 2px;
+        }
+        .chat-messages {
+            flex: 1 1 auto;
+            overflow-y: auto;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            background: #f6f8fa;
+            font-size: 1.125rem;
+        }
+        .message {
+            max-width: 75%;
+            padding: 0.8em 1.1em;
+            border-radius: 1.2em;
+            font-size: 1rem;
+            line-height: 1.5;
+            word-break: break-word;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+            display: inline-block;
+        }
+        .message.user {
+            align-self: flex-end;
+            background: #0d9488;
+            color: #fff;
+            border-bottom-right-radius: 0.3em;
+        }
+        .message.bot {
+            align-self: flex-start;
+            background: #e5e7eb;
+            color: #222;
+            border-bottom-left-radius: 0.3em;
+        }
+        .message img {
+            max-width: 100%;
+            border-radius: 1em;
+            margin-top: 0.5em;
+            display: block;
+        }
+        .chat-form {
+            display: flex;
+            gap: 0.5rem;
+            padding: 1rem;
+            border-top: 1px solid #e5e7eb;
+            background: #fff;
+            align-items: center;
+        }
+        .chat-input {
+            flex: 1 1 auto;
+            padding: 0.75em 1em;
+            border: 1px solid #e5e7eb;
+            border-radius: 2em;
+            font-size: 1.125rem;
+            outline: none;
+            background: #f3f4f6;
+        }
+        .chat-submit {
+            background: #0d9488;
+            color: #fff;
+            border: none;
+            border-radius: 2em;
+            padding: 0 1.5em;
+            font-size: 1.125rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 2.5em;
+            width: 2.5em;
+            padding: 0;
+        }
+        .chat-submit:active {
+            background: #0f766e;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-profile">
+            <div class="sidebar-avatar">A</div>
+            <div class="sidebar-username">Alex Farmer</div>
+        </div>
+        <div class="sidebar-header">Agri Chat</div>
+        <div class="sidebar-chats-area">
+            <button class="sidebar-chat-session active">General Advice</button>
+            <button class="sidebar-chat-session">Crop Planner</button>
+            <button class="sidebar-chat-session">Irrigation Help</button>
+            <button class="sidebar-chat-session">Pest Control</button>
+            <button class="sidebar-chat-session">Weather Q&amp;A</button>
+        </div>
+        <div class="sidebar-buttons-section">
+            <button class="sidebar-button">New Chat</button>
+            <button class="sidebar-button">Settings</button>
+            <button class="sidebar-button">Help</button>
+        </div>
+    </div>
+    <div class="chat-container">
+        <div class="chat-header">Agri AI Chatbot</div>
+        <div class="chat-messages" id="chatMessages"></div>
+        <form class="chat-form" id="chatForm" autocomplete="off">
+            <input
+                type="text"
+                class="chat-input"
+                id="chatInput"
+                placeholder="Type your message..."
+                autocomplete="off"
+            />
+            <input type="file" id="chatImageInput" accept="image/*" style="display:none;">
+            <button type="button" id="uploadImageBtn" class="chat-submit">📎</button>
+            <button type="submit" class="chat-submit">Send</button>
+        </form>
+    </div>
+    <script>
+        const chatMessages = document.getElementById('chatMessages');
+        const chatForm = document.getElementById('chatForm');
+        const chatInput = document.getElementById('chatInput');
+        const chatImageInput = document.getElementById('chatImageInput');
+        const uploadImageBtn = document.getElementById('uploadImageBtn');
+
+        let selectedImageFile = null;
+
+        function appendMessage(text, sender, imageUrl = null) {
+            const msg = document.createElement('div');
+            msg.classList.add('message', sender);
+            if(text) {
+                const textNode = document.createTextNode(text);
+                msg.appendChild(textNode);
+            }
+            if(imageUrl) {
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.alt = "Sent image";
+                msg.appendChild(img);
+            }
+            chatMessages.appendChild(msg);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        async function sendMessage(message, imageFile) {
+            appendMessage(message, 'user', imageFile ? URL.createObjectURL(imageFile) : null);
+            try {
+                const formData = new FormData();
+                if(message) {
+                    formData.append('message', message);
+                }
+                if(imageFile) {
+                    formData.append('image', imageFile);
+                }
+                const response = await fetch('/api/chat-image', {
+                    method: 'POST',
+                    body: formData
+                });
+                if (!response.ok) {
+                    let errText = await response.text();
+                    throw new Error(`API Error: ${response.status} ${errText}`);
+                }
+                const data = await response.json();
+                if (data && data.response) {
+                    if(data.image_url) {
+                        appendMessage(data.response, 'bot', data.image_url);
+                    } else {
+                        appendMessage(data.response, 'bot');
+                    }
+                } else {
+                    appendMessage("⚠️ Bot did not return a valid response.", 'bot');
+                }
+            } catch (err) {
+                appendMessage(`⚠️ Error: ${err.message}`, 'bot');
+            }
+        }
+
+        chatForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const message = chatInput.value.trim();
+            if (message || selectedImageFile) {
+                sendMessage(message, selectedImageFile);
+                chatInput.value = '';
+                selectedImageFile = null;
+                chatImageInput.value = '';
+                chatInput.focus();
+            }
+        });
+
+        uploadImageBtn.addEventListener('click', () => {
+            chatImageInput.click();
+        });
+
+        chatImageInput.addEventListener('change', () => {
+            if (chatImageInput.files && chatImageInput.files[0]) {
+                selectedImageFile = chatImageInput.files[0];
+            } else {
+                selectedImageFile = null;
+            }
+        });
+
+        document.querySelector('.sidebar-button').addEventListener('click', () => {
+            chatMessages.innerHTML = '';
+            chatInput.value = '';
+            selectedImageFile = null;
+            chatImageInput.value = '';
+            chatInput.focus();
+        });
+
+        const chatSessions = document.querySelectorAll('.sidebar-chat-session');
+        chatSessions.forEach(session => {
+            session.addEventListener('click', () => {
+                chatMessages.innerHTML = '';
+                chatSessions.forEach(s => s.classList.remove('active'));
+                session.classList.add('active');
+                chatInput.value = '';
+                selectedImageFile = null;
+                chatImageInput.value = '';
+                chatInput.focus();
+            });
+        });
+    </script>
+</body>
+</html>
