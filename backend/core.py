@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 import requests
+from utils import clean_output
 
 app = Flask(__name__)
 
@@ -48,7 +49,7 @@ def generate():
         message = result["choices"][0]["message"]["content"]
         return jsonify({
             "model": model,
-            "output": message
+            "output": clean_output(message)
         })
 
     except Exception as e:
