@@ -501,10 +501,24 @@
         </div>
     </div>
 
-    <!-- Chatbot Widget -->
-    <div class="fixed bottom-4 right-4 z-50">
-        <a href="chat.html" class="w-14 h-14 bg-primary rounded-full shadow-lg flex items-center justify-center text-white hover:bg-primary/90 transition-colors">
+    <!-- Floating Action Buttons -->
+    <div class="fixed bottom-4 right-4 z-50 flex flex-col gap-4">
+        <!-- SOS Button -->
+        <a href="sos.html" class="w-14 h-14 bg-red-500 rounded-full shadow-lg flex items-center justify-center text-white hover:bg-red-600 transition-colors group relative">
+            <i data-feather="alert-circle" class="w-6 h-6"></i>
+            <span class="absolute right-16 bg-red-600 text-white px-2 py-1 rounded text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+                SOS Emergency
+            </span>
+            <!-- Pulsing effect -->
+            <span class="absolute inset-0 rounded-full border-4 border-red-500/50 animate-ping"></span>
+        </a>
+        
+        <!-- Chatbot Button -->
+        <a href="chat.html" class="w-14 h-14 bg-primary rounded-full shadow-lg flex items-center justify-center text-white hover:bg-primary/90 transition-colors group relative">
             <i data-feather="message-circle" class="w-6 h-6"></i>
+            <span class="absolute right-16 bg-primary text-white px-2 py-1 rounded text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity">
+                Chat Support
+            </span>
         </a>
     </div>
 
