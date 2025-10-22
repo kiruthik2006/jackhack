@@ -50,7 +50,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="ngos.html" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">
+                        <a href="../ngo1/frontend/ngo.html" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">
                             <i data-feather="users" class="w-5 h-5 mr-3"></i>
                             <span data-i18n="nav.ngos">NGOs</span>
                         </a>
@@ -61,11 +61,11 @@
                             <span data-i18n="nav.sos">SOS</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="legal.html" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">
+                    <li> <a href="../legalact/legal.html" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">
                             <i data-feather="book" class="w-5 h-5 mr-3"></i>
                             <span data-i18n="nav.legal">Legal Acts</span>
                         </a>
+                       
                     </li>
                     <li>
                         <a href="education.html" class="flex items-center px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-lg">
@@ -246,34 +246,9 @@
 
                     <!-- Quick Access Grid -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                        <!-- (lower success stories removed - now shown in hero) -->
+                       
 
-                        <!-- Nearby Support -->
-                        <div class="bg-white rounded-xl shadow-sm p-6">
-                            <h2 class="text-lg font-semibold mb-4">Nearby Support</h2>
-                            <div class="space-y-4">
-                                <div class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                                    <i data-feather="map-pin" class="w-5 h-5 text-primary mr-3"></i>
-                                    <div class="flex-1">
-                                        <h3 class="font-medium">Rainbow Health Center</h3>
-                                        <p class="text-sm text-gray-500">2.5 km away</p>
-                                    </div>
-                                    <button class="text-secondary hover:text-secondary-dark">
-                                        View →
-                                    </button>
-                                </div>
-                                <div class="flex items-center p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors">
-                                    <i data-feather="map-pin" class="w-5 h-5 text-primary mr-3"></i>
-                                    <div class="flex-1">
-                                        <h3 class="font-medium">Women's Support NGO</h3>
-                                        <p class="text-sm text-gray-500">3.8 km away</p>
-                                    </div>
-                                    <button class="text-secondary hover:text-secondary-dark">
-                                        View →
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
 
                     <!-- Video Stories Section -->
@@ -384,30 +359,40 @@
                             <div class="absolute inset-0 bg-black/40"></div>
 
                             <!-- inner scrollable content card -->
-                            <div class="relative z-10 max-h-[70vh] overflow-auto p-6">
+                            <div class="relative z-10 max-h-[70vh] overflow-auto p-6" role="dialog" aria-modal="true" aria-labelledby="gauriModalTitle">
                                 <div class="bg-white/95 p-6 rounded-lg">
-                                    <div class="border-b pb-4 mb-4">
-                                        <h2 class="text-2xl md:text-3xl font-bold text-primary">Gauri Sawant – Transgender Mother & Activist</h2>
-                                        <p class="text-sm text-gray-500 mt-1">A Journey of Love, Courage & Change</p>
-                                    </div>
-                                    
-                                    <div class="prose max-w-none text-gray-800">
-                                        <h3 class="text-lg font-semibold text-gray-800">Background</h3>
-                                        <p class="mb-4">Gauri Sawant, born as Ganesh Sawant in Pune, Maharashtra, faced immense struggles growing up due to her gender identity. Rejected by her family, she left home at a very young age and found shelter and support within the transgender community in Mumbai.</p>
-                                        
-                                        <h3 class="text-lg font-semibold text-gray-800">Journey</h3>
-                                        <p class="mb-4">Determined to create change, she became a strong voice for transgender rights and founded the Sakhi Char Chowghi Trust — an NGO that provides counseling, legal aid, and health services for transgender people and sex workers.</p>
-                                        
-                                        <h3 class="text-lg font-semibold text-gray-800">Achievement</h3>
-                                        <p class="mb-4">Gauri gained national attention when she adopted a young orphaned girl, Gayatri, becoming one of the first transgender women in India to become a mother. Her story was also featured in a moving Vicks #TouchOfCare campaign that touched millions of hearts across India.</p>
-                                        
-                                        <h3 class="text-lg font-semibold text-gray-800">Impact</h3>
-                                        <p class="mb-4">She continues to advocate for LGBTQ+ inclusion, education for transgender children, and healthcare access. Gauri was also appointed as one of the petitioners in the Supreme Court case that led to the recognition of transgender people as a "third gender" in 2014.</p>
-                                        
-                                        <div class="mt-6 p-4 bg-primary/5 rounded-lg">
-                                            <h3 class="text-lg font-semibold text-primary">Lesson</h3>
-                                            <p class="mb-2">❤️ Love, care, and motherhood are beyond gender.</p>
-                                            <p>Her life shows that compassion and courage can redefine what it means to be a parent and a changemaker.</p>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+                                        <!-- Image column (fixed visual) -->
+                                        <div class="md:col-span-1 flex items-start justify-center">
+                                            <img id="gauriModalImg" src="" alt="Portrait of Gauri Sawant, transgender activist" loading="lazy" class="w-full h-auto max-h-[50vh] object-contain rounded-lg shadow-sm">
+                                        </div>
+
+                                        <!-- Content column (scrollable) -->
+                                        <div class="md:col-span-1 overflow-auto max-h-[70vh]">
+                                            <div class="border-b pb-4 mb-4">
+                                                <h2 id="gauriModalTitle" class="text-2xl md:text-3xl font-bold text-primary">Gauri Sawant – Transgender Mother & Activist</h2>
+                                                <p class="text-sm text-gray-500 mt-1">A Journey of Love, Courage & Change</p>
+                                            </div>
+                                            
+                                            <div class="prose max-w-none text-gray-800">
+                                                <h3 class="text-lg font-semibold text-gray-800">Background</h3>
+                                                <p class="mb-4">Gauri Sawant, born as Ganesh Sawant in Pune, Maharashtra, faced immense struggles growing up due to her gender identity. Rejected by her family, she left home at a very young age and found shelter and support within the transgender community in Mumbai.</p>
+                                                
+                                                <h3 class="text-lg font-semibold text-gray-800">Journey</h3>
+                                                <p class="mb-4">Determined to create change, she became a strong voice for transgender rights and founded the Sakhi Char Chowghi Trust — an NGO that provides counseling, legal aid, and health services for transgender people and sex workers.</p>
+                                                
+                                                <h3 class="text-lg font-semibold text-gray-800">Achievement</h3>
+                                                <p class="mb-4">Gauri gained national attention when she adopted a young orphaned girl, Gayatri, becoming one of the first transgender women in India to become a mother. Her story was also featured in a moving Vicks #TouchOfCare campaign that touched millions of hearts across India.</p>
+                                                
+                                                <h3 class="text-lg font-semibold text-gray-800">Impact</h3>
+                                                <p class="mb-4">She continues to advocate for LGBTQ+ inclusion, education for transgender children, and healthcare access. Gauri was also appointed as one of the petitioners in the Supreme Court case that led to the recognition of transgender people as a "third gender" in 2014.</p>
+                                                
+                                                <div class="mt-6 p-4 bg-primary/5 rounded-lg">
+                                                    <h3 class="text-lg font-semibold text-primary">Lesson</h3>
+                                                    <p class="mb-2">❤️ Love, care, and motherhood are beyond gender.</p>
+                                                    <p>Her life shows that compassion and courage can redefine what it means to be a parent and a changemaker.</p>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -789,10 +774,14 @@
             tryPaths(candidates, (goodPath) => {
                 applyImage(gauriSlide, goodPath);
                 applyImage(gauriModal, goodPath);
+                const imgEl = document.getElementById('gauriModalImg');
+                if(imgEl) imgEl.src = goodPath;
             }, () => {
                 console.warn('No local Gauri image found, using fallback');
                 applyImage(gauriSlide, fallbackImage);
                 applyImage(gauriModal, fallbackImage);
+                const imgEl = document.getElementById('gauriModalImg');
+                if(imgEl) imgEl.src = fallbackImage;
             });
         })();
 
