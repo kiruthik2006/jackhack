@@ -1,0 +1,104 @@
+/* Base styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --color-primary: #FF6B8B;
+    --color-secondary: #4ECDC4;
+    --color-accent: #FFD166;
+    --color-dark: #1A1A2E;
+    --color-light: #F9F9F9;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Custom component styles */
+.stats-card {
+    animation: slideIn 0.3s ease-out;
+}
+
+.quick-access {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Custom utility classes */
+.text-primary { color: var(--color-primary); }
+.text-secondary { color: var(--color-secondary); }
+.text-accent { color: var(--color-accent); }
+
+.bg-primary { background-color: var(--color-primary); }
+.bg-secondary { background-color: var(--color-secondary); }
+.bg-accent { background-color: var(--color-accent); }
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        z-index: 40;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-out;
+    }
+    
+    .sidebar.active {
+        transform: translateX(0);
+    }
+}
+
+/* Interactive elements */
+.btn {
+    @apply px-4 py-2 rounded-lg transition-all duration-200;
+}
+
+.btn-primary {
+    @apply bg-primary text-white hover:bg-opacity-90;
+}
+
+.btn-secondary {
+    @apply bg-secondary text-white hover:bg-opacity-90;
+}
+
+.btn-accent {
+    @apply bg-accent text-dark hover:bg-opacity-90;
+}
+
+/* Form elements */
+.input {
+    @apply px-4 py-2 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-secondary;
+}
+
+/* Card styles */
+.card {
+    @apply bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow p-6;
+}
+
+/* Alert styles */
+.alert {
+    @apply p-4 rounded-lg mb-4;
+}
+
+.alert-success {
+    @apply bg-green-100 text-green-800;
+}
+
+.alert-warning {
+    @apply bg-yellow-100 text-yellow-800;
+}
+
+.alert-error {
+    @apply bg-red-100 text-red-800;
+}

@@ -1,0 +1,11 @@
+{
+  "nav.home": "Home",
+  "nav.schemes": "Schemes",
+  "nav.ngos": "NGOs",
+  "nav.sos": "SOS",
+  "nav.legal": "Legal Acts",
+  "nav.education": "Education",
+  "nav.women_health": "Women Health Care",
+  "nav.trans_health": "Trans Health Care",
+  "header.searchPlaceholder": "Search for resources..."
+}

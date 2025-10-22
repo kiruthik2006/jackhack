@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women's Healthcare | EmpowerHer TransCare Nexus</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="components/sidebar.js"></script>
+    <script src="components/navbar.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#FF6B8B',
+                        secondary: '#4ECDC4',
+                        accent: '#FFD166',
+                        dark: '#1A1A2E',
+                        light: '#F9F9F9'
+                    }
+                }
+            }
+        } 
+    </script>
+</head>
+<body class="bg-gray-50 font-sans">
+    <div class="flex h-screen overflow-hidden">
+        <custom-sidebar></custom-sidebar>
+        
+        <div class="flex-1 flex flex-col overflow-hidden">
+            <custom-navbar></custom-navbar>
+            
+            <main class="flex-1 overflow-y-auto p-6">
+                <div class="max-w-7xl mx-auto">
+                    <h1 class="text-3xl font-bold text-dark mb-6">Women's Healthcare Resources</h1>
+                    
+                    <!-- Emergency Info -->
+                    <div class="bg-red-50 border border-red-200 rounded-xl p-6 mb-8">
+                        <div class="flex items-start">
+                            <div class="p-2 bg-red-100 rounded-lg mr-4">
+                                <i data-feather="alert-circle" class="w-6 h-6 text-red-500"></i>
+                            </div>
+                            <div>
+                                <h2 class="text-lg font-semibold text-red-700 mb-2">Emergency Contacts</h2>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <div class="flex items-center">
+                                        <i data-feather="phone" class="w-5 h-5 text-red-500 mr-2"></i>
+                                        <span class="text-red-700">Emergency: 108</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i data-feather="phone" class="w-5 h-5 text-red-500 mr-2"></i>
+                                        <span class="text-red-700">Women's Helpline: 1091</span>
+                                    </div>
+                                    <div class="flex items-center">
+                                        <i data-feather="phone" class="w-5 h-5 text-red-500 mr-2"></i>
+                                        <span class="text-red-700">Mental Health: 1800-599-0019</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Health Articles -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="card">
+                            <img src="https://source.unsplash.com/random/800x600/?meditation" alt="Wellness" class="w-full h-48 object-cover rounded-t-xl">
+                            <div class="p-6">
+                                <h3 class="font-semibold mb-2">Mental Wellness Tips</h3>
+                                <p class="text-gray-600 text-sm mb-4">Essential practices for maintaining mental health and emotional well-being.</p>
+                                <a href="#" class="text-primary hover:text-primary-dark font-medium">Read More →</a>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <img src="https://source.unsplash.com/random/800x600/?yoga" alt="Exercise" class="w-full h-48 object-cover rounded-t-xl">
+                            <div class="p-6">
+                                <h3 class="font-semibold mb-2">Physical Health Guide</h3>
+                                <p class="text-gray-600 text-sm mb-4">Regular exercise routines and nutrition advice for women's health.</p>
+                                <a href="#" class="text-primary hover:text-primary-dark font-medium">Read More →</a>
+                            </div>
+                        </div>
+                        
+                        <div class="card">
+                            <img src="https://source.unsplash.com/random/800x600/?doctor" alt="Healthcare" class="w-full h-48 object-cover rounded-t-xl">
+                            <div class="p-6">
+                                <h3 class="font-semibold mb-2">Preventive Healthcare</h3>
+                                <p class="text-gray-600 text-sm mb-4">Regular check-ups and screenings every woman should know about.</p>
+                                <a href="#" class="text-primary hover:text-primary-dark font-medium">Read More →</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Nearby Healthcare -->
+                    <div class="bg-white rounded-xl shadow-sm p-6 mb-8">
+                        <h2 class="text-xl font-semibold mb-6">Nearby Healthcare Facilities</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="border rounded-lg p-4">
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="flex items-center">
+                                        <div class="p-2 bg-primary/10 rounded-lg mr-3">
+                                            <i data-feather="heart" class="w-5 h-5 text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <h3 class="font-medium">City Women's Hospital</h3>
+                                            <p class="text-sm text-gray-500">2.5 km away</p>
+                                        </div>
+                                    </div>
+                                    <span class="px-2 py-1 text-xs bg-green-100 text-green-800 rounded-full">Open 24/7</span>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <i data-feather="map-pin" class="w-4 h-4 mr-2"></i>
+                                        <span>123 Healthcare Street, City</span>
+                                    </div>
+                                    <div class="flex items-center text-sm text-gray-600">
+                                        <i data-feather="phone" class="w-4 h-4 mr-2"></i>
+                                        <span>+91 1234567890</span>
+                                    </div>
+                                </div>
+                                <button class="btn btn-primary w-full mt-4">Book Appointment</button>
+                            </div>
+                            
+                            <!-- Add more healthcare facility cards here -->
+                        </div>
+                    </div>
+                    
+                    <!-- Health Tips -->
+                    <div class="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-xl p-6">
+                        <h2 class="text-xl font-semibold mb-6">Daily Health Tips</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <div class="bg-white rounded-lg p-4">
+                                <i data-feather="droplet" class="w-6 h-6 text-primary mb-3"></i>
+                                <h3 class="font-medium mb-2">Stay Hydrated</h3>
+                                <p class="text-sm text-gray-600">Drink at least 8 glasses of water daily</p>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg p-4">
+                                <i data-feather="sun" class="w-6 h-6 text-primary mb-3"></i>
+                                <h3 class="font-medium mb-2">Regular Exercise</h3>
+                                <p class="text-sm text-gray-600">30 minutes of daily physical activity</p>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg p-4">
+                                <i data-feather="moon" class="w-6 h-6 text-primary mb-3"></i>
+                                <h3 class="font-medium mb-2">Quality Sleep</h3>
+                                <p class="text-sm text-gray-600">Aim for 7-9 hours of sleep daily</p>
+                            </div>
+                            
+                            <div class="bg-white rounded-lg p-4">
+                                <i data-feather="coffee" class="w-6 h-6 text-primary mb-3"></i>
+                                <h3 class="font-medium mb-2">Balanced Diet</h3>
+                                <p class="text-sm text-gray-600">Include fruits and vegetables daily</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>
