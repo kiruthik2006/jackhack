@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NGO Directory | Women & Transgender Support</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-hands-helping"></i>
+                    <span>SupportNetwork</span>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#" class="active">NGO Directory</a></li>
+                        <li><a href="#">Schemes</a></li>
+                        <li><a href="#">Get Help</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>NGO Directory for Women & Transgender Support</h1>
+            <p>Find organizations dedicated to empowering and supporting women and transgender individuals with safe spaces, housing, healthcare, and legal assistance.</p>
+            <a href="#directory" class="btn">Explore NGOs</a>
+        </div>
+    </section>
+
+    <div class="container">
+        <section id="directory">
+            <h2 class="section-title">NGO Directory</h2>
+            
+            <div class="dashboard">
+                <div class="filters-panel">
+                    <h3>Filters</h3>
+                    
+                    <!-- States Filter -->
+                    <div class="filter-group">
+                        <div class="state-filters-header">
+                            <h4>States</h4>
+                            <button class="state-toggle" id="toggleAllStates">Select All</button>
+                        </div>
+                        <div class="filter-options" id="statesFilter">
+                            <!-- States will be populated dynamically -->
+                            <div class="filter-option">
+                                <span style="color: #666; font-style: italic;">Loading states...</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h4>Gender Focus</h4>
+                        <div class="filter-options">
+                            <div class="filter-option">
+                                <input type="checkbox" id="filter-women" checked>
+                                <label for="filter-women">Women</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="filter-transgender" checked>
+                                <label for="filter-transgender">Transgender</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h4>Services</h4>
+                        <div class="filter-options">
+                            <div class="filter-option">
+                                <input type="checkbox" id="filter-housing" checked>
+                                <label for="filter-housing">Housing & Shelter</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="filter-healthcare" checked>
+                                <label for="filter-healthcare">Healthcare</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="filter-legal" checked>
+                                <label for="filter-legal">Legal Support</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="filter-education" checked>
+                                <label for="filter-education">Education</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="filter-employment" checked>
+                                <label for="filter-employment">Employment</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="filter-counseling" checked>
+                                <label for="filter-counseling">Counseling</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <h4>Safe Spaces</h4>
+                        <div class="filter-options">
+                            <div class="filter-option">
+                                <input type="checkbox" id="filter-safespace" checked>
+                                <label for="filter-safespace">Safe Spaces Only</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button class="reset-btn" id="resetBtn">
+                        <i class="fas fa-redo"></i> Reset All Filters
+                    </button>
+                </div>
+                
+                <div class="results-panel">
+                    <div class="search-container">
+                        <div class="search-box">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="searchInput" placeholder="Search NGOs by name, services, or location...">
+                        </div>
+                        <div class="search-hint">
+                            For an exact match, put the words in quotes.
+                        </div>
+                    </div>
+                    
+                    <div class="results-header">
+                        <div class="results-count" id="resultsCount">Loading NGOs...</div>
+                        <div class="sort-options">
+                            <label for="sortBy">Sort by:</label>
+                            <select id="sortBy">
+                                <option value="name">Name</option>
+                                <option value="location">Location</option>
+                                <option value="state">State</option>
+                                <option value="services">Services</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="category-tabs">
+                        <div class="category-tab active" data-category="all">All NGOs</div>
+                        <div class="category-tab" data-category="women">Women Focus</div>
+                        <div class="category-tab" data-category="transgender">Transgender Focus</div>
+                        <div class="category-tab" data-category="housing">Housing</div>
+                        <div class="category-tab" data-category="healthcare">Healthcare</div>
+                        <div class="category-tab" data-category="legal">Legal Support</div>
+                    </div>
+                    
+                    <div class="ngo-grid" id="ngoGrid">
+                        <!-- NGO cards will be populated by JavaScript -->
+                    </div>
+                    
+                    <div class="pagination" id="pagination">
+                        <!-- Pagination will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="copyright">
+                <p>&copy; 2023 SupportNetwork. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="js/app.js"></script>
+</body>
+</html>
