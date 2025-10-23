@@ -1,0 +1,202 @@
+{
+  "disposable_pads": [
+    {
+      "id": 1,
+      "name": "Disposable Sanitary Pads",
+      "description": "The most commonly used period product that sticks into your underwear and absorbs blood externally",
+      "type": "Disposable",
+      "absorption": "Light to Heavy",
+      "duration": "4-8 hours",
+      "best_for": "Beginners, overnight protection, light to heavy flow",
+      "pros": [
+        "Simple to use and widely available",
+        "Many different sizes from ultra-thin to thick night pads",
+        "Good for overnight protection",
+        "More comfortable for beginners"
+      ],
+      "cons": [
+        "Can feel bulky or shift out of place",
+        "Not practical for swimming or water sports",
+        "Environmentally harmful - plastic equivalent to 5 carrier bags per pack",
+        "Can irritate skin if worn too long"
+      ],
+      "price_range": "₹100 - ₹400 per pack",
+      "popular_brands": [
+        "Whisper",
+        "Stayfree",
+        "Sofy",
+        "Carefree"
+      ],
+      "safety_tips": [
+        "Change every 4-6 hours",
+        "Never wear for more than 8 hours",
+        "Dispose properly in bins",
+        "Choose cotton top layer for breathability"
+      ],
+      "expert_advice": "Dr. Tempest advises changing pads regularly and avoiding wearing them for more than 8 hours to prevent skin irritation"
+    }
+  ],
+  "reusable_pads": [
+    {
+      "id": 1,
+      "name": "Reusable Cloth Pads",
+      "description": "Washable pads made from cotton or bamboo that fasten with poppers and can be reused for years",
+      "type": "Reusable",
+      "absorption": "Light to Heavy",
+      "duration": "4-6 hours",
+      "lifespan": "3-5 years",
+      "best_for": "Eco-conscious users, sensitive skin, home use",
+      "pros": [
+        "Softer and more comfortable than plastic pads",
+        "Eco-friendly and sustainable option",
+        "Cost effective over time",
+        "Variety of sizes and absorbencies available",
+        "Can last 3-5 years with proper care"
+      ],
+      "cons": [
+        "Need to be washed after each use",
+        "Requires planning and proper drying between uses",
+        "Bulkier than disposable pads",
+        "Less convenient when out - carry used ones home",
+        "Damp fabric can increase infection risk if not dried properly"
+      ],
+      "price_range": "₹300 - ₹800 per set",
+      "popular_brands": [
+        "EcoFemme",
+        "Saathi",
+        "Aakar",
+        "Anandi"
+      ],
+      "safety_tips": [
+        "Wash thoroughly after each use",
+        "Ensure complete drying before reuse",
+        "Store in clean, dry place",
+        "Sun dry when possible for natural sterilization"
+      ],
+      "expert_advice": "Dr. Tempest emphasizes they must be dried properly between uses as damp fabric against skin can increase infection risk"
+    }
+  ],
+  "tampons": [
+    {
+      "id": 1,
+      "name": "Disposable Tampons",
+      "description": "Inserted into the vagina to soak up blood before it leaves the body, available with or without applicators",
+      "type": "Disposable",
+      "absorption": "Light to Super",
+      "duration": "4-8 hours",
+      "best_for": "Active lifestyles, swimming, discreet protection",
+      "pros": [
+        "Discreet and small enough to carry in pocket",
+        "Good for sports and swimming activities",
+        "Range of absorbencies for different flows",
+        "No external bulk or visibility"
+      ],
+      "cons": [
+        "Requires insertion which some find uncomfortable",
+        "Low risk of Toxic Shock Syndrome (TSS) if worn too long",
+        "Environmentally unfriendly",
+        "More expensive long-term than reusable products",
+        "Must be disposed of properly (not flushed)"
+      ],
+      "price_range": "₹200 - ₹500 per pack",
+      "popular_brands": [
+        "Tampax",
+        "o.b.",
+        "Playtex",
+        "Kotex"
+      ],
+      "safety_tips": [
+        "Change every 4-8 hours",
+        "Never use overnight or for more than 8 hours",
+        "Use lowest absorbency needed",
+        "Wash hands before insertion",
+        "Dispose in bins, never flush"
+      ],
+      "expert_advice": "Dr. Tempest stresses that 2.5 million tampons are flushed daily when they should be binned. Proper disposal is crucial."
+    }
+  ],
+  "menstrual_cups": [
+    {
+      "id": 1,
+      "name": "Medical Grade Silicone Cups",
+      "description": "Small flexible cups made of medical-grade silicone that collect rather than absorb blood",
+      "type": "Reusable",
+      "material": "Medical Grade Silicone",
+      "duration": "6-12 hours",
+      "lifespan": "2-10 years",
+      "capacity": "Holds 3x more than tampons",
+      "best_for": "All flow types, eco-conscious users, active lifestyle",
+      "pros": [
+        "Most eco-friendly period product available",
+        "Holds up to three times more blood than tampons",
+        "Can be worn for up to 12 hours safely",
+        "Reusable for years (2-10 year lifespan)",
+        "Extremely cost effective over time"
+      ],
+      "cons": [
+        "Takes practice to insert and remove correctly",
+        "May take time to find the right fit and brand",
+        "Messy to empty, especially in public toilets",
+        "Needs sterilizing between menstrual cycles",
+        "Learning curve for beginners"
+      ],
+      "price_range": "₹500 - ₹2000 (one-time investment)",
+      "popular_brands": [
+        "Sirona",
+        "Pee Safe",
+        "Bella",
+        "Sanfe",
+        "Boondh"
+      ],
+      "safety_tips": [
+        "Sterilize before first use and after each cycle",
+        "Wash with mild, unscented soap between uses",
+        "Trim nails before insertion to prevent damage",
+        "Practice insertion and removal before actual need"
+      ],
+      "expert_advice": "Dr. Tempest notes different cups suit different needs based on flow heaviness and whether you've had children. Hygiene is crucial - wash hands before insertion and clean cup between uses."
+    }
+  ],
+  "period_pants": [
+    {
+      "id": 1,
+      "name": "Period Underwear",
+      "description": "Absorbent underwear with built-in layers that look and feel like regular pants",
+      "type": "Reusable",
+      "absorption": "Light to Moderate",
+      "duration": "6-8 hours",
+      "lifespan": "2-3 years",
+      "best_for": "Light days, overnight, backup protection, sensitive skin",
+      "pros": [
+        "Looks and feels like regular underwear",
+        "No shifting around during wear",
+        "Reusable and eco-friendly",
+        "Can be layered with other products for extra protection",
+        "Built-in waterproof layer and odor lining"
+      ],
+      "cons": [
+        "Requires washing and drying between uses",
+        "May not be absorbent enough for heavy flows",
+        "Inconvenient for travel without laundry access",
+        "Need to carry used pairs home if changing out",
+        "Limited absorbency compared to other products"
+      ],
+      "price_range": "₹800 - ₹2000 per pair",
+      "popular_brands": [
+        "Thinx",
+        "Modibodi",
+        "Knix",
+        "Wuka",
+        "Bambody"
+      ],
+      "safety_tips": [
+        "Rinse immediately after use",
+        "Machine wash with mild detergent",
+        "Air dry completely before reuse",
+        "Don't use fabric softeners",
+        "Have multiple pairs for rotation"
+      ],
+      "expert_advice": "Dr. Tempest assures they're reliable for most people with built-in waterproof layers. Popular for sleeping or lighter days despite initial leakage concerns."
+    }
+  ]
+}

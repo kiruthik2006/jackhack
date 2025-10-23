@@ -1,0 +1,54 @@
+[
+  {
+    "id": 1,
+    "name": "Dr. Priya Sharma",
+    "specialization": "Gynecologist",
+    "experience": "15 years",
+    "qualifications": [
+      "MBBS",
+      "MD - Obstetrics & Gynecology"
+    ],
+    "availability": [
+      "Monday",
+      "Wednesday",
+      "Friday"
+    ],
+    "email": "drpriya@example.com",
+    "phone": "+91-9876543210",
+    "bio": "Specialized in women's health, menstrual disorders, and PCOS management. Passionate about empowering women through health education.",
+    "is_available": true,
+    "response_time": "24-48 hours",
+    "languages": [
+      "English",
+      "Hindi",
+      "Marathi"
+    ],
+    "consultation_fee": "Free (Volunteer)"
+  },
+  {
+    "id": 2,
+    "name": "Dr. Anjali Mehta",
+    "specialization": "Nutritionist & Dietitian",
+    "experience": "10 years",
+    "qualifications": [
+      "M.Sc Nutrition",
+      "RD - Registered Dietitian"
+    ],
+    "availability": [
+      "Tuesday",
+      "Thursday",
+      "Saturday"
+    ],
+    "email": "dranjali@example.com",
+    "phone": "+91-9876543211",
+    "bio": "Expert in menstrual health nutrition, diet planning for hormonal balance, and weight management for women.",
+    "is_available": true,
+    "response_time": "24 hours",
+    "languages": [
+      "English",
+      "Hindi",
+      "Gujarati"
+    ],
+    "consultation_fee": "Free (Volunteer)"
+  }
+]

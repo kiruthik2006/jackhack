@@ -1,0 +1,604 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Women's Wellness{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <!-- Dashboard Header -->
+    <div class="dashboard-header">
+        <h1><i class="fas fa-tachometer-alt"></i> Health Dashboard</h1>
+        <p class="dashboard-subtitle">Your complete health overview and quick actions</p>
+    </div>
+
+    <!-- Quick Stats Section -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-calendar-check"></i>
+            </div>
+            <div class="stat-content">
+                <h3>Cycle Tracking</h3>
+                <p class="stat-value">{{ 'Active' if stats.cycle_tracked else 'Not Started' }}</p>
+                <p class="stat-description">
+                    {% if stats.cycle_tracked %}
+                    Day {{ stats.current_cycle_day }} • {{ stats.current_phase }}
+                    {% else %}
+                    Track your menstrual cycle
+                    {% endif %}
+                </p>
+            </div>
+            <a href="{{ url_for('period_tracker') }}" class="stat-action">
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-user-md"></i>
+            </div>
+            <div class="stat-content">
+                <h3>Doctor Q&A</h3>
+                <p class="stat-value">{{ stats.questions_asked }} Asked</p>
+                <p class="stat-description">
+                    {{ stats.questions_answered }} Answered • 
+                    {{ stats.questions_asked - stats.questions_answered }} Pending
+                </p>
+            </div>
+            <a href="{{ url_for('ask_doctor') }}" class="stat-action">
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-heartbeat"></i>
+            </div>
+            <div class="stat-content">
+                <h3>Next Period</h3>
+                <p class="stat-value">
+                    {% if stats.days_until_next_period != '--' %}
+                    {{ stats.days_until_next_period }} days
+                    {% else %}
+                    --
+                    {% endif %}
+                </p>
+                <p class="stat-description">
+                    {% if stats.days_until_next_period != '--' %}
+                    Estimated arrival
+                    {% else %}
+                    Start tracking to see
+                    {% endif %}
+                </p>
+            </div>
+            <a href="{{ url_for('period_tracker') }}" class="stat-action">
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="stat-content">
+                <h3>Cycle Regularity</h3>
+                <p class="stat-value">{{ stats.cycle_regularity }}</p>
+                <p class="stat-description">
+                    Based on your tracking history
+                </p>
+            </div>
+            <a href="{{ url_for('period_tracker') }}" class="stat-action">
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="dashboard-grid">
+        <!-- Left Column -->
+        <div class="dashboard-column">
+            <!-- Cycle Overview -->
+            <div class="dashboard-widget">
+                <div class="widget-header">
+                    <h3><i class="fas fa-calendar-alt"></i> Cycle Overview</h3>
+                    <a href="{{ url_for('period_tracker') }}" class="widget-action">View Details</a>
+                </div>
+                <div class="widget-content">
+                    {% if cycle_data and cycle_data.last_period %}
+                    <div class="cycle-info">
+                        <div class="cycle-item">
+                            <span class="cycle-label">Last Period:</span>
+                            <span class="cycle-value">{{ cycle_data.last_period }}</span>
+                        </div>
+                        <div class="cycle-item">
+                            <span class="cycle-label">Cycle Length:</span>
+                            <span class="cycle-value">{{ cycle_data.cycle_length }} days</span>
+                        </div>
+                        <div class="cycle-item">
+                            <span class="cycle-label">Period Length:</span>
+                            <span class="cycle-value">{{ cycle_data.period_length }} days</span>
+                        </div>
+                        <div class="cycle-item">
+                            <span class="cycle-label">Current Phase:</span>
+                            <span class="cycle-value phase-{{ stats.current_phase.lower() }}">
+                                {{ stats.current_phase }}
+                            </span>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="empty-state">
+                        <i class="fas fa-calendar-plus"></i>
+                        <h4>Start Tracking Your Cycle</h4>
+                        <p>Track your menstrual cycle to get predictions and insights</p>
+                        <a href="{{ url_for('period_tracker') }}" class="btn">
+                            <i class="fas fa-plus"></i> Start Tracking
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="dashboard-widget">
+                <div class="widget-header">
+                    <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+                </div>
+                <div class="widget-content">
+                    <div class="quick-actions-grid">
+                        <a href="{{ url_for('period_tracker') }}" class="quick-action">
+                            <div class="action-icon">
+                                <i class="fas fa-calendar-day"></i>
+                            </div>
+                            <span>Log Period</span>
+                        </a>
+                        <a href="{{ url_for('ask_doctor') }}" class="quick-action">
+                            <div class="action-icon">
+                                <i class="fas fa-question-circle"></i>
+                            </div>
+                            <span>Ask Doctor</span>
+                        </a>
+                        <a href="{{ url_for('menstrual_products') }}" class="quick-action">
+                            <div class="action-icon">
+                                <i class="fas fa-shopping-bag"></i>
+                            </div>
+                            <span>Products Guide</span>
+                        </a>
+                        <a href="{{ url_for('diet_plan') }}" class="quick-action">
+                            <div class="action-icon">
+                                <i class="fas fa-apple-alt"></i>
+                            </div>
+                            <span>Diet Plan</span>
+                        </a>
+                        <a href="{{ url_for('hygiene_tips') }}" class="quick-action">
+                            <div class="action-icon">
+                                <i class="fas fa-hand-sparkles"></i>
+                            </div>
+                            <span>Hygiene Tips</span>
+                        </a>
+                        <a href="{{ url_for('emergency_contacts') }}" class="quick-action emergency">
+                            <div class="action-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <span>Emergency</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="dashboard-column">
+            <!-- Recent Questions -->
+            <div class="dashboard-widget">
+                <div class="widget-header">
+                    <h3><i class="fas fa-comment-medical"></i> Recent Questions</h3>
+                    <a href="{{ url_for('ask_doctor') }}" class="widget-action">Ask New</a>
+                </div>
+                <div class="widget-content">
+                    {% if questions %}
+                    <div class="questions-list">
+                        {% for question in questions[-3:] %}
+                        <div class="question-item">
+                            <div class="question-header">
+                                <span class="question-category">{{ question.category.replace('_', ' ').title() }}</span>
+                                <span class="status-badge status-{{ question.status }}">
+                                    {{ question.status.title() }}
+                                </span>
+                            </div>
+                            <p class="question-preview">{{ question.question[:100] }}{% if question.question|length > 100 %}...{% endif %}</p>
+                            <div class="question-meta">
+                                <span>{{ question.timestamp[:10] }}</span>
+                                {% if question.urgency != 'normal' %}
+                                <span class="urgency-{{ question.urgency }}">{{ question.urgency.title() }}</span>
+                                {% endif %}
+                            </div>
+                            {% if question.status == 'answered' %}
+                            <a href="{{ url_for('view_answer', question_id=question.id) }}" class="view-answer-btn">
+                                View Answer
+                            </a>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="empty-state">
+                        <i class="fas fa-question-circle"></i>
+                        <h4>No Questions Yet</h4>
+                        <p>Ask our volunteer doctors about your health concerns</p>
+                        <a href="{{ url_for('ask_doctor') }}" class="btn">
+                            <i class="fas fa-plus"></i> Ask a Question
+                        </a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="dashboard-widget">
+                <div class="widget-header">
+                    <h3><i class="fas fa-history"></i> Recent Activity</h3>
+                </div>
+                <div class="widget-content">
+                    {% if recent_activity %}
+                    <div class="activity-list">
+                        {% for activity in recent_activity %}
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="{{ activity.icon }}"></i>
+                            </div>
+                            <div class="activity-content">
+                                <h4>{{ activity.title }}</h4>
+                                <p>{{ activity.description }}</p>
+                                <span class="activity-time">{{ activity.timestamp[:16].replace('T', ' ') }}</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    <div class="empty-state">
+                        <i class="fas fa-clock"></i>
+                        <h4>No Recent Activity</h4>
+                        <p>Your activity will appear here</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Health Tips Section -->
+    <div class="dashboard-widget full-width">
+        <div class="widget-header">
+            <h3><i class="fas fa-lightbulb"></i> Daily Health Tips</h3>
+        </div>
+        <div class="widget-content">
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <i class="fas fa-tint"></i>
+                    <h4>Stay Hydrated</h4>
+                    <p>Drink 8-10 glasses of water daily, especially during your period</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-utensils"></i>
+                    <h4>Balanced Diet</h4>
+                    <p>Include iron-rich foods and complex carbohydrates in your meals</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-walking"></i>
+                    <h4>Regular Exercise</h4>
+                    <p>30 minutes of moderate activity helps manage period symptoms</p>
+                </div>
+                <div class="tip-card">
+                    <i class="fas fa-bed"></i>
+                    <h4>Adequate Sleep</h4>
+                    <p>7-9 hours of quality sleep supports hormonal balance</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Refresh stats every 30 seconds
+    setInterval(() => {
+        fetch('/api/dashboard-stats')
+            .then(response => response.json())
+            .then(data => {
+                updateDashboardStats(data);
+            });
+    }, 30000);
+
+    function updateDashboardStats(stats) {
+        // Update cycle tracking stat
+        const cycleStat = document.querySelector('.stat-card:nth-child(1) .stat-value');
+        if (cycleStat) {
+            cycleStat.textContent = stats.cycle_tracked ? 'Active' : 'Not Started';
+        }
+
+        // Update questions stat
+        const questionsStat = document.querySelector('.stat-card:nth-child(2) .stat-value');
+        if (questionsStat) {
+            questionsStat.textContent = `${stats.questions_asked} Asked`;
+        }
+
+        // Update next period stat
+        const periodStat = document.querySelector('.stat-card:nth-child(3) .stat-value');
+        if (periodStat) {
+            periodStat.textContent = stats.days_until_next_period !== '--' ? 
+                `${stats.days_until_next_period} days` : '--';
+        }
+    }
+
+    // Add smooth animations
+    const statCards = document.querySelectorAll('.stat-card');
+    statCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+    });
+});
+</script>
+{% endblock %}
+
+{% extends "base.html" %}
+
+{% block title %}Dashboard - Women's Wellness{% endblock %}
+
+{% block content %}
+<div class="dashboard-container">
+    <!-- Enhanced Header -->
+    <div class="visual-hero">
+        <div class="hero-content">
+            <h1><i class="fas fa-tachometer-alt"></i> Health Dashboard</h1>
+            <p class="hero-subtitle">Your complete health overview at a glance</p>
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="stat-number">{{ stats.questions_asked }}</div>
+                    <div class="stat-label">Questions Asked</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="stat-number">{{ stats.cycle_tracked|yesno:"1,0" }}</div>
+                    <div class="stat-label">Cycle Tracking</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="stat-number">{{ stats.questions_answered }}</div>
+                    <div class="stat-label">Answers Received</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-elements">
+                <div class="floating-icon heart">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <div class="floating-icon calendar">
+                    <i class="fas fa-calendar"></i>
+                </div>
+                <div class="floating-icon stethoscope">
+                    <i class="fas fa-stethoscope"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Stats Grid -->
+    <div class="stats-grid-enhanced">
+        <div class="stat-card-visual">
+            <div class="stat-visual">
+                <div class="circle-progress" data-percentage="{{ stats.cycle_tracked|yesno:'100,0' }}">
+                    <div class="circle-inner">
+                        <i class="fas fa-{{ stats.cycle_tracked|yesno:'check,plus' }}"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="stat-info">
+                <h3>Cycle Tracking</h3>
+                <p class="stat-value">{{ stats.cycle_tracked|yesno:"Active,Not Started" }}</p>
+                <p class="stat-description">
+                    {% if stats.cycle_tracked %}
+                    Day {{ stats.current_cycle_day }} • {{ stats.current_phase }}
+                    {% else %}
+                    Start tracking your menstrual cycle
+                    {% endif %}
+                </p>
+            </div>
+            <a href="{{ url_for('period_tracker') }}" class="stat-action-btn">
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="stat-card-visual">
+            <div class="stat-visual">
+                <div class="progress-ring" data-percentage="{{ (stats.questions_answered / stats.questions_asked * 100) if stats.questions_asked > 0 else 0 }}">
+                    <span class="progress-text">{{ stats.questions_answered }}/{{ stats.questions_asked }}</span>
+                </div>
+            </div>
+            <div class="stat-info">
+                <h3>Doctor Q&A</h3>
+                <p class="stat-value">{{ stats.questions_asked }} Questions</p>
+                <p class="stat-description">
+                    {{ stats.questions_answered }} answered • {{ stats.questions_asked - stats.questions_answered }} pending
+                </p>
+            </div>
+            <a href="{{ url_for('ask_doctor') }}" class="stat-action-btn">
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="stat-card-visual">
+            <div class="stat-visual">
+                <div class="countdown-circle">
+                    <div class="countdown-number">
+                        {{ stats.days_until_next_period if stats.days_until_next_period != '--' else '?' }}
+                    </div>
+                    <div class="countdown-label">days</div>
+                </div>
+            </div>
+            <div class="stat-info">
+                <h3>Next Period</h3>
+                <p class="stat-value">
+                    {% if stats.days_until_next_period != '--' %}
+                    {{ stats.days_until_next_period }} days
+                    {% else %}
+                    Not tracked
+                    {% endif %}
+                </p>
+                <p class="stat-description">
+                    {% if stats.days_until_next_period != '--' %}
+                    Estimated arrival
+                    {% else %}
+                    Start tracking to see
+                    {% endif %}
+                </p>
+            </div>
+            <a href="{{ url_for('period_tracker') }}" class="stat-action-btn">
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Quick Actions Enhanced -->
+    <div class="visual-card full-width">
+        <div class="card-header">
+            <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
+            <p>Access frequently used features instantly</p>
+        </div>
+        <div class="quick-actions-enhanced">
+            <a href="{{ url_for('period_tracker') }}" class="quick-action-card">
+                <div class="action-visual track">
+                    <i class="fas fa-calendar-plus"></i>
+                </div>
+                <h4>Log Period</h4>
+                <p>Update your cycle information</p>
+                <span class="action-badge">Daily</span>
+            </a>
+
+            <a href="{{ url_for('ask_doctor') }}" class="quick-action-card">
+                <div class="action-visual ask">
+                    <i class="fas fa-question-circle"></i>
+                </div>
+                <h4>Ask Doctor</h4>
+                <p>Get medical advice</p>
+                <span class="action-badge">24h Response</span>
+            </a>
+
+            <a href="{{ url_for('menstrual_products') }}" class="quick-action-card">
+                <div class="action-visual products">
+                    <i class="fas fa-shopping-bag"></i>
+                </div>
+                <h4>Products Guide</h4>
+                <p>Compare hygiene products</p>
+                <span class="action-badge">Updated</span>
+            </a>
+
+            <a href="{{ url_for('diet_plan') }}" class="quick-action-card">
+                <div class="action-visual diet">
+                    <i class="fas fa-apple-alt"></i>
+                </div>
+                <h4>Diet Plan</h4>
+                <p>Phase-based nutrition</p>
+                <span class="action-badge">Healthy</span>
+            </a>
+
+            <a href="{{ url_for('hygiene_tips') }}" class="quick-action-card">
+                <div class="action-visual hygiene">
+                    <i class="fas fa-hand-sparkles"></i>
+                </div>
+                <h4>Hygiene Tips</h4>
+                <p>Self-care practices</p>
+                <span class="action-badge">Essential</span>
+            </a>
+
+            <a href="{{ url_for('emergency_contacts') }}" class="quick-action-card emergency">
+                <div class="action-visual emergency">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h4>Emergency</h4>
+                <p>Immediate help contacts</p>
+                <span class="action-badge">Urgent</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Recent Activity Timeline -->
+    <div class="dashboard-columns">
+        <div class="dashboard-column">
+            <div class="visual-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-history"></i> Recent Activity</h3>
+                </div>
+                <div class="timeline-enhanced">
+                    {% for activity in recent_activity %}
+                    <div class="timeline-item-enhanced">
+                        <div class="timeline-marker">
+                            <i class="{{ activity.icon }}"></i>
+                        </div>
+                        <div class="timeline-content">
+                            <h4>{{ activity.title }}</h4>
+                            <p>{{ activity.description }}</p>
+                            <span class="timeline-time">{{ activity.timestamp[:16].replace('T', ' ') }}</span>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="empty-state-visual">
+                        <div class="empty-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h4>No Recent Activity</h4>
+                        <p>Your activity will appear here as you use the app</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="dashboard-column">
+            <div class="visual-card">
+                <div class="card-header">
+                    <h3><i class="fas fa-chart-pie"></i> Health Overview</h3>
+                </div>
+                <div class="health-metrics">
+                    <div class="metric-item">
+                        <div class="metric-icon">
+                            <i class="fas fa-water"></i>
+                        </div>
+                        <div class="metric-info">
+                            <span class="metric-label">Hydration</span>
+                            <div class="metric-bar">
+                                <div class="metric-fill" style="width: 75%"></div>
+                            </div>
+                            <span class="metric-value">75%</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-item">
+                        <div class="metric-icon">
+                            <i class="fas fa-bed"></i>
+                        </div>
+                        <div class="metric-info">
+                            <span class="metric-label">Sleep Quality</span>
+                            <div class="metric-bar">
+                                <div class="metric-fill" style="width: 60%"></div>
+                            </div>
+                            <span class="metric-value">60%</span>
+                        </div>
+                    </div>
+
+                    <div class="metric-item">
+                        <div class="metric-icon">
+                            <i class="fas fa-walking"></i>
+                        </div>
+                        <div class="metric-info">
+                            <span class="metric-label">Activity Level</span>
+                            <div class="metric-bar">
+                                <div class="metric-fill" style="width: 80%"></div>
+                            </div>
+                            <span class="metric-value">80%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

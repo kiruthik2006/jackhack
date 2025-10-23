@@ -1,0 +1,446 @@
+{% extends "base.html" %}
+
+{% block title %}Hygiene Tips - Women's Wellness{% endblock %}
+
+{% block content %}
+<div class="hygiene-container">
+    <!-- Hero Section -->
+    <div class="visual-hero hygiene-hero">
+        <div class="hero-content">
+            <h1><i class="fas fa-hand-sparkles"></i> Complete Hygiene Guide</h1>
+            <p class="hero-subtitle">Essential self-care practices for menstrual health and overall well-being</p>
+        </div>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="stat-number">25+</div>
+                <div class="stat-label">Expert Tips</div>
+            </div>
+            <div class="hero-stat">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Categories</div>
+            </div>
+            <div class="hero-stat">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Safe</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Category Navigation -->
+    <div class="category-navigation">
+        <div class="category-tabs">
+            {% for category_id, category in hygiene_data.items() %}
+            <button class="category-tab {{ 'active' if loop.first }}" 
+                    data-category="{{ category_id }}"
+                    style="--category-color: var(--{{ category.color }})">
+                <div class="tab-icon">
+                    <i class="{{ category.icon }}"></i>
+                </div>
+                <span>{{ category.title }}</span>
+            </button>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="hygiene-content">
+        {% for category_id, category in hygiene_data.items() %}
+        <div class="category-section {{ category_id }} {{ 'active' if loop.first }}">
+            <!-- Category Header -->
+            <div class="category-header">
+                <div class="category-title">
+                    <div class="title-icon" style="--category-color: var(--{{ category.color }})">
+                        <i class="{{ category.icon }}"></i>
+                    </div>
+                    <h2>{{ category.title }}</h2>
+                </div>
+                <p class="category-description">
+                    {% if category_id == 'daily_care' %}
+                    Essential daily practices for maintaining personal hygiene and freshness
+                    {% elif category_id == 'product_safety' %}
+                    Safe usage and handling of menstrual products to prevent infections
+                    {% elif category_id == 'intimate_hygiene' %}
+                    Special care for intimate areas to maintain health and comfort
+                    {% elif category_id == 'menstrual_care' %}
+                    Period-specific hygiene practices for optimal menstrual health
+                    {% else %}
+                    Lifestyle habits that support overall hygiene and well-being
+                    {% endif %}
+                </p>
+            </div>
+
+            <!-- Tips Grid -->
+            <div class="tips-grid">
+                {% for tip in category.tips %}
+                <div class="tip-card {{ tip.importance }}">
+                    <div class="tip-header">
+                        <div class="tip-icon">
+                            <i class="{{ tip.icon }}"></i>
+                        </div>
+                        <div class="tip-badge importance-{{ tip.importance }}">
+                            {% if tip.importance == 'high' %}
+                            <i class="fas fa-exclamation-circle"></i> Essential
+                            {% else %}
+                            <i class="fas fa-check-circle"></i> Important
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <h3 class="tip-title">{{ tip.title }}</h3>
+                    <p class="tip-description">{{ tip.description }}</p>
+
+                    <!-- Interactive Elements -->
+                    <div class="tip-actions">
+                        <button class="btn-reminder" data-tip="{{ tip.title }}">
+                            <i class="fas fa-bell"></i> Set Reminder
+                        </button>
+                        <button class="btn-share" data-tip="{{ tip.title }}">
+                            <i class="fas fa-share-alt"></i> Share
+                        </button>
+                    </div>
+
+                    <!-- Visual Progress Indicator -->
+                    <div class="completion-indicator">
+                        <div class="completion-text">Practice this regularly?</div>
+                        <div class="completion-buttons">
+                            <button class="btn-yes" data-tip="{{ tip.title }}">
+                                <i class="fas fa-check"></i> Yes
+                            </button>
+                            <button class="btn-sometimes" data-tip="{{ tip.title }}">
+                                <i class="fas fa-minus"></i> Sometimes
+                            </button>
+                            <button class="btn-no" data-tip="{{ tip.title }}">
+                                <i class="fas fa-times"></i> Need to Improve
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Progress Tracking Section -->
+    <div class="progress-section">
+        <div class="visual-card">
+            <div class="card-header">
+                <h2><i class="fas fa-chart-line"></i> Your Hygiene Progress</h2>
+                <p>Track your hygiene habits and set personal goals</p>
+            </div>
+            <div class="progress-grid">
+                <div class="progress-card">
+                    <div class="progress-circle" data-percentage="75">
+                        <div class="circle-inner">
+                            <span class="percentage">75%</span>
+                            <span class="label">Daily Care</span>
+                        </div>
+                    </div>
+                    <h4>Daily Habits</h4>
+                    <p>Regular showering, clean clothing</p>
+                </div>
+                <div class="progress-card">
+                    <div class="progress-circle" data-percentage="60">
+                        <div class="circle-inner">
+                            <span class="percentage">60%</span>
+                            <span class="label">Product Safety</span>
+                        </div>
+                    </div>
+                    <h4>Product Usage</h4>
+                    <p>Proper changing and disposal</p>
+                </div>
+                <div class="progress-card">
+                    <div class="progress-circle" data-percentage="85">
+                        <div class="circle-inner">
+                            <span class="percentage">85%</span>
+                            <span class="label">Intimate Care</span>
+                        </div>
+                    </div>
+                    <h4>Intimate Hygiene</h4>
+                    <p>Gentle cleansing practices</p>
+                </div>
+                <div class="progress-card">
+                    <div class="progress-circle" data-percentage="50">
+                        <div class="circle-inner">
+                            <span class="percentage">50%</span>
+                            <span class="label">Lifestyle</span>
+                        </div>
+                    </div>
+                    <h4>Healthy Lifestyle</h4>
+                    <p>Diet, exercise, and sleep</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Interactive Quiz Section -->
+    <div class="quiz-section">
+        <div class="visual-card">
+            <div class="card-header">
+                <h2><i class="fas fa-brain"></i> Hygiene Knowledge Check</h2>
+                <p>Test your understanding of proper hygiene practices</p>
+            </div>
+            <div class="quiz-container">
+                <div class="quiz-question active">
+                    <h3>How often should you change your menstrual pad during heavy flow days?</h3>
+                    <div class="quiz-options">
+                        <button class="quiz-option" data-correct="true">
+                            <span class="option-text">Every 4-6 hours</span>
+                            <i class="fas fa-check"></i>
+                        </button>
+                        <button class="quiz-option" data-correct="false">
+                            <span class="option-text">Once in the morning and once at night</span>
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <button class="quiz-option" data-correct="false">
+                            <span class="option-text">Only when it feels full</span>
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <button class="quiz-option" data-correct="false">
+                            <span class="option-text">Every 12 hours</span>
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="quiz-result">
+                    <div class="result-content">
+                        <i class="fas fa-check-circle success"></i>
+                        <h4>Correct!</h4>
+                        <p>Changing pads every 4-6 hours prevents bacterial growth and infections.</p>
+                        <button class="btn-next-question">Next Question</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Daily Reminders -->
+    <div class="reminders-section">
+        <div class="visual-card">
+            <div class="card-header">
+                <h2><i class="fas fa-bell"></i> Daily Hygiene Reminders</h2>
+                <p>Set personalized reminders for your hygiene routine</p>
+            </div>
+            <div class="reminders-grid">
+                <div class="reminder-card">
+                    <div class="reminder-icon">
+                        <i class="fas fa-shower"></i>
+                    </div>
+                    <div class="reminder-content">
+                        <h4>Morning Shower</h4>
+                        <p>Daily cleansing routine</p>
+                        <span class="reminder-time">7:00 AM</span>
+                    </div>
+                    <button class="btn-toggle-reminder active">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                </div>
+                <div class="reminder-card">
+                    <div class="reminder-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="reminder-content">
+                        <h4>Change Products</h4>
+                        <p>Regular product replacement</p>
+                        <span class="reminder-time">Every 4-6 hours</span>
+                    </div>
+                    <button class="btn-toggle-reminder">
+                        <i class="fas fa-bell-slash"></i>
+                    </button>
+                </div>
+                <div class="reminder-card">
+                    <div class="reminder-icon">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <div class="reminder-content">
+                        <h4>Evening Routine</h4>
+                        <p>Pre-sleep hygiene check</p>
+                        <span class="reminder-time">9:00 PM</span>
+                    </div>
+                    <button class="btn-toggle-reminder active">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Category Tab Navigation
+    const categoryTabs = document.querySelectorAll('.category-tab');
+    const categorySections = document.querySelectorAll('.category-section');
+
+    categoryTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const targetCategory = this.getAttribute('data-category');
+            
+            // Update active tab
+            categoryTabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Show target category
+            categorySections.forEach(section => {
+                section.classList.remove('active');
+                if (section.classList.contains(targetCategory)) {
+                    section.classList.add('active');
+                }
+            });
+        });
+    });
+
+    // Tip Interaction Effects
+    const tipCards = document.querySelectorAll('.tip-card');
+    tipCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    // Set Reminder Buttons
+    const reminderBtns = document.querySelectorAll('.btn-reminder');
+    reminderBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const tipTitle = this.getAttribute('data-tip');
+            showNotification(`Reminder set for: ${tipTitle}`, 'success');
+            
+            // Visual feedback
+            this.innerHTML = '<i class="fas fa-check"></i> Reminder Set';
+            this.style.background = 'var(--accent-green)';
+            setTimeout(() => {
+                this.innerHTML = '<i class="fas fa-bell"></i> Set Reminder';
+                this.style.background = '';
+            }, 2000);
+        });
+    });
+
+    // Share Buttons
+    const shareBtns = document.querySelectorAll('.btn-share');
+    shareBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const tipTitle = this.getAttribute('data-tip');
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Hygiene Tip',
+                    text: `Check out this hygiene tip: ${tipTitle}`,
+                    url: window.location.href
+                });
+            } else {
+                showNotification('Tip copied to clipboard!', 'success');
+            }
+        });
+    });
+
+    // Progress Tracking
+    const progressCircles = document.querySelectorAll('.progress-circle');
+    progressCircles.forEach(circle => {
+        const percentage = circle.getAttribute('data-percentage');
+        circle.style.background = `conic-gradient(var(--primary-pink) 0% ${percentage}%, var(--gray-200) ${percentage}% 100%)`;
+    });
+
+    // Quiz Functionality
+    const quizOptions = document.querySelectorAll('.quiz-option');
+    const quizResult = document.querySelector('.quiz-result');
+    const nextQuestionBtn = document.querySelector('.btn-next-question');
+
+    quizOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            const isCorrect = this.getAttribute('data-correct') === 'true';
+            
+            // Show result
+            quizResult.classList.add('active');
+            
+            if (isCorrect) {
+                quizResult.querySelector('i').className = 'fas fa-check-circle success';
+                quizResult.querySelector('h4').textContent = 'Correct!';
+                quizResult.querySelector('p').textContent = 'Great job! You know your hygiene practices well.';
+            } else {
+                quizResult.querySelector('i').className = 'fas fa-times-circle error';
+                quizResult.querySelector('h4').textContent = 'Incorrect';
+                quizResult.querySelector('p').textContent = 'The correct answer is: Every 4-6 hours to prevent bacterial growth.';
+            }
+        });
+    });
+
+    nextQuestionBtn.addEventListener('click', function() {
+        quizResult.classList.remove('active');
+        // In a real app, you would load the next question here
+    });
+
+    // Reminder Toggle
+    const toggleBtns = document.querySelectorAll('.btn-toggle-reminder');
+    toggleBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            this.classList.toggle('active');
+            if (this.classList.contains('active')) {
+                this.innerHTML = '<i class="fas fa-bell"></i>';
+                showNotification('Reminder enabled', 'success');
+            } else {
+                this.innerHTML = '<i class="fas fa-bell-slash"></i>';
+                showNotification('Reminder disabled', 'info');
+            }
+        });
+    });
+
+    // Completion Tracking
+    const completionBtns = document.querySelectorAll('.btn-yes, .btn-sometimes, .btn-no');
+    completionBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const tipTitle = this.getAttribute('data-tip');
+            const card = this.closest('.tip-card');
+            
+            // Visual feedback
+            card.style.borderLeft = '4px solid var(--accent-green)';
+            card.classList.add('completed');
+            
+            showNotification('Progress saved!', 'success');
+        });
+    });
+
+    // Notification Function
+    function showNotification(message, type) {
+        const notification = document.createElement('div');
+        notification.className = `visual-notification ${type}`;
+        notification.innerHTML = `
+            <i class="fas fa-${type === 'success' ? 'check-circle' : 'info-circle'}"></i>
+            <span>${message}</span>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => notification.classList.add('show'), 100);
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+
+    // Animate elements on scroll
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.animationPlayState = 'running';
+            }
+        });
+    }, observerOptions);
+
+    // Observe all tip cards and progress elements
+    document.querySelectorAll('.tip-card, .progress-card, .reminder-card').forEach(el => {
+        el.style.animationPlayState = 'paused';
+        observer.observe(el);
+    });
+});
+</script>
+{% endblock %}

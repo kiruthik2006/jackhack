@@ -1,0 +1,420 @@
+{% extends "base.html" %}
+
+{% block title %}Complete Menstrual Products Guide - Women's Wellness{% endblock %}
+
+{% block content %}
+<div class="products-container">
+    <!-- Hero Section -->
+    <div class="visual-hero products-hero">
+        <div class="hero-content">
+            <h1><i class="fas fa-venus"></i> Complete Menstrual Products Guide</h1>
+            <p class="hero-subtitle">Expert-reviewed comparison of all period products to help you make informed choices</p>
+        </div>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="stat-number">5</div>
+                <div class="stat-label">Product Types</div>
+            </div>
+            <div class="hero-stat">
+                <div class="stat-number">Doctor</div>
+                <div class="stat-label">Verified</div>
+            </div>
+            <div class="hero-stat">
+                <div class="stat-number">Eco</div>
+                <div class="stat-label">Options</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Comparison Table -->
+    <div class="comparison-overview">
+        <div class="visual-card">
+            <div class="card-header">
+                <h2><i class="fas fa-balance-scale"></i> At a Glance Comparison</h2>
+                <p>Quick overview of all menstrual product options</p>
+            </div>
+            <div class="comparison-table">
+                <div class="table-header">
+                    <div class="table-cell">Product Type</div>
+                    <div class="table-cell">Cost</div>
+                    <div class="table-cell">Eco-Friendly</div>
+                    <div class="table-cell">Duration</div>
+                    <div class="table-cell">Best For</div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell">Disposable Pads</div>
+                    <div class="table-cell">₹100-400/month</div>
+                    <div class="table-cell"><i class="fas fa-times-circle no"></i></div>
+                    <div class="table-cell">4-8 hours</div>
+                    <div class="table-cell">Beginners, overnight</div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell">Reusable Pads</div>
+                    <div class="table-cell">₹300-800 (3-5 years)</div>
+                    <div class="table-cell"><i class="fas fa-check-circle yes"></i></div>
+                    <div class="table-cell">4-6 hours</div>
+                    <div class="table-cell">Eco-conscious, home use</div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell">Tampons</div>
+                    <div class="table-cell">₹200-500/month</div>
+                    <div class="table-cell"><i class="fas fa-times-circle no"></i></div>
+                    <div class="table-cell">4-8 hours</div>
+                    <div class="table-cell">Sports, swimming</div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell">Menstrual Cups</div>
+                    <div class="table-cell">₹500-2000 (2-10 years)</div>
+                    <div class="table-cell"><i class="fas fa-check-circle yes"></i></div>
+                    <div class="table-cell">6-12 hours</div>
+                    <div class="table-cell">All flows, active lifestyle</div>
+                </div>
+                <div class="table-row">
+                    <div class="table-cell">Period Pants</div>
+                    <div class="table-cell">₹800-2000/pair (2-3 years)</div>
+                    <div class="table-cell"><i class="fas fa-check-circle yes"></i></div>
+                    <div class="table-cell">6-8 hours</div>
+                    <div class="table-cell">Light days, overnight</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Navigation -->
+    <div class="product-navigation">
+        <div class="nav-tabs">
+            <button class="nav-tab active" data-tab="disposable_pads">
+                <i class="fas fa-shield-alt"></i>
+                <span>Disposable Pads</span>
+            </button>
+            <button class="nav-tab" data-tab="reusable_pads">
+                <i class="fas fa-leaf"></i>
+                <span>Reusable Pads</span>
+            </button>
+            <button class="nav-tab" data-tab="tampons">
+                <i class="fas fa-compress-alt"></i>
+                <span>Tampons</span>
+            </button>
+            <button class="nav-tab" data-tab="menstrual_cups">
+                <i class="fas fa-magic"></i>
+                <span>Menstrual Cups</span>
+            </button>
+            <button class="nav-tab" data-tab="period_pants">
+                <i class="fas fa-tshirt"></i>
+                <span>Period Pants</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Products Display -->
+    <div class="products-content">
+        {% for category, product_list in products.items() %}
+        <div class="product-category {{ category }}" id="{{ category }}">
+            <div class="category-header">
+                <h2>
+                    {% if category == 'disposable_pads' %}
+                    <i class="fas fa-shield-alt"></i>
+                    {% elif category == 'reusable_pads' %}
+                    <i class="fas fa-leaf"></i>
+                    {% elif category == 'tampons' %}
+                    <i class="fas fa-compress-alt"></i>
+                    {% elif category == 'menstrual_cups' %}
+                    <i class="fas fa-magic"></i>
+                    {% else %}
+                    <i class="fas fa-tshirt"></i>
+                    {% endif %}
+                    {{ category|replace('_', ' ')|title }}
+                </h2>
+                <p class="category-description">
+                    {% if category == 'disposable_pads' %}
+                    Most commonly used period product - stick into underwear, absorb blood externally
+                    {% elif category == 'reusable_pads' %}
+                    Washable cloth pads made from cotton or bamboo with popper fasteners
+                    {% elif category == 'tampons' %}
+                    Internal protection that soaks up blood before it leaves the body
+                    {% elif category == 'menstrual_cups' %}
+                    Flexible silicone cups that collect rather than absorb menstrual blood
+                    {% else %}
+                    Absorbent underwear with built-in protection layers
+                    {% endif %}
+                </p>
+            </div>
+
+            <div class="products-grid">
+                {% for product in product_list %}
+                <div class="product-card-visual">
+                    <!-- SAFE Product Badge - No type dependency -->
+                    <div class="product-badge 
+                        {% if 'reusable' in category or 'cup' in category or 'pants' in category %} 
+                            eco 
+                        {% else %} 
+                            disposable 
+                        {% endif %}">
+                        {% if 'reusable' in category or 'cup' in category or 'pants' in category %}
+                        <i class="fas fa-leaf"></i> Eco
+                        {% else %}
+                        <i class="fas fa-trash"></i> Disposable
+                        {% endif %}
+                    </div>
+                    
+                    <div class="product-header">
+                        <h3>{{ product.name }}</h3>
+                        <!-- SAFE Product Type - No type dependency -->
+                        <div class="product-type 
+                            {% if 'reusable' in category or 'cup' in category or 'pants' in category %} 
+                                reusable 
+                            {% else %} 
+                                disposable 
+                            {% endif %}">
+                            {% if 'reusable' in category or 'cup' in category or 'pants' in category %}
+                            Reusable
+                            {% else %}
+                            Disposable
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Product Visual Section -->
+                    <div class="product-visual">
+                        <div class="product-icon {{ category }}">
+                            {% if category == 'disposable_pads' %}
+                            <i class="fas fa-shield-alt"></i>
+                            {% elif category == 'reusable_pads' %}
+                            <i class="fas fa-leaf"></i>
+                            {% elif category == 'tampons' %}
+                            <i class="fas fa-compress-alt"></i>
+                            {% elif category == 'menstrual_cups' %}
+                            <i class="fas fa-magic"></i>
+                            {% else %}
+                            <i class="fas fa-tshirt"></i>
+                            {% endif %}
+                        </div>
+                        <div class="product-stats">
+                            <div class="stat">
+                                <i class="fas fa-clock"></i>
+                                <span>{{ product.duration }}</span>
+                            </div>
+                            <div class="stat">
+                                <i class="fas fa-tint"></i>
+                                <span>{{ product.absorption }}</span>
+                            </div>
+                            {% if product.lifespan %}
+                            <div class="stat">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>{{ product.lifespan }}</span>
+                            </div>
+                            {% endif %}
+                            <div class="stat">
+                                <i class="fas fa-rupee-sign"></i>
+                                <span>{{ product.price_range.split(' ')[0] if product.price_range else 'N/A' }}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="product-description">{{ product.description }}</p>
+
+                    <!-- Expert Advice - Safe check -->
+                    {% if product.expert_advice %}
+                    <div class="expert-advice">
+                        <div class="expert-header">
+                            <i class="fas fa-user-md"></i>
+                            <strong>Doctor's Advice</strong>
+                        </div>
+                        <p>{{ product.expert_advice }}</p>
+                    </div>
+                    {% endif %}
+
+                    <!-- Detailed Comparison - Safe checks -->
+                    <div class="product-comparison">
+                        <div class="comparison-section pros-section">
+                            <h4><i class="fas fa-thumbs-up"></i> Advantages</h4>
+                            <ul class="pros-list">
+                                {% for pro in product.pros %}
+                                <li>
+                                    <i class="fas fa-check-circle"></i>
+                                    {{ pro }}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+
+                        <div class="comparison-section cons-section">
+                            <h4><i class="fas fa-thumbs-down"></i> Considerations</h4>
+                            <ul class="cons-list">
+                                {% for con in product.cons %}
+                                <li>
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    {{ con }}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Safety & Usage - Safe check -->
+                    {% if product.safety_tips %}
+                    <div class="safety-section">
+                        <h4><i class="fas fa-shield-alt"></i> Safety & Usage Tips</h4>
+                        <div class="safety-tips">
+                            {% for tip in product.safety_tips %}
+                            <div class="safety-tip">
+                                <i class="fas fa-check"></i>
+                                <span>{{ tip }}</span>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Brands & Footer - Safe checks -->
+                    <div class="product-footer">
+                        {% if product.popular_brands %}
+                        <div class="brands-section">
+                            <strong>Popular Brands:</strong>
+                            <div class="brand-tags">
+                                {% for brand in product.popular_brands %}
+                                <span class="brand-tag">{{ brand }}</span>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% if product.best_for %}
+                        <div class="product-bestfor">
+                            <strong>Best For:</strong> {{ product.best_for }}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Rest of the template remains the same -->
+    <!-- Eco Impact Section -->
+    <div class="eco-impact-section">
+        <div class="visual-card">
+            <div class="card-header">
+                <h2><i class="fas fa-globe-asia"></i> Environmental Impact</h2>
+                <p>Understanding the ecological footprint of your period products</p>
+            </div>
+            <div class="impact-grid">
+                <div class="impact-card high-impact">
+                    <div class="impact-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h4>High Impact</h4>
+                    <p><strong>Disposable Pads & Tampons</strong></p>
+                    <ul>
+                        <li>Plastic equivalent to 5 carrier bags per pad pack</li>
+                        <li>2.5 million tampons flushed daily (should be binned)</li>
+                        <li>Non-biodegradable materials</li>
+                    </ul>
+                </div>
+                <div class="impact-card medium-impact">
+                    <div class="impact-icon">
+                        <i class="fas fa-balance-scale"></i>
+                    </div>
+                    <h4>Medium Impact</h4>
+                    <p><strong>Reusable Pads & Period Pants</strong></p>
+                    <ul>
+                        <li>Water and energy for washing</li>
+                        <li>3-5 year lifespan reduces waste</li>
+                        <li>Natural materials (cotton, bamboo)</li>
+                    </ul>
+                </div>
+                <div class="impact-card low-impact">
+                    <div class="impact-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h4>Low Impact</h4>
+                    <p><strong>Menstrual Cups</strong></p>
+                    <ul>
+                        <li>One cup lasts 2-10 years</li>
+                        <li>Minimal water for cleaning</li>
+                        <li>Medical-grade silicone (long-lasting)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cost Calculator -->
+    <div class="cost-calculator">
+        <div class="visual-card">
+            <div class="card-header">
+                <h2><i class="fas fa-calculator"></i> 5-Year Cost Calculator</h2>
+                <p>Compare long-term costs of different period products</p>
+            </div>
+            <div class="calculator-grid">
+                <div class="cost-item">
+                    <h4>Disposable Pads</h4>
+                    <div class="cost-amount">₹18,000-24,000</div>
+                    <p>Based on ₹300-400 monthly for 5 years</p>
+                </div>
+                <div class="cost-item">
+                    <h4>Tampons</h4>
+                    <div class="cost-amount">₹12,000-18,000</div>
+                    <p>Based on ₹200-300 monthly for 5 years</p>
+                </div>
+                <div class="cost-item">
+                    <h4>Reusable Pads</h4>
+                    <div class="cost-amount">₹800-1,500</div>
+                    <p>One-time investment for 3-5 year set</p>
+                </div>
+                <div class="cost-item">
+                    <h4>Menstrual Cup</h4>
+                    <div class="cost-amount">₹500-2,000</div>
+                    <p>One cup lasts 2-10 years</p>
+                </div>
+                <div class="cost-item">
+                    <h4>Period Pants</h4>
+                    <div class="cost-amount">₹2,400-6,000</div>
+                    <p>3-4 pairs for rotation over 2-3 years</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Tab Navigation
+    const navTabs = document.querySelectorAll('.nav-tab');
+    const productCategories = document.querySelectorAll('.product-category');
+
+    navTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const targetTab = this.getAttribute('data-tab');
+            
+            // Update active tab
+            navTabs.forEach(t => t.classList.remove('active'));
+            this.classList.add('active');
+            
+            // Show target category
+            productCategories.forEach(category => {
+                category.classList.remove('active');
+                if (category.id === targetTab) {
+                    category.classList.add('active');
+                }
+            });
+        });
+    });
+
+    // Eco Impact Animation
+    const impactCards = document.querySelectorAll('.impact-card');
+    impactCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.2}s`;
+    });
+
+    // Cost Calculator Animation
+    const costItems = document.querySelectorAll('.cost-item');
+    costItems.forEach((item, index) => {
+        item.style.animationDelay = `${index * 0.1}s`;
+    });
+});
+</script>
+{% endblock %}

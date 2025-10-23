@@ -1,0 +1,200 @@
+{% extends "base.html" %}
+
+{% block title %}Emergency Contacts - Women's Wellness{% endblock %}
+
+{% block content %}
+<div class="emergency-container">
+    <!-- Hero Section -->
+    <div class="visual-hero emergency-hero">
+        <div class="hero-content">
+            <h1><i class="fas fa-exclamation-triangle"></i> Emergency Contacts</h1>
+            <p class="hero-subtitle">Immediate help when you need it most</p>
+            <div class="emergency-alert">
+                <i class="fas fa-bell"></i>
+                <span>Save these numbers in your phone</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Action Bar -->
+    <div class="emergency-action-bar">
+        <div class="action-item immediate">
+            <i class="fas fa-ambulance"></i>
+            <div>
+                <strong>Immediate Danger</strong>
+                <span>Call 100 or 1091 now</span>
+            </div>
+        </div>
+        <div class="action-item medical">
+            <i class="fas fa-plus-square"></i>
+            <div>
+                <strong>Medical Emergency</strong>
+                <span>Call 108 for ambulance</span>
+            </div>
+        </div>
+        <div class="action-item mental">
+            <i class="fas fa-head-side-virus"></i>
+            <div>
+                <strong>Mental Health</strong>
+                <span>Call 1800-599-0019</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Emergency Contacts Grid -->
+    <div class="emergency-grid">
+        {% for contact in contacts %}
+        <div class="emergency-card {{ 'critical' if contact.number in ['100', '108', '1091'] }}">
+            <div class="card-header">
+                <div class="contact-icon">
+                    {% if 'Women' in contact.name %}
+                    <i class="fas fa-female"></i>
+                    {% elif 'Medical' in contact.name %}
+                    <i class="fas fa-ambulance"></i>
+                    {% elif 'Police' in contact.name %}
+                    <i class="fas fa-shield-alt"></i>
+                    {% elif 'Mental' in contact.name %}
+                    <i class="fas fa-brain"></i>
+                    {% else %}
+                    <i class="fas fa-child"></i>
+                    {% endif %}
+                </div>
+                <div class="urgency-badge {{ 'high' if contact.number in ['100', '108', '1091'] else 'medium' }}">
+                    {% if contact.number in ['100', '108', '1091'] %}
+                    <i class="fas fa-exclamation"></i>
+                    Critical
+                    {% else %}
+                    <i class="fas fa-info-circle"></i>
+                    Support
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="card-content">
+                <h3>{{ contact.name }}</h3>
+                <div class="contact-number">
+                    <i class="fas fa-phone"></i>
+                    <span class="number">{{ contact.number }}</span>
+                </div>
+                <p class="contact-description">{{ contact.description }}</p>
+            </div>
+
+            <div class="card-actions">
+                <button class="btn-call" onclick="callNumber('{{ contact.number }}')">
+                    <i class="fas fa-phone"></i>
+                    Call Now
+                </button>
+                <button class="btn-save" onclick="saveNumber('{{ contact.name }}', '{{ contact.number }}')">
+                    <i class="fas fa-save"></i>
+                    Save
+                </button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Safety Tips -->
+    <div class="safety-section">
+        <div class="visual-card">
+            <div class="card-header">
+                <h2><i class="fas fa-shield-alt"></i> Safety Tips & Resources</h2>
+            </div>
+            <div class="safety-grid">
+                <div class="safety-tip">
+                    <div class="tip-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="tip-content">
+                        <h4>Share Your Location</h4>
+                        <p>Always let someone know where you are when meeting new people</p>
+                    </div>
+                </div>
+                <div class="safety-tip">
+                    <div class="tip-icon">
+                        <i class="fas fa-phone-volume"></i>
+                    </div>
+                    <div class="tip-content">
+                        <h4>Emergency Preparedness</h4>
+                        <p>Save emergency contacts in your phone's speed dial</p>
+                    </div>
+                </div>
+                <div class="safety-tip">
+                    <div class="tip-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <div class="tip-content">
+                        <h4>Trusted Contacts</h4>
+                        <p>Have at least 2 people you can contact in emergencies</p>
+                    </div>
+                </div>
+                <div class="safety-tip">
+                    <div class="tip-icon">
+                        <i class="fas fa-first-aid"></i>
+                    </div>
+                    <div class="tip-content">
+                        <h4>Medical Information</h4>
+                        <p>Keep your medical details accessible in emergencies</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Exit Button -->
+    <div class="quick-exit">
+        <button class="btn-quick-exit" onclick="quickExit()">
+            <i class="fas fa-running"></i>
+            Quick Exit
+        </button>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+function callNumber(number) {
+    // Remove non-digit characters for phone call
+    const cleanNumber = number.replace(/\D/g, '');
+    window.open(`tel:${cleanNumber}`, '_self');
+}
+
+function saveNumber(name, number) {
+    // Create vCard content
+    const vCard = `BEGIN:VCARD\nVERSION:3.0\nFN:${name}\nTEL:${number}\nEND:VCARD`;
+    
+    // Create download link
+    const blob = new Blob([vCard], { type: 'text/vcard' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `${name}.vcf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    // Show success message
+    showNotification(`${name} saved to contacts!`, 'success');
+}
+
+function quickExit() {
+    // Redirect to neutral site
+    window.open('https://www.google.com', '_self');
+}
+
+function showNotification(message, type) {
+    // Your existing notification function
+    const notification = document.createElement('div');
+    notification.className = `visual-notification ${type}`;
+    notification.innerHTML = `
+        <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+        <span>${message}</span>
+    `;
+    document.body.appendChild(notification);
+    setTimeout(() => notification.classList.add('show'), 100);
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+}
+</script>
+{% endblock %}

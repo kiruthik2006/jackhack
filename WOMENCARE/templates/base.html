@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Women's Health & Wellness{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="icon" href="{{ url_for('static', filename='images/favicon.ico') }}">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="{{ url_for('index') }}">
+                    <i class="fas fa-heartbeat"></i>
+                    Women's Wellness
+                </a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="{{ url_for('index') }}" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('menstrual_products') }}" class="nav-link">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('diet_plan') }}" class="nav-link">Diet</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('hygiene_tips') }}" class="nav-link">Hygiene</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('period_tracker') }}" class="nav-link">Tracker</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('ask_doctor') }}" class="nav-link">Ask Doctor</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('emergency_contacts') }}" class="nav-link emergency-btn">
+                        <i class="fas fa-exclamation-triangle"></i> Emergency
+                    </a>
+                </li>
+
+                <li class="nav-item">
+    <a href="{{ url_for('user_dashboard') }}" class="nav-link">
+        <i class="fas fa-tachometer-alt"></i> Dashboard
+    </a>
+</li>
+              <ul class="nav-menu">
+    <li class="nav-item">
+        <a href="{{ url_for('index') }}" class="nav-link">Home</a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ url_for('menstrual_products') }}" class="nav-link">Products</a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ url_for('diet_plan') }}" class="nav-link">Diet</a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ url_for('hygiene_tips') }}" class="nav-link">Hygiene</a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ url_for('period_tracker') }}" class="nav-link">Tracker</a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ url_for('ask_doctor') }}" class="nav-link">Ask Doctor</a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ url_for('user_dashboard') }}" class="nav-link">
+            <i class="fas fa-tachometer-alt"></i> Dashboard
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ url_for('emergency_contacts') }}" class="nav-link emergency-btn">
+            <i class="fas fa-exclamation-triangle"></i> Emergency
+        </a>
+    </li>
+</ul>  
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        {{ message }}
+                        <button class="alert-close" onclick="this.parentElement.style.display='none'">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Women's Wellness</h3>
+                <p>Empowering women with comprehensive health knowledge and resources.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="{{ url_for('period_tracker') }}">Period Tracker</a></li>
+                    <li><a href="{{ url_for('ask_doctor') }}">Ask a Doctor</a></li>
+                    <li><a href="{{ url_for('emergency_contacts') }}">Emergency Contacts</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <p>Email: support@womenswellness.com</p>
+                <p>Helpline: 1800-XXXX-XXXX</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Women's Wellness. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Floating Health Quote Bar -->
+    <div id="health-quote-bar" class="health-quote-bar">
+        <div class="quote-content">
+            <i class="quote-icon" id="quote-icon"></i>
+            <p class="quote-text" id="quote-text"></p>
+            <div class="quote-controls">
+                <button class="quote-nav" id="prev-quote" title="Previous quote">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="quote-nav" id="next-quote" title="Next quote">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <button class="close-quote" id="close-quote" title="Hide quotes">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

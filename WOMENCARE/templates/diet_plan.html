@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block title %}Diet Plan - Women's Wellness{% endblock %}
+
+{% block content %}
+<div class="diet-container">
+    <!-- Hero Section -->
+    <div class="visual-hero diet-hero">
+        <div class="hero-content">
+            <h1><i class="fas fa-apple-alt"></i> Cycle-Synced Nutrition</h1>
+            <p class="hero-subtitle">Eat according to your menstrual phase for optimal health</p>
+        </div>
+        <div class="phase-indicators">
+            <div class="phase-indicator active" data-phase="menstrual_phase">
+                <div class="phase-icon">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <span>Menstrual</span>
+            </div>
+            <div class="phase-indicator" data-phase="follicular_phase">
+                <div class="phase-icon">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <span>Follicular</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phase Navigation -->
+    <div class="phase-navigation">
+        <div class="phase-tabs">
+            {% for phase_id, phase_data in diet_plans.items() %}
+            <button class="phase-tab {{ 'active' if loop.first }}" data-phase="{{ phase_id }}">
+                <div class="tab-icon">
+                    {% if phase_id == 'menstrual_phase' %}
+                    <i class="fas fa-moon"></i>
+                    {% else %}
+                    <i class="fas fa-seedling"></i>
+                    {% endif %}
+                </div>
+                <div class="tab-content">
+                    <strong>{{ phase_data.name.split(' ')[0] }}</strong>
+                    <span>{{ phase_data.name.split('(')[1].split(')')[0] }}</span>
+                </div>
+            </button>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Phase Content -->
+    <div class="phase-content">
+        {% for phase_id, phase_data in diet_plans.items() %}
+        <div class="phase-section {{ phase_id }} {{ 'active' if loop.first }}">
+            <div class="phase-header">
+                <h2>{{ phase_data.name }}</h2>
+                <p class="phase-focus">{{ phase_data.description }}</p>
+            </div>
+
+            <div class="diet-grid">
+                <!-- Recommended Foods -->
+                <div class="diet-card foods-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-check-circle"></i> Recommended Foods</h3>
+                        <div class="foods-count">{{ phase_data.foods|length }} items</div>
+                    </div>
+                    <div class="foods-grid">
+                        {% for food in phase_data.foods %}
+                        <div class="food-item">
+                            <div class="food-icon">
+                                {% if 'leafy' in food.name.lower() %}
+                                <i class="fas fa-leaf"></i>
+                                {% elif 'meat' in food.name.lower() %}
+                                <i class="fas fa-drumstick-bite"></i>
+                                {% elif 'chocolate' in food.name.lower() %}
+                                <i class="fas fa-cookie"></i>
+                                {% elif 'tea' in food.name.lower() %}
+                                <i class="fas fa-mug-hot"></i>
+                                {% else %}
+                                <i class="fas fa-apple-alt"></i>
+                                {% endif %}
+                            </div>
+                            <div class="food-info">
+                                <h4>{{ food.name }}</h4>
+                                <p>{{ food.benefit }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Foods to Avoid -->
+                <div class="diet-card avoid-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-times-circle"></i> Avoid These</h3>
+                        <div class="avoid-count">{{ phase_data.avoid|length }} items</div>
+                    </div>
+                    <div class="avoid-list">
+                        {% for item in phase_data.avoid %}
+                        <div class="avoid-item">
+                            <i class="fas fa-ban"></i>
+                            <span>{{ item }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Tips & Benefits -->
+                <div class="diet-card tips-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-lightbulb"></i> Tips & Benefits</h3>
+                    </div>
+                    <div class="tips-list">
+                        {% for tip in phase_data.tips %}
+                        <div class="tip-item">
+                            <i class="fas fa-star"></i>
+                            <p>{{ tip }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Sample Meal Plan -->
+                <div class="diet-card mealplan-card">
+                    <div class="card-header">
+                        <h3><i class="fas fa-utensils"></i> Sample Meal Plan</h3>
+                    </div>
+                    <div class="meal-timeline">
+                        <div class="meal-item">
+                            <div class="meal-time">Breakfast</div>
+                            <div class="meal-content">
+                                <strong>
+                                    {% if phase_id == 'menstrual_phase' %}
+                                    Oatmeal with berries & nuts
+                                    {% else %}
+                                    Greek yogurt with fruits
+                                    {% endif %}
+                                </strong>
+                                <p>High in fiber and protein</p>
+                            </div>
+                        </div>
+                        <div class="meal-item">
+                            <div class="meal-time">Lunch</div>
+                            <div class="meal-content">
+                                <strong>
+                                    {% if phase_id == 'menstrual_phase' %}
+                                    Lentil soup with whole grain bread
+                                    {% else %}
+                                    Quinoa salad with vegetables
+                                    {% endif %}
+                                </strong>
+                                <p>Balanced nutrients</p>
+                            </div>
+                        </div>
+                        <div class="meal-item">
+                            <div class="meal-time">Dinner</div>
+                            <div class="meal-content">
+                                <strong>
+                                    {% if phase_id == 'menstrual_phase' %}
+                                    Grilled chicken with steamed greens
+                                    {% else %}
+                                    Salmon with roasted vegetables
+                                    {% endif %}
+                                </strong>
+                                <p>Lean protein and vitamins</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Women's Health & Wellness{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <h1>Women's Health & Wellness</h1>
+    <p>Comprehensive resources for menstrual health, nutrition, and self-care</p>
+    <div class="hero-buttons">
+        <a href="{{ url_for('period_tracker') }}" class="btn">
+            <i class="fas fa-chart-line"></i> Track Your Cycle
+        </a>
+        <a href="{{ url_for('ask_doctor') }}" class="btn">
+            <i class="fas fa-user-md"></i> Ask a Doctor
+        </a>
+    </div>
+</div>
+
+<div class="feature-grid">
+    <div class="feature-card">
+        <i class="fas fa-venus"></i>
+        <h3>Menstrual Products</h3>
+        <p>Compare pads, tampons, cups and find what works best for you</p>
+        <a href="{{ url_for('menstrual_products') }}" class="btn">Explore Products</a>
+    </div>
+    
+    <div class="feature-card">
+        <i class="fas fa-apple-alt"></i>
+        <h3>Diet Plans</h3>
+        <p>Phase-based nutrition for optimal health throughout your cycle</p>
+        <a href="{{ url_for('diet_plan') }}" class="btn">View Diet Plans</a>
+    </div>
+    
+    <div class="feature-card">
+        <i class="fas fa-hand-sparkles"></i>
+        <h3>Hygiene Tips</h3>
+        <p>Essential self-care practices for menstrual health and wellness</p>
+        <a href="{{ url_for('hygiene_tips') }}" class="btn">Learn More</a>
+    </div>
+</div>
+
+<div class="stats-section">
+    <h2>Why Track Your Health?</h2>
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h4>28%</h4>
+            <p>Women experience irregular cycles</p>
+        </div>
+        <div class="stat-card">
+            <h4>85%</h4>
+            <p>Experience period symptoms affecting daily life</p>
+        </div>
+        <div class="stat-card">
+            <h4>92%</h4>
+            <p>Feel more confident understanding their cycle</p>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,389 @@
+{% extends "base.html" %}
+
+{% block title %}Period Tracker - Women's Wellness{% endblock %}
+
+{% block content %}
+<div class="tracker-container">
+    <!-- Header Section -->
+    <div class="tracker-header visual-card">
+        <div class="header-content">
+            <h1><i class="fas fa-chart-line"></i> Period Tracker</h1>
+            <p class="subtitle">Track your cycle, understand your body, plan ahead</p>
+        </div>
+        <div class="header-stats">
+            {% if predictions %}
+            <div class="current-phase">
+                <span class="phase-indicator phase-{{ predictions.current_phase }}">
+                    <i class="fas fa-{{ 'tint' if predictions.current_phase == 'menstrual' else 'egg' if predictions.current_phase == 'ovulation' else 'seedling' if predictions.current_phase == 'follicular' else 'leaf' }}"></i>
+                    {{ predictions.current_phase|title }} Phase
+                </span>
+                <div class="cycle-day">Day {{ predictions.current_cycle_day }}</div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="tracker-grid">
+        <!-- Left Column - Input Form -->
+        <div class="tracker-column">
+            <div class="visual-card">
+                <h3><i class="fas fa-edit"></i> Track Your Cycle</h3>
+                <form id="track-cycle-form" class="tracker-form">
+                    <div class="form-group">
+                        <label for="last_period">
+                            <i class="fas fa-calendar-day"></i> Last Period Start Date
+                        </label>
+                        <input type="date" class="form-control" id="last_period" name="last_period" 
+                               value="{{ cycle_data.last_period if cycle_data.last_period }}" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cycle_length">
+                                <i class="fas fa-arrows-alt-h"></i> Cycle Length (days)
+                            </label>
+                            <div class="range-container">
+                                <input type="range" id="cycle_length" name="cycle_length" 
+                                       min="21" max="35" value="{{ cycle_data.cycle_length if cycle_data.cycle_length else 28 }}"
+                                       class="range-slider">
+                                <span class="range-value" id="cycle_length_value">
+                                    {{ cycle_data.cycle_length if cycle_data.cycle_length else 28 }} days
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="period_length">
+                                <i class="fas fa-clock"></i> Period Length (days)
+                            </label>
+                            <div class="range-container">
+                                <input type="range" id="period_length" name="period_length" 
+                                       min="3" max="7" value="{{ cycle_data.period_length if cycle_data.period_length else 5 }}"
+                                       class="range-slider">
+                                <span class="range-value" id="period_length_value">
+                                    {{ cycle_data.period_length if cycle_data.period_length else 5 }} days
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fas fa-stethoscope"></i> Symptoms (Optional)</label>
+                        <div class="symptoms-grid">
+                            <label class="symptom-checkbox">
+                                <input type="checkbox" name="symptoms" value="cramps" 
+                                       {{ 'checked' if 'cramps' in cycle_data.symptoms else '' }}>
+                                <span class="checkmark"></span>
+                                Cramps
+                            </label>
+                            <label class="symptom-checkbox">
+                                <input type="checkbox" name="symptoms" value="headache"
+                                       {{ 'checked' if 'headache' in cycle_data.symptoms else '' }}>
+                                <span class="checkmark"></span>
+                                Headache
+                            </label>
+                            <label class="symptom-checkbox">
+                                <input type="checkbox" name="symptoms" value="bloating"
+                                       {{ 'checked' if 'bloating' in cycle_data.symptoms else '' }}>
+                                <span class="checkmark"></span>
+                                Bloating
+                            </label>
+                            <label class="symptom-checkbox">
+                                <input type="checkbox" name="symptoms" value="mood_swings"
+                                       {{ 'checked' if 'mood_swings' in cycle_data.symptoms else '' }}>
+                                <span class="checkmark"></span>
+                                Mood Swings
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="flow_intensity">
+                            <i class="fas fa-tint"></i> Flow Intensity
+                        </label>
+                        <div class="flow-buttons">
+                            <label class="flow-option">
+                                <input type="radio" name="flow_intensity" value="light" 
+                                       {{ 'checked' if cycle_data.flow_intensity == 'light' else '' }}>
+                                <span class="flow-dot light"></span>
+                                Light
+                            </label>
+                            <label class="flow-option">
+                                <input type="radio" name="flow_intensity" value="medium" 
+                                       {{ 'checked' if not cycle_data.flow_intensity or cycle_data.flow_intensity == 'medium' else '' }}>
+                                <span class="flow-dot medium"></span>
+                                Medium
+                            </label>
+                            <label class="flow-option">
+                                <input type="radio" name="flow_intensity" value="heavy"
+                                       {{ 'checked' if cycle_data.flow_intensity == 'heavy' else '' }}>
+                                <span class="flow-dot heavy"></span>
+                                Heavy
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-large">
+                        <i class="fas fa-save"></i> Save Cycle Data
+                    </button>
+                </form>
+            </div>
+
+            <!-- Cycle Education -->
+            <div class="visual-card">
+                <h3><i class="fas fa-graduation-cap"></i> Cycle Education</h3>
+                <div class="education-tips">
+                    <div class="tip-item">
+                        <i class="fas fa-heartbeat"></i>
+                        <div>
+                            <strong>Regular Cycles</strong>
+                            <p>Most women have cycles between 21-35 days</p>
+                        </div>
+                    </div>
+                    <div class="tip-item">
+                        <i class="fas fa-egg"></i>
+                        <div>
+                            <strong>Ovulation</strong>
+                            <p>Typically occurs 14 days before your next period</p>
+                        </div>
+                    </div>
+                    <div class="tip-item">
+                        <i class="fas Apple-alt"></i>
+                        <div>
+                            <strong>Track Symptoms</strong>
+                            <p>Patterns can help identify hormonal changes</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column - Predictions & Calendar -->
+        <div class="tracker-column">
+            {% if predictions %}
+            <!-- Predictions Card -->
+            <div class="visual-card">
+                <h3><i class="fas fa-crystal-ball"></i> Cycle Predictions</h3>
+                <div class="predictions-grid">
+                    <div class="prediction-card">
+                        <div class="prediction-icon next-period">
+                            <i class="fas fa-moon"></i>
+                        </div>
+                        <div class="prediction-content">
+                            <h4>Next Period</h4>
+                            <p class="prediction-date">{{ predictions.next_period }}</p>
+                            <p class="prediction-days">{{ predictions.days_until_next_period }} days away</p>
+                        </div>
+                    </div>
+
+                    <div class="prediction-card">
+                        <div class="prediction-icon ovulation">
+                            <i class="fas fa-egg"></i>
+                        </div>
+                        <div class="prediction-content">
+                            <h4>Ovulation</h4>
+                            <p class="prediction-date">{{ predictions.ovulation_date }}</p>
+                            <p class="prediction-days">Peak fertility</p>
+                        </div>
+                    </div>
+
+                    <div class="prediction-card">
+                        <div class="prediction-icon fertile">
+                            <i class="fas fa-baby"></i>
+                        </div>
+                        <div class="prediction-content">
+                            <h4>Fertile Window</h4>
+                            <p class="prediction-date">{{ predictions.fertile_window_start }} to {{ predictions.fertile_window_end }}</p>
+                            <p class="prediction-days">High fertility days</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cycle Calendar -->
+            <div class="visual-card">
+                <h3><i class="fas fa-calendar-alt"></i> This Month</h3>
+                <div class="mini-calendar" id="mini-calendar">
+                    <!-- JavaScript will populate this -->
+                </div>
+            </div>
+
+            <!-- Cycle Timeline -->
+            <div class="visual-card">
+                <h3><i class="fas fa-road"></i> Cycle Timeline</h3>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>Menstrual Phase</h4>
+                            <p>Days 1-5: Period, rest, and recovery</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>Follicular Phase</h4>
+                            <p>Days 6-13: Energy building and preparation</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>Ovulation</h4>
+                            <p>Day 14: Peak fertility and vitality</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <h4>Luteal Phase</h4>
+                            <p>Days 15-28: Preparation and potential PMS</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <!-- Empty State -->
+            <div class="visual-card empty-state">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Start Tracking Your Cycle</h3>
+                <p>Enter your cycle information to get personalized predictions and insights about your menstrual health.</p>
+                <div class="benefits-list">
+                    <div class="benefit-item">
+                        <i class="fas fa-bell"></i>
+                        <span>Period predictions</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-egg"></i>
+                        <span>Ovulation tracking</span>
+                    </div>
+                    <div class="benefit-item">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Symptom patterns</span>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+// Enhanced JavaScript for visual interactions
+document.addEventListener('DOMContentLoaded', function() {
+    // Range sliders with visual feedback
+    const cycleLengthSlider = document.getElementById('cycle_length');
+    const cycleLengthValue = document.getElementById('cycle_length_value');
+    const periodLengthSlider = document.getElementById('period_length');
+    const periodLengthValue = document.getElementById('period_length_value');
+
+    cycleLengthSlider.addEventListener('input', function() {
+        cycleLengthValue.textContent = this.value + ' days';
+    });
+
+    periodLengthSlider.addEventListener('input', function() {
+        periodLengthValue.textContent = this.value + ' days';
+    });
+
+    // Form submission with visual feedback
+    const trackForm = document.getElementById('track-cycle-form');
+    trackForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        
+        // Visual loading state
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+        submitBtn.disabled = true;
+
+        try {
+            // Your existing form submission logic
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData.entries());
+            data.symptoms = Array.from(formData.getAll('symptoms'));
+            
+            const response = await fetch('/api/track-cycle', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            });
+
+            const result = await response.json();
+            
+            if (result.success) {
+                // Visual success feedback
+                showVisualNotification('Cycle data saved successfully!', 'success');
+                setTimeout(() => {
+                    location.reload(); // Reload to show predictions
+                }, 1500);
+            } else {
+                showVisualNotification('Failed to save data. Please try again.', 'error');
+            }
+        } catch (error) {
+            showVisualNotification('Network error. Please check your connection.', 'error');
+        } finally {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
+    });
+
+    function showVisualNotification(message, type) {
+        const notification = document.createElement('div');
+        notification.className = `visual-notification ${type}`;
+        notification.innerHTML = `
+            <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+            <span>${message}</span>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Animate in
+        setTimeout(() => notification.classList.add('show'), 100);
+        
+        // Remove after 3 seconds
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+
+    // Initialize mini calendar if predictions exist
+    {% if predictions %}
+    initializeMiniCalendar();
+    {% endif %}
+});
+
+function initializeMiniCalendar() {
+    // Simple mini calendar implementation
+    const calendarEl = document.getElementById('mini-calendar');
+    if (!calendarEl) return;
+
+    const today = new Date();
+    const month = today.toLocaleString('default', { month: 'long' });
+    const year = today.getFullYear();
+    
+    let calendarHTML = `
+        <div class="calendar-header">
+            <h4>${month} ${year}</h4>
+        </div>
+        <div class="calendar-grid">
+            <div class="calendar-weekdays">
+                <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+            </div>
+            <div class="calendar-days">
+    `;
+
+    // Add calendar days (simplified version)
+    for (let i = 1; i <= 31; i++) {
+        const isToday = i === today.getDate();
+        calendarHTML += `<div class="calendar-day ${isToday ? 'today' : ''}">${i}</div>`;
+    }
+
+    calendarHTML += '</div></div>';
+    calendarEl.innerHTML = calendarHTML;
+}
+</script>
+{% endblock %}
