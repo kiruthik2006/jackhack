@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@1.18.3/index.js"></script>
-    <script src="scripts/chat.js" defer></script>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -198,3 +197,152 @@
     </script>
 </body>
 </html>
+<script>
+const OPENROUTER_KEY = "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"; // ⚠️ local use only
+
+document.addEventListener('DOMContentLoaded', () => {
+    const messageInput = document.getElementById('messageInput');
+    const sendButton = document.getElementById('sendButton');
+    const attachButton = document.getElementById('attachButton');
+    const fileInput = document.getElementById('fileInput');
+    const previewArea = document.getElementById('previewArea');
+    const attachmentPreviews = document.getElementById('attachmentPreviews');
+    const emojiButton = document.getElementById('emojiButton');
+    const emojiPicker = document.getElementById('emojiPicker');
+    const chatContainer = document.querySelector('main .max-w-lg');
+
+    function scrollToBottom() {
+        const mainScroll = document.querySelector('main');
+        mainScroll.scrollTop = mainScroll.scrollHeight;
+    }
+
+    function makeBubble(text, outgoing = true) {
+        const wrapper = document.createElement('div');
+        wrapper.className = outgoing ? 'flex justify-end' : 'flex justify-start';
+
+        const bubble = document.createElement('div');
+        bubble.className = `chat-bubble ${outgoing ? 'outgoing' : 'incoming'} p-4 rounded-2xl shadow-sm`;
+        if (outgoing) bubble.classList.add('bg-gradient-to-r','from-fuchsia-500','to-pink-500','text-white'); else bubble.classList.add('bg-white');
+
+        const p = document.createElement('p');
+        p.innerText = text;
+
+        bubble.appendChild(p);
+        wrapper.appendChild(bubble);
+        return wrapper;
+    }
+
+    function showTypingIndicator() {
+        const wrapper = document.createElement('div');
+        wrapper.className = 'flex justify-start typing-temp';
+        wrapper.innerHTML = `
+            <div class="chat-bubble incoming bg-white rounded-2xl rounded-tl-none p-4 shadow-sm">
+                <div class="typing-indicator flex space-x-1">
+                    <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
+                    <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
+                    <span class="w-2 h-2 bg-gray-400 rounded-full"></span>
+                </div>
+            </div>`;
+        chatContainer.appendChild(wrapper);
+        scrollToBottom();
+    }
+
+    function removeTypingIndicator() {
+        const node = document.querySelector('.typing-temp');
+        if (node) node.remove();
+    }
+
+    async function sendMessageToServer(text) {
+        const body = {
+            model: 'gpt-4o-mini',
+            messages: [{ role: 'user', content: text }]
+        };
+
+        try {
+            const resp = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + OPENROUTER_KEY
+                },
+                body: JSON.stringify(body)
+            });
+
+            if (!resp.ok) {
+                const txt = await resp.text();
+                throw new Error(`OpenRouter ${resp.status} - ${txt}`);
+            }
+
+            const j = await resp.json();
+            try {
+                return j.choices?.[0]?.message?.content || j.output || JSON.stringify(j);
+            } catch (e) {
+                return JSON.stringify(j);
+            }
+        } catch (err) {
+            console.error('direct API error', err);
+            return `OpenRouter direct error: ${err.message}`;
+        }
+    }
+
+    async function handleSend() {
+        const text = messageInput.value.trim();
+        if (!text) return;
+        chatContainer.appendChild(makeBubble(text, true));
+        messageInput.value = '';
+        scrollToBottom();
+
+        showTypingIndicator();
+        const reply = await sendMessageToServer(text);
+        removeTypingIndicator();
+
+        chatContainer.appendChild(makeBubble(reply, false));
+        scrollToBottom();
+    }
+
+    // Events
+    sendButton.addEventListener('click', handleSend);
+    messageInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            handleSend();
+        }
+    });
+
+    attachButton.addEventListener('click', () => fileInput.click());
+    fileInput.addEventListener('change', () => {
+        attachmentPreviews.innerHTML = '';
+        const files = Array.from(fileInput.files || []);
+        if (files.length === 0) { previewArea.classList.add('hidden'); return; }
+        files.forEach(f => {
+            const container = document.createElement('div');
+            container.className = 'preview-container';
+            if (f.type.startsWith('image/')) {
+                const img = document.createElement('img');
+                img.className = 'file-preview';
+                img.src = URL.createObjectURL(f);
+                container.appendChild(img);
+            } else {
+                const label = document.createElement('div');
+                label.className = 'px-3 py-2 border rounded';
+                label.innerText = f.name;
+                container.appendChild(label);
+            }
+            attachmentPreviews.appendChild(container);
+        });
+        previewArea.classList.remove('hidden');
+    });
+
+    emojiButton.addEventListener('click', (e) => {
+        emojiPicker.classList.toggle('visible');
+    });
+
+    document.addEventListener('emoji-click', (ev) => {
+        const emoji = ev.detail.unicode || ev.detail.name || ev.detail;
+        messageInput.value += emoji;
+        emojiPicker.classList.remove('visible');
+        messageInput.focus();
+    });
+});
+</script>
+
