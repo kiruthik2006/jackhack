@@ -61,7 +61,7 @@ class NGODirectory {
             // Try to load from ngos.json file
             console.log('Loading NGOs from JSON file...');
             
-            const response = await fetch('data/ngos.json');
+            const response = await fetch('data/ngos_by_state_2023.json');
             
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -423,7 +423,10 @@ class NGODirectory {
         // NGO image
         const imgDiv = document.createElement('div');
         imgDiv.className = 'ngo-img';
-        imgDiv.style.backgroundImage = `url('${ngo.image || 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80'}')`;
+        imgDiv.style.backgroundColor = '#f3e8ff'; // Light purple background instead of image
+        imgDiv.innerHTML = `<div class="flex items-center justify-center h-full text-purple-600">
+            <i class="fas fa-heart text-4xl"></i>
+        </div>`;
         card.appendChild(imgDiv);
         
         // NGO content
@@ -520,7 +523,7 @@ class NGODirectory {
                     </div>
                     <div class="modal-body">
                         <div class="modal-image">
-                            <img src="${ngo.image}" alt="${ngo.name}">
+                            <!-- Removed image element since images are no longer used -->
                         </div>
                         <div class="modal-details">
                             <h3>About</h3>

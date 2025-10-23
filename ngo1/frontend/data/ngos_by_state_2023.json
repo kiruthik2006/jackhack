@@ -1,0 +1,346 @@
+{
+  "ngos": {
+    "Tamil Nadu": [
+      {
+        "id": "TN001",
+        "name": "Sahodari Foundation",
+        "description": "India's first transgender-led organization focusing on education, entrepreneurship, and creative arts for transgender individuals.",
+        "location": "Madurai, Tamil Nadu, India",
+        "phone": "+91-99947-21729",
+        "email": "info@sahodari.org",
+        "services": ["Education", "Entrepreneurship", "Skill Development"],
+        "genderFocus": ["transgender", "women"],
+        "safeSpace": true,
+        "state": "Tamil Nadu"
+      },
+      {
+        "id": "TN002",
+        "name": "SAATHII",
+        "description": "Works to strengthen healthcare access, rights, and social inclusion for LGBTQIA+ individuals, especially transgender and hijra communities.",
+        "location": "Chennai, Tamil Nadu, India",
+        "phone": "+91-44-2442-0027",
+        "email": "info@saathii.org",
+        "services": ["Healthcare", "Advocacy", "Social Protection"],
+        "genderFocus": ["transgender", "LGBTQIA+"],
+        "safeSpace": true,
+        "state": "Tamil Nadu"
+      },
+      {
+        "id": "TN003",
+        "name": "Orinam",
+        "description": "Chennai-based collective working for alternate sexualities and gender identities; supports queer, transgender folks, their families and community.",
+        "location": "Chennai, Tamil Nadu, India",
+        "phone": "+91-98415-57983",
+        "email": "orinam.net@gmail.com",
+        "services": ["Peer Support", "Community Building", "Advocacy"],
+        "genderFocus": ["transgender", "LGBTQIA+"],
+        "safeSpace": true,
+        "state": "Tamil Nadu"
+      },
+      {
+        "id": "TN004",
+        "name": "Thozhi Women's Collective",
+        "description": "Empowering women through skill development, entrepreneurship training, and providing support for domestic violence survivors.",
+        "location": "Coimbatore, Tamil Nadu, India",
+        "phone": "+91-95009-87654",
+        "email": "thozhi.collective@gmail.com",
+        "services": ["Skill Development", "Entrepreneurship", "Counselling", "Legal Support"],
+        "genderFocus": ["women"],
+        "safeSpace": true,
+        "state": "Tamil Nadu"
+      }
+    ],
+    "Delhi": [
+      {
+        "id": "DL001",
+        "name": "TWEET Foundation",
+        "description": "A transgender-led community-based organization supporting transgender persons through advocacy, skill training, and employment opportunities.",
+        "location": "New Delhi, India",
+        "phone": "+91-99109-33454",
+        "email": "contact@tweetindia.org",
+        "services": ["Advocacy", "Skill Training", "Employment"],
+        "genderFocus": ["transgender"],
+        "safeSpace": true,
+        "state": "Delhi"
+      },
+      {
+        "id": "DL002",
+        "name": "Naz Foundation",
+        "description": "Delhi-based NGO advocating for sexual health, HIV/AIDS awareness, and equal rights for women and LGBTQIA+ individuals.",
+        "location": "New Delhi, India",
+        "phone": "+91-11-41325042",
+        "email": "info@nazindia.org",
+        "services": ["Health Awareness", "Advocacy", "Counseling"],
+        "genderFocus": ["women", "transgender", "LGBTQIA+"],
+        "safeSpace": true,
+        "state": "Delhi"
+      },
+      {
+        "id": "DL003",
+        "name": "Centre for Equity and Inclusion (CEQUIN)",
+        "description": "Working on women's rights, gender-based violence, public space safety and economic inclusion.",
+        "location": "New Delhi, India",
+        "phone": "+91-11-43792020",
+        "email": "contact@cequin.org",
+        "services": ["Advocacy", "Research", "Economic Inclusion"],
+        "genderFocus": ["women"],
+        "safeSpace": true,
+        "state": "Delhi"
+      },
+      {
+        "id": "DL004",
+        "name": "Shakti Shalini",
+        "description": "Providing support and shelter to women facing domestic violence and working towards gender equality through education and advocacy.",
+        "location": "New Delhi, India",
+        "phone": "+91-11-24373737",
+        "email": "shaktishalini@gmail.com",
+        "services": ["Shelter", "Legal Support", "Counselling", "Education"],
+        "genderFocus": ["women"],
+        "safeSpace": true,
+        "state": "Delhi"
+      }
+    ],
+    "Maharashtra": [
+      {
+        "id": "MH001",
+        "name": "Akshara Centre",
+        "description": "Promoting gender equality, women's safety, and empowerment through education and digital awareness.",
+        "location": "Mumbai, Maharashtra, India",
+        "phone": "+91-22-26540403",
+        "email": "aksharacentre@gmail.com",
+        "services": ["Gender Equality", "Education", "Awareness Campaigns"],
+        "genderFocus": ["women"],
+        "safeSpace": true,
+        "state": "Maharashtra"
+      },
+      {
+        "id": "MH002",
+        "name": "SheSays India",
+        "description": "Promoting gender equality, women's rights, including redressal mechanisms for gender-based violence.",
+        "location": "Mumbai, Maharashtra, India",
+        "phone": "+91-22-28574758",
+        "email": "info@shesays.in",
+        "services": ["Legal Support", "Awareness", "Rights Education"],
+        "genderFocus": ["women"],
+        "safeSpace": true,
+        "state": "Maharashtra"
+      },
+      {
+        "id": "MH003",
+        "name": "Kinnar Maa Trust",
+        "description": "Supporting the transgender community through healthcare, education, and employment initiatives.",
+        "location": "Pune, Maharashtra, India",
+        "phone": "+91-88884-55577",
+        "email": "kinnarmaa@gmail.com",
+        "services": ["Healthcare", "Education", "Employment", "Advocacy"],
+        "genderFocus": ["transgender"],
+        "safeSpace": true,
+        "state": "Maharashtra"
+      }
+    ],
+    "Karnataka": [
+      {
+        "id": "KA001",
+        "name": "DEAR India Ministries",
+        "description": "Empowering transgender persons through education, vocational training, rehabilitation and medical care.",
+        "location": "Bangalore, Karnataka, India",
+        "phone": "+91-80-25498765",
+        "email": "contact@dearindia.org",
+        "services": ["Education", "Vocational Training", "Healthcare"],
+        "genderFocus": ["transgender"],
+        "safeSpace": true,
+        "state": "Karnataka"
+      },
+      {
+        "id": "KA002",
+        "name": "Swabhava Trust",
+        "description": "Supporting LGBTQIA+ individuals through counseling, peer support, and advocacy for inclusive policies.",
+        "location": "Bangalore, Karnataka, India",
+        "phone": "+91-80-22230959",
+        "email": "swabhava@gmail.com",
+        "services": ["Counselling", "Advocacy", "Peer Support"],
+        "genderFocus": ["transgender", "LGBTQIA+"],
+        "safeSpace": true,
+        "state": "Karnataka"
+      }
+    ],
+    "Kerala": [
+      {
+        "id": "KL001",
+        "name": "DhiEva",
+        "description": "Promotes mental wellness, social equity, quality education and counselling support for women, children & LGBTQ individuals.",
+        "location": "Palakkad, Kerala, India",
+        "phone": "+91-491-2527890",
+        "email": "dhieva.kerala@gmail.com",
+        "services": ["Counselling", "Awareness", "Capacity Building"],
+        "genderFocus": ["women", "LGBTQIA+"],
+        "safeSpace": true,
+        "state": "Kerala"
+      },
+      {
+        "id": "KL002",
+        "name": "Queerala",
+        "description": "Supporting LGBTQIA+ individuals through community building, advocacy, and mental health support.",
+        "location": "Kochi, Kerala, India",
+        "phone": "+91-484-2390123",
+        "email": "info@queerala.org",
+        "services": ["Mental Health", "Advocacy", "Community Building"],
+        "genderFocus": ["LGBTQIA+", "transgender"],
+        "safeSpace": true,
+        "state": "Kerala"
+      }
+    ],
+    "Rajasthan": [
+      {
+        "id": "RJ001",
+        "name": "Sambhali Trust",
+        "description": "Empowering women and marginalised gender minorities via education, vocational training, shelter & legal support.",
+        "location": "Jodhpur & Setrawa, Rajasthan, India",
+        "phone": "+91-291-2512456",
+        "email": "info@sambhali-trust.org",
+        "services": ["Education", "Vocational Training", "Shelter", "Legal Support"],
+        "genderFocus": ["women", "gender minorities"],
+        "safeSpace": true,
+        "state": "Rajasthan"
+      }
+    ],
+    "West Bengal": [
+      {
+        "id": "WB001",
+        "name": "Sappho for Equality",
+        "description": "Supporting lesbian, bisexual women and trans persons through advocacy, research, and community building.",
+        "location": "Kolkata, West Bengal, India",
+        "phone": "+91-33-24198730",
+        "email": "sappho1999@gmail.com",
+        "services": ["Advocacy", "Research", "Community Building"],
+        "genderFocus": ["women", "transgender", "LGBTQIA+"],
+        "safeSpace": true,
+        "state": "West Bengal"
+      },
+      {
+        "id": "WB002",
+        "name": "Durbar Mahila Samanwaya Committee",
+        "description": "Working for the rights and welfare of women, particularly focusing on health and social justice.",
+        "location": "Kolkata, West Bengal, India",
+        "phone": "+91-33-24192214",
+        "email": "durbar.mahila@gmail.com",
+        "services": ["Healthcare", "Rights Education", "Social Justice"],
+        "genderFocus": ["women"],
+        "safeSpace": true,
+        "state": "West Bengal"
+      }
+    ],
+    "Telangana": [
+      {
+        "id": "TS001",
+        "name": "Transgender Welfare Society",
+        "description": "Supporting transgender individuals through healthcare, education, and employment initiatives.",
+        "location": "Hyderabad, Telangana, India",
+        "phone": "+91-40-27615489",
+        "email": "transwelfare.hyd@gmail.com",
+        "services": ["Healthcare", "Education", "Employment"],
+        "genderFocus": ["transgender"],
+        "safeSpace": true,
+        "state": "Telangana"
+      }
+    ],
+    "Gujarat": [
+      {
+        "id": "GJ001",
+        "name": "Vikalp Women's Group",
+        "description": "Working for women's rights and empowerment through legal aid, counseling, and skill development.",
+        "location": "Vadodara, Gujarat, India",
+        "phone": "+91-265-2313437",
+        "email": "vikalp.baroda@gmail.com",
+        "services": ["Legal Aid", "Counselling", "Skill Development"],
+        "genderFocus": ["women"],
+        "safeSpace": true,
+        "state": "Gujarat"
+      }
+    ],
+    "Uttarakhand": [
+      {
+        "id": "UK001",
+        "name": "Humans For Humanity",
+        "description": "Educating women and girls on menstrual health and hygiene across multiple states.",
+        "location": "Dehradun, Uttarakhand, India",
+        "phone": "+91-135-2789012",
+        "email": "h4h.uttarakhand@gmail.com",
+        "services": ["Hygiene Education", "Women's Health", "Community Outreach"],
+        "genderFocus": ["women"],
+        "safeSpace": true,
+        "state": "Uttarakhand"
+      }
+    ],
+    "Pan India": [
+      {
+        "id": "IN001",
+        "name": "Wajood Project",
+        "description": "Community-led initiative for transgender & hijra populations providing HIV & sexual health services, rights awareness and violence prevention.",
+        "location": "Multiple states (Delhi, Gujarat, AP/TS, Karnataka)",
+        "phone": "+91-11-23456789",
+        "email": "contact@wajoodproject.org",
+        "services": ["Health & Sexual Rights", "Violence Prevention", "Empowerment"],
+        "genderFocus": ["transgender", "hijra"],
+        "safeSpace": true,
+        "state": "Pan India"
+      },
+      {
+        "id": "IN002",
+        "name": "AJSA India – Gender Justice Program",
+        "description": "Champions gender equality, women's and girls' health & rights with legal support and community outreach.",
+        "location": "India (nationwide operations)",
+        "phone": "+91-11-45678901",
+        "email": "genderjustice@ajsa.org",
+        "services": ["Legal Support", "Advocacy", "Community Outreach"],
+        "genderFocus": ["women"],
+        "safeSpace": true,
+        "state": "Pan India"
+      },
+      {
+        "id": "IN003",
+        "name": "National Alliance for Women's Rights",
+        "description": "Working across India to promote women's rights, gender equality, and access to justice through advocacy and capacity building.",
+        "location": "India (nationwide operations)",
+        "phone": "+91-11-67890123",
+        "email": "info@nawr.org",
+        "services": ["Advocacy", "Capacity Building", "Legal Support"],
+        "genderFocus": ["women"],
+        "safeSpace": true,
+        "state": "Pan India"
+      }
+    ]
+  },
+  "metadata": {
+    "lastUpdated": "2023-10-23",
+    "totalNGOs": 22,
+    "statesCovered": 11,
+    "serviceTypes": [
+      "Education",
+      "Healthcare",
+      "Legal Support",
+      "Advocacy",
+      "Skill Development",
+      "Counselling",
+      "Violence Prevention",
+      "Shelter",
+      "Community Building",
+      "Entrepreneurship",
+      "Employment",
+      "Mental Health",
+      "Social Justice",
+      "Hygiene Education",
+      "Capacity Building",
+      "Research",
+      "Rights Education",
+      "Peer Support"
+    ],
+    "genderFocusCategories": [
+      "women",
+      "transgender",
+      "LGBTQIA+",
+      "hijra",
+      "gender minorities"
+    ]
+  }
+}

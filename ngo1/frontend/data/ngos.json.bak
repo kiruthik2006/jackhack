@@ -1,18 +1,16 @@
 {
-  "ngos": {
-    "Tamil Nadu": [
-      {
-        "id": 1,
-        "name": "Sahodari Foundation",
-        "description": "India's first transgender-led organization focusing on education, entrepreneurship, and creative arts for transgender individuals.",
-        "location": "Madurai, Tamil Nadu, India",
-        "phone": "+91-99947-21729",
-        "email": "info@sahodari.org",
-        "services": ["Education", "Entrepreneurship", "Skill Development"],
-        "genderFocus": ["transgender", "women"],
-        "safeSpace": true,
-        "state": "Tamil Nadu"
-      },
+  "ngos": [
+    {
+      "id": 1,
+      "name": "Women Empowerment Alliance",
+      "description": "Providing safe housing, skill development programs, legal assistance, and career guidance for women from marginalized communities.",
+      "location": "123 Empowerment Street, North Region",
+      "phone": "+1 (555) 123-4567",
+      "email": "contact@womenempower.org",
+      "services": ["Housing", "Employment", "Legal Support"],
+      "genderFocus": ["women"],
+      "safeSpace": true
+    },
     {
       "id": 2,
       "name": "Trans Rights Foundation",
@@ -34,8 +32,7 @@
     "email": "info@sahodari.org",
     "services": ["Education", "Entrepreneurship", "Skill Development"],
     "genderFocus": ["transgender", "women"],
-    "safeSpace": true
-  
+    "safeSpace": true,
   },
   {
     "id": 2,
@@ -118,8 +115,8 @@
     "email": "mail@udyogini.org",
     "services": ["Skills Training", "Market Linkage", "Financial Inclusion"],
     "genderFocus": ["women"],
-    "safeSpace": true
-   
+    "safeSpace": true,
+    "image": "https://images.unsplash.com/photo-1551833996-2c1d6cfc437d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
   },
   {
     "id": 9,
@@ -130,7 +127,8 @@
     "email": null,
     "services": ["Skill Building", "Inclusive Employment", "Legal & Health Support"],
     "genderFocus": ["transgender"],
-    "safeSpace": true
+    "safeSpace": true,
+    "image": "https://images.unsplash.com/photo-1593113598332-cd61d7fbcc94?auto=format&fit=crop&w=600&q=80"
   },
   {
     "id": 10,
@@ -141,8 +139,8 @@
     "email": null,
     "services": ["Shelter Home", "Skill Development", "Rights & Inclusion"],
     "genderFocus": ["transgender", "LGBTQIA+"],
-    "safeSpace": true
-  
+    "safeSpace": true,
+    "image": "https://images.unsplash.com/photo-1521805108531-92e0a3e695b8?auto=format&fit=crop&w=600&q=80"
   },
   {
     "id": 11,
@@ -153,8 +151,8 @@
     "email": null,
     "services": ["Advocacy", "Training", "Community Support"],
     "genderFocus": ["transgender", "non-binary"],
-    "safeSpace": true
- 
+    "safeSpace": true,
+    "image": "https://images.unsplash.com/photo-1549640360-8006e6f13a1f?auto=format&fit=crop&w=600&q=80"
   },
   {
     "id": 12,
@@ -165,8 +163,8 @@
     "email": null,
     "services": ["Livelihood Training", "Skill Employment", "Girl Child Education"],
     "genderFocus": ["women"],
-    "safeSpace": true
-  
+    "safeSpace": true,
+    "image": "https://images.unsplash.com/photo-1600111766981-4dbb84d46a8e?auto=format&fit=crop&w=600&q=80"
   },
   {
     "id": 13,
@@ -177,8 +175,8 @@
     "email": null,
     "services": ["Financial Literacy", "Skill Development", "Safe Spaces"],
     "genderFocus": ["women"],
-    "safeSpace": true
-   
+    "safeSpace": true,
+    "image": "https://images.unsplash.com/photo-1588702547923-7093a1a5f6d4?auto=format&fit=crop&w=600&q=80"
   },
   {
     "id": 14,
@@ -189,7 +187,8 @@
     "email": null,
     "services": ["Advocacy", "Research", "Economic Inclusion"],
     "genderFocus": ["women"],
-    "safeSpace": true
+    "safeSpace": true,
+    "image": "https://images.unsplash.com/photo-1573496356745-3a2f3a4a59c1?auto=format&fit=crop&w=600&q=80"
   },
    {
     "id": 8,

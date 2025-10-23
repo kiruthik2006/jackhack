@@ -1,0 +1,211 @@
+{
+  "ngos": {
+    "Tamil Nadu": [
+      {
+        "id": "TN001",
+        "name": "Sahodari Foundation",
+        "description": "India's first transgender-led organization focusing on education, entrepreneurship, and creative arts for transgender individuals.",
+        "location": "Madurai, Tamil Nadu, India",
+        "phone": "+91-99947-21729",
+        "email": "info@sahodari.org",
+        "services": ["Education", "Entrepreneurship", "Skill Development"],
+        "genderFocus": ["transgender", "women"],
+        "safeSpace": true,
+        "state": "Tamil Nadu"
+      },
+      {
+        "id": "TN002",
+        "name": "SAATHII",
+        "description": "Works to strengthen healthcare access, rights, and social inclusion for LGBTQIA+ individuals, especially transgender and hijra communities.",
+        "location": "Chennai, Tamil Nadu, India",
+        "phone": "+91-44-2442-0027",
+        "email": "info@saathii.org",
+        "services": ["Healthcare", "Advocacy", "Social Protection"],
+        "genderFocus": ["transgender", "LGBTQIA+"],
+        "safeSpace": true,
+        "state": "Tamil Nadu"
+      },
+      {
+        "id": "TN003",
+        "name": "Orinam",
+        "description": "Chennai-based collective working for alternate sexualities and gender identities; supports queer, transgender folks, their families and community.",
+        "location": "Chennai, Tamil Nadu, India",
+        "phone": "+91-98415-57983",
+        "email": "orinam.net@gmail.com",
+        "services": ["Peer Support", "Community Building", "Advocacy"],
+        "genderFocus": ["transgender", "LGBTQIA+"],
+        "safeSpace": true,
+        "state": "Tamil Nadu"
+      }
+    ],
+    "Delhi": [
+      {
+        "id": "DL001",
+        "name": "TWEET Foundation",
+        "description": "A transgender-led community-based organization supporting transgender persons through advocacy, skill training, and employment opportunities.",
+        "location": "New Delhi, India",
+        "phone": "+91-99109-33454",
+        "email": "contact@tweetindia.org",
+        "services": ["Advocacy", "Skill Training", "Employment"],
+        "genderFocus": ["transgender"],
+        "safeSpace": true,
+        "state": "Delhi"
+      },
+      {
+        "id": "DL002",
+        "name": "Naz Foundation",
+        "description": "Delhi-based NGO advocating for sexual health, HIV/AIDS awareness, and equal rights for women and LGBTQIA+ individuals.",
+        "location": "New Delhi, India",
+        "phone": "+91-11-41325042",
+        "email": "info@nazindia.org",
+        "services": ["Health Awareness", "Advocacy", "Counseling"],
+        "genderFocus": ["women", "transgender", "LGBTQIA+"],
+        "safeSpace": true,
+        "state": "Delhi"
+      },
+      {
+        "id": "DL003",
+        "name": "Centre for Equity and Inclusion (CEQUIN)",
+        "description": "Working on women's rights, gender-based violence, public space safety and economic inclusion.",
+        "location": "New Delhi, India",
+        "phone": null,
+        "email": null,
+        "services": ["Advocacy", "Research", "Economic Inclusion"],
+        "genderFocus": ["women"],
+        "safeSpace": true,
+        "state": "Delhi"
+      }
+    ],
+    "Maharashtra": [
+      {
+        "id": "MH001",
+        "name": "Akshara Centre",
+        "description": "Promoting gender equality, women's safety, and empowerment through education and digital awareness.",
+        "location": "Mumbai, Maharashtra, India",
+        "phone": "+91-22-26540403",
+        "email": "aksharacentre@gmail.com",
+        "services": ["Gender Equality", "Education", "Awareness Campaigns"],
+        "genderFocus": ["women"],
+        "safeSpace": true,
+        "state": "Maharashtra"
+      },
+      {
+        "id": "MH002",
+        "name": "SheSays India",
+        "description": "Promoting gender equality, women's rights, including redressal mechanisms for gender-based violence.",
+        "location": "Mumbai, Maharashtra, India",
+        "phone": null,
+        "email": null,
+        "services": ["Legal Support", "Awareness", "Rights Education"],
+        "genderFocus": ["women"],
+        "safeSpace": true,
+        "state": "Maharashtra"
+      }
+    ],
+    "Karnataka": [
+      {
+        "id": "KA001",
+        "name": "DEAR India Ministries",
+        "description": "Empowering transgender persons through education, vocational training, rehabilitation and medical care.",
+        "location": "Bangalore, Karnataka, India",
+        "phone": null,
+        "email": null,
+        "services": ["Education", "Vocational Training", "Healthcare"],
+        "genderFocus": ["transgender"],
+        "safeSpace": true,
+        "state": "Karnataka"
+      }
+    ],
+    "Kerala": [
+      {
+        "id": "KL001",
+        "name": "DhiEva",
+        "description": "Promotes mental wellness, social equity, quality education and counselling support for women, children & LGBTQ individuals.",
+        "location": "Palakkad, Kerala, India",
+        "phone": null,
+        "email": null,
+        "services": ["Counselling", "Awareness", "Capacity Building"],
+        "genderFocus": ["women", "LGBTQIA+"],
+        "safeSpace": true,
+        "state": "Kerala"
+      }
+    ],
+    "Rajasthan": [
+      {
+        "id": "RJ001",
+        "name": "Sambhali Trust",
+        "description": "Empowering women and marginalised gender minorities via education, vocational training, shelter & legal support.",
+        "location": "Jodhpur & Setrawa, Rajasthan, India",
+        "phone": null,
+        "email": null,
+        "services": ["Education", "Vocational Training", "Shelter", "Legal Support"],
+        "genderFocus": ["women", "gender minorities"],
+        "safeSpace": true,
+        "state": "Rajasthan"
+      }
+    ],
+    "Uttarakhand": [
+      {
+        "id": "UK001",
+        "name": "Humans For Humanity",
+        "description": "Educating women and girls on menstrual health and hygiene across multiple states.",
+        "location": "Dehradun, Uttarakhand, India",
+        "phone": null,
+        "email": null,
+        "services": ["Hygiene Education", "Women's Health", "Community Outreach"],
+        "genderFocus": ["women"],
+        "safeSpace": true,
+        "state": "Uttarakhand"
+      }
+    ],
+    "Pan India": [
+      {
+        "id": "IN001",
+        "name": "Wajood Project",
+        "description": "Community-led initiative for transgender & hijra populations providing HIV & sexual health services, rights awareness and violence prevention.",
+        "location": "Multiple states (Delhi, Gujarat, AP/TS, Karnataka)",
+        "phone": null,
+        "email": null,
+        "services": ["Health & Sexual Rights", "Violence Prevention", "Empowerment"],
+        "genderFocus": ["transgender", "hijra"],
+        "safeSpace": true,
+        "state": "Pan India"
+      },
+      {
+        "id": "IN002",
+        "name": "AJSA India – Gender Justice Program",
+        "description": "Champions gender equality, women's and girls' health & rights with legal support and community outreach.",
+        "location": "India (nationwide operations)",
+        "phone": null,
+        "email": null,
+        "services": ["Legal Support", "Advocacy", "Community Outreach"],
+        "genderFocus": ["women"],
+        "safeSpace": true,
+        "state": "Pan India"
+      }
+    ]
+  },
+  "metadata": {
+    "lastUpdated": "2023-10-23",
+    "totalNGOs": 13,
+    "statesCovered": 8,
+    "serviceTypes": [
+      "Education",
+      "Healthcare",
+      "Legal Support", 
+      "Advocacy",
+      "Skill Development",
+      "Counselling",
+      "Violence Prevention",
+      "Shelter",
+      "Community Building"
+    ],
+    "genderFocusCategories": [
+      "women",
+      "transgender",
+      "LGBTQIA+",
+      "hijra",
+      "gender minorities"
+    ]
+  }
+}

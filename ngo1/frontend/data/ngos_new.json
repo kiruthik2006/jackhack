@@ -1,0 +1,301 @@
+{
+  "ngos": [
+    {
+      "id": 1,
+      "name": "Sahodari Foundation",
+      "description": "India's first transgender-led organization focusing on education, entrepreneurship, and creative arts for transgender individuals.",
+      "location": "Madurai, Tamil Nadu, India",
+      "phone": "+91-99947-21729",
+      "email": "info@sahodari.org",
+      "services": ["Education", "Entrepreneurship", "Skill Development"],
+      "genderFocus": ["transgender", "women"],
+      "safeSpace": true
+    },
+    {
+      "id": 2,
+      "name": "TWEET Foundation",
+      "description": "A transgender-led community-based organization supporting transgender persons through advocacy, skill training, and employment opportunities.",
+      "location": "New Delhi and Mumbai, India",
+      "phone": "+91-99109-33454",
+      "email": "contact@tweetindia.org",
+      "services": ["Advocacy", "Skill Training", "Employment"],
+      "genderFocus": ["transgender"],
+      "safeSpace": true
+    },
+    {
+      "id": 3,
+      "name": "Smile Foundation – Swabhiman",
+      "description": "Empowering women through education, healthcare, nutrition, and economic self-reliance in underprivileged communities.",
+      "location": "New Delhi, India",
+      "phone": "+91-11-43123700",
+      "email": "info@smilefoundationindia.org",
+      "services": ["Education", "Healthcare", "Livelihood"],
+      "genderFocus": ["women"],
+      "safeSpace": true
+    },
+    {
+      "id": 4,
+      "name": "Akshara Centre",
+      "description": "A Mumbai-based organization promoting gender equality, women's safety, and empowerment through education and digital awareness.",
+      "location": "Mumbai, Maharashtra, India",
+      "phone": "+91-22-26540403",
+      "email": "aksharacentre@gmail.com",
+      "services": ["Gender Equality", "Education", "Awareness Campaigns"],
+      "genderFocus": ["women"],
+      "safeSpace": true
+    },
+    {
+      "id": 5,
+      "name": "SAATHII (Solidarity & Action Against The HIV Infection in India)",
+      "description": "Works to strengthen healthcare access, rights, and social inclusion for LGBTQIA+ individuals, especially transgender and hijra communities.",
+      "location": "Chennai, Tamil Nadu, India",
+      "phone": "+91-44-2442-0027",
+      "email": "info@saathii.org",
+      "services": ["Healthcare", "Advocacy", "Social Protection"],
+      "genderFocus": ["transgender", "LGBTQIA+"],
+      "safeSpace": true
+    },
+    {
+      "id": 6,
+      "name": "Webpulse Foundation",
+      "description": "Provides women with access to education, vocational training, and healthcare to promote economic independence and social equality.",
+      "location": "New Delhi, India",
+      "phone": "+91-98737-82012",
+      "email": "info@webpulsefoundation.org",
+      "services": ["Education", "Vocational Training", "Healthcare"],
+      "genderFocus": ["women"],
+      "safeSpace": true
+    },
+    {
+      "id": 7,
+      "name": "Naz Foundation",
+      "description": "A Delhi-based NGO advocating for sexual health, HIV/AIDS awareness, and equal rights for women and LGBTQIA+ individuals.",
+      "location": "New Delhi, India",
+      "phone": "+91-11-41325042",
+      "email": "info@nazindia.org",
+      "services": ["Health Awareness", "Advocacy", "Counseling"],
+      "genderFocus": ["women", "transgender"],
+      "safeSpace": true
+    },
+    {
+      "id": 8,
+      "name": "Udyogini",
+      "description": "Working across eight states, Udyogini supports rural & tribal women with livelihood, skills, market linkages and financial inclusion.",
+      "location": "D-17, Basement, Saket, New Delhi, India",
+      "phone": "+91-11-45781125",
+      "email": "mail@udyogini.org",
+      "services": ["Skills Training", "Market Linkage", "Financial Inclusion"],
+      "genderFocus": ["women"],
+      "safeSpace": true
+    },
+    {
+      "id": 9,
+      "name": "Mitr Trust",
+      "description": "Works for LGBTQIA+ persons: safe shelters for transgender persons, skills & rights advocacy.",
+      "location": "India (various locations)",
+      "phone": null,
+      "email": null,
+      "services": ["Shelter Home", "Skill Development", "Rights & Inclusion"],
+      "genderFocus": ["transgender", "LGBTQIA+"],
+      "safeSpace": true
+    },
+    {
+      "id": 10,
+      "name": "Geetanjali Foundation",
+      "description": "Association that supports trans-sexual, non-binary persons and persons with disability, via training, advocacy and empowerment.",
+      "location": "India (nationwide)",
+      "phone": null,
+      "email": null,
+      "services": ["Advocacy", "Training", "Community Support"],
+      "genderFocus": ["transgender", "non-binary"],
+      "safeSpace": true
+    },
+    {
+      "id": 11,
+      "name": "SAFA India",
+      "description": "Empowers urban women & youth through socio-economic interventions in Hyderabad, emphasising livelihoods for women from slums.",
+      "location": "Hyderabad, Telangana, India",
+      "phone": null,
+      "email": null,
+      "services": ["Livelihood Training", "Skill Employment", "Girl Child Education"],
+      "genderFocus": ["women"],
+      "safeSpace": true
+    },
+    {
+      "id": 12,
+      "name": "Artha Samriddhi",
+      "description": "Women-focused NGO creating safe spaces for underserved women, focusing on financial literacy, skill development and independence.",
+      "location": "India (various regions)",
+      "phone": null,
+      "email": null,
+      "services": ["Financial Literacy", "Skill Development", "Safe Spaces"],
+      "genderFocus": ["women"],
+      "safeSpace": true
+    },
+    {
+      "id": 13,
+      "name": "Centre for Equity and Inclusion (CEQUIN)",
+      "description": "Delhi-based organisation working on women's rights, gender-based violence, public space safety and economic inclusion.",
+      "location": "New Delhi, India",
+      "phone": null,
+      "email": null,
+      "services": ["Advocacy", "Research", "Economic Inclusion"],
+      "genderFocus": ["women"],
+      "safeSpace": true
+    },
+    {
+      "id": 14,
+      "name": "SheSays India",
+      "description": "Mumbai-based NGO promoting gender equality, women's rights, online & offline, including redressal mechanisms for gender-based violence.",
+      "location": "Mumbai, Maharashtra, India",
+      "phone": null,
+      "email": null,
+      "services": ["Legal Support", "Awareness", "Rights Education"],
+      "genderFocus": ["women"],
+      "safeSpace": true
+    },
+    {
+      "id": 15,
+      "name": "Orinam",
+      "description": "Chennai-based collective working for alternate sexualities and gender identities; supports queer, transgender folks, their families and community in Tamil Nadu.",
+      "location": "Chennai, Tamil Nadu, India",
+      "phone": "+91-98415-57983",
+      "email": "orinam.net@gmail.com",
+      "services": ["Peer Support", "Community Building", "Advocacy"],
+      "genderFocus": ["transgender", "LGBTQIA+"],
+      "safeSpace": true
+    },
+    {
+      "id": 16,
+      "name": "DEAR India Ministries (DEAR Trust)",
+      "description": "Working throughout India to empower transgender persons through education, vocational training, healthcare & rehabilitation.",
+      "location": "Bangalore, Karnataka, India",
+      "phone": null,
+      "email": null,
+      "services": ["Education", "Rehabilitation", "Healthcare"],
+      "genderFocus": ["transgender"],
+      "safeSpace": true
+    },
+    {
+      "id": 17,
+      "name": "Triveni Samaj Vikas Kendra (TSVK)",
+      "description": "Mumbai-based NGO working for transgender/hijra community in Mumbai/Thane, focusing on awareness, rights, health, inclusion.",
+      "location": "Malad/ Malwani area, Mumbai, Maharashtra, India",
+      "phone": null,
+      "email": null,
+      "services": ["Health Awareness", "Rights Advocacy", "Community Empowerment"],
+      "genderFocus": ["transgender"],
+      "safeSpace": true
+    },
+    {
+      "id": 18,
+      "name": "Nishtha",
+      "description": "Established 1975 in West Bengal: empowering women and girls with rights, equal opportunities and dignity.",
+      "location": "West Bengal, India",
+      "phone": null,
+      "email": null,
+      "services": ["Women's Rights", "Education", "Community Mobilisation"],
+      "genderFocus": ["women"],
+      "safeSpace": true
+    },
+    {
+      "id": 19,
+      "name": "Avani",
+      "description": "Supports children, women and communities in rural & migrant contexts; rescues and rehabilitates, provides skill-training for women.",
+      "location": "Kolhapur region / Maharashtra, India",
+      "phone": null,
+      "email": null,
+      "services": ["Rescue & Rehabilitation", "Skill Training", "Community Change"],
+      "genderFocus": ["women"],
+      "safeSpace": true
+    },
+    {
+      "id": 20,
+      "name": "WINGS Foundation (Women in Need Given Support)",
+      "description": "Works across several states (Maharashtra, Karnataka, Gujarat, MP, UP, Jharkhand, Bihar) focusing on women's empowerment, health, livelihood and education.",
+      "location": "Multiple states, India",
+      "phone": null,
+      "email": null,
+      "services": ["Health & Hygiene", "Skill Training", "Education"],
+      "genderFocus": ["women"],
+      "safeSpace": true
+    },
+    {
+      "id": 21,
+      "name": "SHE (Self Help Enterprise) Foundation",
+      "description": "Rural Bengal focussed NGO reviving traditional skills among women (Kantha quilt etc) and empowering them through livelihood, education and dignity.",
+      "location": "Bengal, India",
+      "phone": null,
+      "email": null,
+      "services": ["Livelihood Training", "Arts & Crafts", "Women's Empowerment"],
+      "genderFocus": ["women"],
+      "safeSpace": true
+    },
+    {
+      "id": 22,
+      "name": "Centre for Social Research (CSR)",
+      "description": "Delhi-based NGO working for women's rights, building gender-equitable society, violence-free world via research, advocacy and services.",
+      "location": "New Delhi, India",
+      "phone": null,
+      "email": null,
+      "services": ["Research", "Advocacy", "Capacity Building"],
+      "genderFocus": ["women"],
+      "safeSpace": true
+    },
+    {
+      "id": 23,
+      "name": "Humans For Humanity",
+      "description": "NGO educating women and girls on menstrual health and hygiene, reached millions of women in rural India in multiple states.",
+      "location": "Dehradun, Uttarakhand, India (operational across India)",
+      "phone": null,
+      "email": null,
+      "services": ["Hygiene Education", "Women's Health", "Community Outreach"],
+      "genderFocus": ["women"],
+      "safeSpace": true
+    },
+    {
+      "id": 24,
+      "name": "Maher",
+      "description": "UN-registered interfaith organisation providing shelter, support and self-help groups for destitute women, men, children; focuses strongly on women's empowerment and safety.",
+      "location": "Vadhu Budruk, near Pune, Maharashtra, India",
+      "phone": null,
+      "email": null,
+      "services": ["Shelter Home", "Self Help Groups (SHGs)", "Women's Empowerment"],
+      "genderFocus": ["women"],
+      "safeSpace": true
+    },
+    {
+      "id": 25,
+      "name": "DhiEva",
+      "description": "Registered in 2023 in Kerala: promotes mental wellness, social equity, quality education and provides counselling support for women, children & LGBTQ individuals.",
+      "location": "Room 101, KSM Arcade, DPO Road, Palakkad-14, Kerala, India",
+      "phone": null,
+      "email": null,
+      "services": ["Counselling", "Awareness", "Capacity Building"],
+      "genderFocus": ["women","LGBTQIA+"],
+      "safeSpace": true
+    },
+    {
+      "id": 26,
+      "name": "AJSA India – Gender Justice Program",
+      "description": "Development organisation that champions gender equality, women's and girls' health & rights with legal support and community outreach.",
+      "location": "India (nationwide operations)",
+      "phone": null,
+      "email": null,
+      "services": ["Legal Support", "Advocacy", "Community Outreach"],
+      "genderFocus": ["women"],
+      "safeSpace": true
+    },
+    {
+      "id": 27,
+      "name": "Wajood Project (via Alliance India)",
+      "description": "Community-led initiative for transgender & hijra populations across multiple states providing HIV & sexual health services, rights awareness and violence prevention.",
+      "location": "Multiple states in India (Delhi, Gujarat, AP/TS, Karnataka)",
+      "phone": null,
+      "email": null,
+      "services": ["Health & Sexual Rights", "Violence Prevention", "Empowerment"],
+      "genderFocus": ["transgender","hijra"],
+      "safeSpace": true
+    }
+  ]
+}

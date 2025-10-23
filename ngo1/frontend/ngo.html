@@ -46,15 +46,51 @@
                     
                     <!-- States Filter -->
                     <div class="filter-group">
-                        <div class="state-filters-header">
+                        <div class="filter-header flex items-center justify-between p-2 rounded-lg cursor-pointer">
                             <h4>States</h4>
-                            <button class="state-toggle" id="toggleAllStates">Select All</button>
+                            <i data-feather="chevron-down" class="w-4 h-4"></i>
                         </div>
-                        <div class="filter-options" id="statesFilter">
-                            <!-- States will be populated dynamically -->
-                            <div class="filter-option">
-                                <span style="color: #666; font-style: italic;">Loading states...</span>
-                            </div>
+                        <div class="filter-content">
+                            <select class="w-full p-2 border rounded-lg text-sm focus:outline-none focus:border-primary">
+                                <option value="">All States</option>
+                                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                <option value="Assam">Assam</option>
+                                <option value="Bihar">Bihar</option>
+                                <option value="Chhattisgarh">Chhattisgarh</option>
+                                <option value="Goa">Goa</option>
+                                <option value="Gujarat">Gujarat</option>
+                                <option value="Haryana">Haryana</option>
+                                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                <option value="Jharkhand">Jharkhand</option>
+                                <option value="Karnataka">Karnataka</option>
+                                <option value="Kerala">Kerala</option>
+                                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                <option value="Maharashtra">Maharashtra</option>
+                                <option value="Manipur">Manipur</option>
+                                <option value="Meghalaya">Meghalaya</option>
+                                <option value="Mizoram">Mizoram</option>
+                                <option value="Nagaland">Nagaland</option>
+                                <option value="Odisha">Odisha</option>
+                                <option value="Punjab">Punjab</option>
+                                <option value="Rajasthan">Rajasthan</option>
+                                <option value="Sikkim">Sikkim</option>
+                                <option value="Tamil Nadu">Tamil Nadu</option>
+                                <option value="Telangana">Telangana</option>
+                                <option value="Tripura">Tripura</option>
+                                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                <option value="Uttarakhand">Uttarakhand</option>
+                                <option value="West Bengal">West Bengal</option>
+                                <!-- Union Territories -->
+                                <option value="Delhi">Delhi</option>
+                                <option value="Jammu & Kashmir">Jammu & Kashmir</option>
+                                <option value="Ladakh">Ladakh</option>
+                                <option value="Chandigarh">Chandigarh</option>
+                                <option value="Puducherry">Puducherry</option>
+                                <option value="Andaman & Nicobar Islands">Andaman & Nicobar Islands</option>
+                                <option value="Dadra & Nagar Haveli and Daman & Diu">Dadra & Nagar Haveli and Daman & Diu</option>
+                                <option value="Lakshadweep">Lakshadweep</option>
+                            </select>
                         </div>
                     </div>
                     
@@ -69,36 +105,25 @@
                                 <input type="checkbox" id="filter-transgender" checked>
                                 <label for="filter-transgender">Transgender</label>
                             </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="filter-lgbtqia" checked>
+                                <label for="filter-lgbtqia">LGBTQIA+</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="filter-hijra" checked>
+                                <label for="filter-hijra">Hijra</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="filter-gender-minorities" checked>
+                                <label for="filter-gender-minorities">Gender Minorities</label>
+                            </div>
                         </div>
                     </div>
                     
                     <div class="filter-group">
                         <h4>Services</h4>
-                        <div class="filter-options">
-                            <div class="filter-option">
-                                <input type="checkbox" id="filter-housing" checked>
-                                <label for="filter-housing">Housing & Shelter</label>
-                            </div>
-                            <div class="filter-option">
-                                <input type="checkbox" id="filter-healthcare" checked>
-                                <label for="filter-healthcare">Healthcare</label>
-                            </div>
-                            <div class="filter-option">
-                                <input type="checkbox" id="filter-legal" checked>
-                                <label for="filter-legal">Legal Support</label>
-                            </div>
-                            <div class="filter-option">
-                                <input type="checkbox" id="filter-education" checked>
-                                <label for="filter-education">Education</label>
-                            </div>
-                            <div class="filter-option">
-                                <input type="checkbox" id="filter-employment" checked>
-                                <label for="filter-employment">Employment</label>
-                            </div>
-                            <div class="filter-option">
-                                <input type="checkbox" id="filter-counseling" checked>
-                                <label for="filter-counseling">Counseling</label>
-                            </div>
+                        <div class="filter-options" id="services-options">
+                            <!-- Service options will be dynamically populated from metadata -->
                         </div>
                     </div>
                     
@@ -143,8 +168,6 @@
                     
                     <div class="category-tabs">
                         <div class="category-tab active" data-category="all">All NGOs</div>
-                        <div class="category-tab" data-category="women">Women Focus</div>
-                        <div class="category-tab" data-category="transgender">Transgender Focus</div>
                         <div class="category-tab" data-category="housing">Housing</div>
                         <div class="category-tab" data-category="healthcare">Healthcare</div>
                         <div class="category-tab" data-category="legal">Legal Support</div>
@@ -169,6 +192,223 @@
             </div>
         </div>
     </footer>
-    <script src="js/app.js"></script>
+    <script src="js/ngo-state-filters.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script>
+        // Initialize Feather icons after DOM loads
+        document.addEventListener('DOMContentLoaded', () => {
+            feather.replace();
+        });
+    </script>
+    
+    <style>
+    .filter-header {
+        transition: all 0.3s ease;
+    }
+    .filter-header:hover {
+        background-color: #f0f0f0;
+    }
+    .filter-content select {
+        transition: all 0.3s ease;
+    }
+    .filter-content select:focus {
+        border-color: #2563EB;
+        box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
+    }
+    /* Fix for search box overlay */
+    .search-container {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 1rem;
+    }
+    .search-box {
+        position: relative;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        background: #fff;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.5rem;
+        padding: 0.5rem 1rem;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+    .search-box input {
+        width: 100%;
+        border: none;
+        outline: none;
+        padding: 0.5rem;
+        margin-left: 0.5rem;
+        font-size: 0.875rem;
+    }
+    .search-hint {
+        font-size: 0.75rem;
+        color: #6b7280;
+        margin-top: 0.25rem;
+    }
+    /* Fix for results panel layout */
+    .results-panel {
+        width: 100%;
+        padding: 1rem;
+        background: #fff;
+        border-radius: 0.5rem;
+    }
+
+    /* NGO Card Grid Layout */
+    .dashboard {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 2rem;
+        padding: 1rem;
+    }
+
+    .ngo-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1rem;
+    }
+
+    .ngo-card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        overflow: hidden;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .ngo-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .ngo-content {
+        padding: 1rem;
+    }
+
+    .ngo-content h3 {
+        font-size: 1.25rem;
+        color: #1a1a1a;
+        margin-bottom: 0.5rem;
+    }
+
+    .location {
+        color: #666;
+        font-size: 0.875rem;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .services, .gender-focus {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 0.5rem 0;
+    }
+
+    .service-tag {
+        background: #e9d5ff;
+        color: #6b21a8;
+        padding: 0.25rem 0.75rem;
+        border-radius: 999px;
+        font-size: 0.75rem;
+    }
+
+    .gender-tag {
+        background: #dbeafe;
+        color: #1e40af;
+        padding: 0.25rem 0.75rem;
+        border-radius: 999px;
+        font-size: 0.75rem;
+    }
+
+    .contact-info {
+        margin-top: 1rem;
+        font-size: 0.875rem;
+        color: #4b5563;
+    }
+
+    .contact-info p {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin: 0.25rem 0;
+    }
+
+    .safe-space {
+        margin-top: 1rem;
+        padding: 0.5rem;
+        background: #ecfdf5;
+        color: #047857;
+        border-radius: 4px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.875rem;
+    }
+
+    .category-tabs {
+        display: flex;
+        gap: 1rem;
+        margin: 1rem 0;
+        border-bottom: 1px solid #e5e7eb;
+        padding-bottom: 0.5rem;
+    }
+
+    .category-tab {
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        border-radius: 0.375rem;
+        transition: all 0.2s;
+    }
+
+    .category-tab.active {
+        background: #8b5cf6;
+        color: white;
+    }
+
+    .category-tab:hover:not(.active) {
+        background: #f3f4f6;
+    }
+
+    .filter-group {
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background: white;
+        border-radius: 0.5rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .filter-options {
+        margin-top: 0.5rem;
+    }
+
+    .filter-option {
+        margin: 0.5rem 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .reset-btn {
+        width: 100%;
+        padding: 0.75rem;
+        background: #f3f4f6;
+        border: 1px solid #e5e7eb;
+        border-radius: 0.375rem;
+        color: #4b5563;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+
+    .reset-btn:hover {
+        background: #e5e7eb;
+    }
+    </style>
 </body>
 </html>
