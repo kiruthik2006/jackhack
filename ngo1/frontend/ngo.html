@@ -4,395 +4,392 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NGO Directory | Women & Transgender Support</title>
-    <link rel="stylesheet" href="style/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
 </head>
-<body>
-   
-
-    <section class="hero">
-        <div class="container">
-            <h1>NGO Directory for Women & Transgender Support</h1>
-            <p>Find organizations dedicated to empowering and supporting women and transgender individuals with safe spaces, housing, healthcare, and legal assistance.</p>
-            <a href="#directory" class="btn">Explore NGOs</a>
-        </div>
-    </section>
-
-    <div class="container">
-        <section id="directory">
-            <h2 class="section-title">NGO Directory</h2>
-            
-            <div class="dashboard">
-                <div class="filters-panel">
-                    <h3>Filters</h3>
-                    
-                    <!-- States Filter -->
-                    <div class="filter-group">
-                        <div class="filter-header flex items-center justify-between p-2 rounded-lg cursor-pointer">
-                            <h4>States</h4>
-                           
-                        </div>
-                        <div class="filter-content">
-                            <select class="state-select p-2 border rounded-lg text-sm focus:outline-none focus:border-primary">
-                                <option value="">All States</option>
-                                <!-- 28 States -->
-                                <option value="Andhra Pradesh">Andhra Pradesh</option>
-                                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                                <option value="Assam">Assam</option>
-                                <option value="Bihar">Bihar</option>
-                                <option value="Chhattisgarh">Chhattisgarh</option>
-                                <option value="Goa">Goa</option>
-                                <option value="Gujarat">Gujarat</option>
-                                <option value="Haryana">Haryana</option>
-                                <option value="Himachal Pradesh">Himachal Pradesh</option>
-                                <option value="Jharkhand">Jharkhand</option>
-                                <option value="Karnataka">Karnataka</option>
-                                <option value="Kerala">Kerala</option>
-                                <option value="Madhya Pradesh">Madhya Pradesh</option>
-                                <option value="Maharashtra">Maharashtra</option>
-                                <option value="Manipur">Manipur</option>
-                                <option value="Meghalaya">Meghalaya</option>
-                                <option value="Mizoram">Mizoram</option>
-                                <option value="Nagaland">Nagaland</option>
-                                <option value="Odisha">Odisha</option>
-                                <option value="Punjab">Punjab</option>
-                                <option value="Rajasthan">Rajasthan</option>
-                                <option value="Sikkim">Sikkim</option>
-                                <option value="Tamil Nadu">Tamil Nadu</option>
-                                <option value="Telangana">Telangana</option>
-                                <option value="Tripura">Tripura</option>
-                                <option value="Uttar Pradesh">Uttar Pradesh</option>
-                                <option value="Uttarakhand">Uttarakhand</option>
-                                <option value="West Bengal">West Bengal</option>
-                                <!-- 8 Union Territories -->
-                                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
-                                <option value="Chandigarh">Chandigarh</option>
-                                <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
-                                <option value="Delhi">Delhi</option>
-                                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
-                                <option value="Ladakh">Ladakh</option>
-                                <option value="Lakshadweep">Lakshadweep</option>
-                                <option value="Puducherry">Puducherry</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <div class="filter-group">
-                        <h4>Gender Focus</h4>
-                        <div class="filter-options">
-                            <div class="filter-option">
-                                <input type="checkbox" id="filter-women" checked>
-                                <label for="filter-women">Women</label>
-                            </div>
-                            <div class="filter-option">
-                                <input type="checkbox" id="filter-transgender" checked>
-                                <label for="filter-transgender">Transgender</label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="filter-group">
-                        <h4>Services</h4>
-                        <div class="filter-options" id="services-options">
-                            <!-- Service options will be dynamically populated from metadata -->
-                        </div>
-                    </div>
-                    
-                    <div class="filter-group">
-                        <h4>Safe Spaces</h4>
-                        <div class="filter-options">
-                            <div class="filter-option">
-                                <input type="checkbox" id="filter-safespace" checked>
-                                <label for="filter-safespace">Safe Spaces Only</label>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <button class="reset-btn" id="resetBtn">
-                        <i class="fas fa-redo"></i> Reset All Filters
-                    </button>
+<body class="font-poppins bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <div class="bg-purple-600 text-white p-2 rounded-lg">
+                    <i data-feather="heart"></i>
                 </div>
-                
-                <div class="results-panel">
-                    <div class="search-container">
-                        <div class="search-box">
-                            <i class="fas fa-search"></i>
-                            <input type="text" id="searchInput" placeholder="Search NGOs by name, services, or location...">
+                <h1 class="text-xl font-bold text-gray-800">NGO Support</h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="text-gray-600 hover:text-purple-600 flex items-center">
+                    <i data-feather="globe" class="mr-1 w-4 h-4"></i>
+                    <select id="langSelect" class="bg-transparent text-sm border-none focus:ring-0 focus:outline-none">
+                        <option value="en">English</option>
+                        <option value="hi">हिंदी</option>
+                        <option value="bn">বাংলা</option>
+                        <option value="ta">தமிழ்</option>
+                        <option value="te">తెలుగు</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="bg-purple-700 text-white py-12">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold mb-4">NGO Directory for Women & Transgender Support</h1>
+            <p class="text-lg md:text-xl mb-8 max-w-3xl mx-auto">Find organizations dedicated to empowering and supporting women and transgender individuals with safe spaces, housing, healthcare, and legal assistance.</p>
+            <a href="#directory" class="bg-white text-purple-700 px-8 py-3 rounded-full font-medium hover:bg-gray-100 transition duration-300">Explore NGOs</a>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container mx-auto px-4 py-6">
+        <section id="directory">
+            <div class="flex flex-col md:flex-row">
+                <!-- Filters Sidebar -->
+                <div class="w-full md:w-1/3 lg:w-1/3 pr-0 md:pr-8 mb-6 md:mb-0">
+                    <div class="bg-white rounded-lg shadow-sm p-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <h2 class="font-semibold text-gray-800 text-lg">Filters</h2>
+                            <button class="text-purple-600 text-sm font-medium hover:underline flex items-center">
+                                <i data-feather="refresh-cw" class="w-4 h-4 mr-1"></i>
+                                Reset All
+                            </button>
                         </div>
-                        <div class="search-hint">
-                            For an exact match, put the words in quotes.
+
+                        <!-- State Filter -->
+                        <div class="filter-section mb-6">
+                            <div class="filter-header flex justify-between items-center cursor-pointer p-3 rounded-md hover:bg-gray-50">
+                                <span class="font-medium text-gray-700 text-base">State</span>
+                                <i data-feather="chevron-down" class="w-4 h-4 text-gray-500"></i>
+                            </div>
+                            <div class="filter-content mt-3">
+                                <select class="w-full p-3 border border-gray-300 rounded-md text-sm focus:border-purple-500 focus:ring-1 focus:ring-purple-500">
+                                    <option value="">All States</option>
+                                    <!-- States will be populated by JavaScript -->
+                                </select>
+                            </div>
                         </div>
-                        <div id="resultsCount" class="results-count" style="font-size:0.95rem;color:#374151;margin-top:0.5rem">Loading NGOs...</div>
+
+                        <!-- Gender Focus Filter -->
+                        <div class="filter-section mb-6">
+                            <div class="filter-header flex justify-between items-center cursor-pointer p-3 rounded-md hover:bg-gray-50">
+                                <span class="font-medium text-gray-700 text-base">Gender Focus</span>
+                                <i data-feather="chevron-down" class="w-4 h-4 text-gray-500"></i>
+                            </div>
+                            <div class="filter-content mt-3">
+                                <div class="space-y-3">
+                                    <div class="flex items-center p-2 hover:bg-gray-50 rounded-md">
+                                        <input type="checkbox" id="filter-women" class="w-4 h-4 mr-3 text-purple-600 focus:ring-purple-500" checked>
+                                        <label for="filter-women" class="text-gray-600">Women</label>
+                                    </div>
+                                    <div class="flex items-center p-2 hover:bg-gray-50 rounded-md">
+                                        <input type="checkbox" id="filter-transgender" class="w-4 h-4 mr-3 text-purple-600 focus:ring-purple-500" checked>
+                                        <label for="filter-transgender" class="text-gray-600">Transgender</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Services Filter -->
+                        <div class="filter-section mb-6">
+                            <div class="filter-header flex justify-between items-center cursor-pointer p-3 rounded-md hover:bg-gray-50">
+                                <span class="font-medium text-gray-700 text-base">Services</span>
+                                <i data-feather="chevron-down" class="w-4 h-4 text-gray-500"></i>
+                            </div>
+                            <div class="filter-content mt-3" id="services-options">
+                                <!-- Services will be populated by JavaScript -->
+                            </div>
+                        </div>
+
+                        <!-- Safe Spaces Filter -->
+                        <div class="filter-section mb-6">
+                            <div class="filter-header flex justify-between items-center cursor-pointer p-3 rounded-md hover:bg-gray-50">
+                                <span class="font-medium text-gray-700 text-base">Safe Spaces</span>
+                                <i data-feather="chevron-down" class="w-4 h-4 text-gray-500"></i>
+                            </div>
+                            <div class="filter-content mt-3">
+                                <div class="flex items-center p-2 hover:bg-gray-50 rounded-md">
+                                    <input type="checkbox" id="filter-safespace" class="w-4 h-4 mr-3 text-purple-600 focus:ring-purple-500" checked>
+                                    <label for="filter-safespace" class="text-gray-600">Safe Spaces Only</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex mt-6">
+                            <button id="applyFiltersBtn" class="w-full bg-purple-600 text-white py-3 px-4 rounded-md hover:bg-purple-700 flex items-center justify-center transition duration-150 ease-in-out">
+                                <i data-feather="filter" class="mr-2 w-5 h-5"></i>
+                                Apply Filters
+                            </button>
+                        </div>
                     </div>
-                    
-                   
-                    
-                    <div class="category-tabs">
-                        <div class="category-tab active" data-category="all">All NGOs</div>
-                        <div class="category-tab" data-category="housing">Housing</div>
-                        <div class="category-tab" data-category="healthcare">Healthcare</div>
-                        <div class="category-tab" data-category="legal">Legal Support</div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="w-full md:w-2/3 lg:w-2/3">
+                    <!-- Search and Info Bar -->
+                    <div class="bg-white rounded-lg shadow-sm p-6 mb-6">
+                        <div class="flex justify-between items-center mb-4">
+                            <div class="text-gray-600 text-base">
+                                <span id="resultsCount">Loading NGOs...</span>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <input type="text" id="searchInput" placeholder="Search NGOs by name, services, or location..." 
+                                class="w-full p-4 border border-gray-300 rounded-md pl-12 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent text-base">
+                            <i data-feather="search" class="absolute left-4 top-4 text-gray-400 w-5 h-5"></i>
+                        </div>
+                        <div class="text-sm text-gray-500 mt-2">For an exact match, put the words in quotes.</div>
                     </div>
-                    
-                    <div class="ngo-grid" id="ngoGrid">
+
+                    <!-- Category Tabs -->
+                    <div class="flex space-x-4 mb-6 overflow-x-auto">
+                        <button class="category-tab active px-4 py-2 text-sm font-medium rounded-md" data-category="all">All NGOs</button>
+                        <button class="category-tab px-4 py-2 text-sm font-medium rounded-md" data-category="housing">Housing</button>
+                        <button class="category-tab px-4 py-2 text-sm font-medium rounded-md" data-category="healthcare">Healthcare</button>
+                        <button class="category-tab px-4 py-2 text-sm font-medium rounded-md" data-category="legal">Legal Support</button>
+                    </div>
+
+                    <!-- NGO Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6" id="ngoGrid">
                         <!-- NGO cards will be populated by JavaScript -->
                     </div>
-                    
-                    <div class="pagination" id="pagination">
-                        <!-- Pagination will be populated by JavaScript -->
+
+                    <!-- Pagination -->
+                    <div class="flex justify-center mt-8 mb-6">
+                        <div id="pagination" class="inline-flex items-center gap-3 bg-white p-4 rounded-lg shadow-md">
+                            <button class="pagination-btn prev-page group px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-purple-50 hover:border-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 ease-in-out">
+                                <i data-feather="chevron-left" class="w-4 h-4 group-hover:text-purple-600 transition-colors"></i>
+                            </button>
+                            <div class="flex items-center space-x-2">
+                                <div class="page-numbers flex items-center space-x-1">
+                                    <!-- Example static structure (will be replaced by JavaScript) -->
+                                    <button class="pagination-number active w-8 h-8 flex items-center justify-center text-sm font-medium rounded-md transition-all duration-200 ease-in-out">1</button>
+                                    <button class="pagination-number w-8 h-8 flex items-center justify-center text-sm font-medium text-gray-700 hover:bg-purple-50 rounded-md transition-all duration-200 ease-in-out">2</button>
+                                    <button class="pagination-number w-8 h-8 flex items-center justify-center text-sm font-medium text-gray-700 hover:bg-purple-50 rounded-md transition-all duration-200 ease-in-out">3</button>
+                                    <span class="px-2 text-gray-500">...</span>
+                                    <button class="pagination-number w-8 h-8 flex items-center justify-center text-sm font-medium text-gray-700 hover:bg-purple-50 rounded-md transition-all duration-200 ease-in-out">10</button>
+                                </div>
+                            </div>
+                            <button class="pagination-btn next-page group px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-purple-50 hover:border-purple-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 ease-in-out">
+                                <i data-feather="chevron-right" class="w-4 h-4 group-hover:text-purple-600 transition-colors"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
     </div>
 
-    <footer>
-        <div class="container">
-            <div class="copyright">
+    <!-- Footer -->
+    <footer class="bg-gray-100 mt-12">
+        <div class="container mx-auto px-4 py-8">
+            <div class="text-center text-gray-600">
                 <p>&copy; 2023 SupportNetwork. All rights reserved.</p>
             </div>
         </div>
     </footer>
+
     <script src="js/ngo-state-filters.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script>
-        // Initialize Feather icons after DOM loads
+        // Initialize Feather icons
         document.addEventListener('DOMContentLoaded', () => {
             feather.replace();
+            
+            // Initialize pagination interaction
+            const pageNumbers = document.querySelectorAll('.pagination-number');
+            pageNumbers.forEach(number => {
+                number.addEventListener('click', () => {
+                    // Remove active class from all numbers
+                    pageNumbers.forEach(n => n.classList.remove('active'));
+                    // Add active class to clicked number
+                    number.classList.add('active');
+                    
+                    // Add ripple effect
+                    const ripple = document.createElement('div');
+                    ripple.classList.add('ripple');
+                    ripple.style.left = '50%';
+                    ripple.style.top = '50%';
+                    number.appendChild(ripple);
+                    
+                    // Remove ripple after animation
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 1000);
+                });
+            });
+            
+            // Update previous/next button states
+            const prevButton = document.querySelector('.prev-page');
+            const nextButton = document.querySelector('.next-page');
+            const updateNavigationState = () => {
+                const activePage = document.querySelector('.pagination-number.active');
+                const pageNumber = parseInt(activePage.textContent);
+                prevButton.disabled = pageNumber === 1;
+                nextButton.disabled = pageNumber === 10; // Assuming 10 is max pages
+            };
+            updateNavigationState();
+        });
+
+        // Add Tailwind-specific styles for category tabs
+        document.querySelectorAll('.category-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.category-tab').forEach(t => {
+                    t.classList.remove('bg-purple-600', 'text-white');
+                    t.classList.add('text-gray-600', 'hover:bg-gray-100');
+                });
+                tab.classList.remove('text-gray-600', 'hover:bg-gray-100');
+                tab.classList.add('bg-purple-600', 'text-white');
+            });
         });
     </script>
-    
+
     <style>
-    /* Narrow the States dropdown while allowing it to shrink on small screens */
-    .state-select {
-        width: 220px; /* desired fixed width */
-        max-width: 100%; /* responsive fallback for small viewports */
-        box-sizing: border-box;
-        /* ensure the select is pushed down a bit and its dropdown appears above other content */
-        margin-bottom: 0.6rem;
-        display: block;
-        position: relative;
-        z-index: 10;
-    }
-    .filter-header {
-        transition: all 0.3s ease;
-    }
-    .filter-header:hover {
-        background-color: #f0f0f0;
-    }
-    .filter-content select {
-        transition: all 0.3s ease;
-    }
-    .filter-content select:focus {
-        border-color: #2563EB;
-        box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.1);
-    }
-    /* Fix for search box overlay */
-    .search-container {
-        width: 100%;
-        max-width: 100%;
-        margin-bottom: 1rem;
-    }
-    .search-box {
-        position: relative;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        background: #fff;
-        border: 1px solid #e2e8f0;
-        border-radius: 0.5rem;
-        padding: 0.5rem 1rem;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-    }
-    .search-box i {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 1.25rem;
-        height: 1.25rem;
-        color: #6b7280;
-        flex: 0 0 auto;
-    }
-
-    .search-box input {
-        width: 100%;
-        border: none;
-        outline: none;
-        padding: 0.5rem;
-        margin-left: 2rem; /* slightly more space from icon */
-        font-size: 0.875rem;
-        line-height: 1; /* ensure vertical alignment with icon */
-    }
-    .search-hint {
-        font-size: 0.75rem;
-        color: #6b7280;
-        margin-top: 0.25rem;
-    }
-    /* Fix for results panel layout */
-    .results-panel {
-        width: 100%;
-        padding: 1rem;
-        background: #fff;
-        border-radius: 0.5rem;
-    }
-
-    /* NGO Card Grid Layout */
-    .dashboard {
-        display: grid;
-        grid-template-columns: 300px 1fr;
-        gap: 2rem;
-        padding: 1rem;
-    }
-
-    .ngo-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 1.5rem;
-        margin-top: 1rem;
-    }
-
-    .ngo-card {
-        background: white;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        overflow: hidden;
-        transition: transform 0.2s, box-shadow 0.2s;
-    }
-
-    .ngo-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-
-    .ngo-content {
-        padding: 1rem;
-    }
-
-    .ngo-content h3 {
-        font-size: 1.25rem;
-        color: #1a1a1a;
-        margin-bottom: 0.5rem;
-    }
-
-    .location {
-        color: #666;
-        font-size: 0.875rem;
-        margin-bottom: 1rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .services, .gender-focus {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin: 0.5rem 0;
-    }
-
-    .service-tag {
-        background: #e9d5ff;
-        color: #6b21a8;
-        padding: 0.25rem 0.75rem;
-        border-radius: 999px;
-        font-size: 0.75rem;
-    }
-
-    .gender-tag {
-        background: #dbeafe;
-        color: #1e40af;
-        padding: 0.25rem 0.75rem;
-        border-radius: 999px;
-        font-size: 0.75rem;
-    }
-
-    .contact-info {
-        margin-top: 1rem;
-        font-size: 0.875rem;
-        color: #4b5563;
-    }
-
-    .contact-info p {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin: 0.25rem 0;
-    }
-
-    .safe-space {
-        margin-top: 1rem;
-        padding: 0.5rem;
-        background: #ecfdf5;
-        color: #047857;
-        border-radius: 4px;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.875rem;
-    }
-
-    .category-tabs {
-        display: flex;
-        gap: 1rem;
-        margin: 1rem 0;
-        border-bottom: 1px solid #e5e7eb;
-        padding-bottom: 0.5rem;
-    }
-
-    .category-tab {
-        padding: 0.5rem 1rem;
-        cursor: pointer;
-        border-radius: 0.375rem;
-        transition: all 0.2s;
-    }
-
-    .category-tab.active {
-        background: #8b5cf6;
-        color: white;
-    }
-
-    .category-tab:hover:not(.active) {
-        background: #f3f4f6;
-    }
-
-    .filter-group {
-        margin-bottom: 1.5rem;
-        padding: 1rem;
-        background: white;
-        border-radius: 0.5rem;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-    }
-
-    .filter-options {
-        margin-top: 0.5rem;
-    }
-
-    .filter-option {
-        margin: 0.5rem 0;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
-
-    .reset-btn {
-        width: 100%;
-        padding: 0.75rem;
-        background: #f3f4f6;
-        border: 1px solid #e5e7eb;
-        border-radius: 0.375rem;
-        color: #4b5563;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        cursor: pointer;
-        transition: all 0.2s;
-    }
-
-    .reset-btn:hover {
-        background: #e5e7eb;
-    }
+        /* Transitions */
+        .filter-section {
+            transition: all 0.3s ease;
+        }
+        .filter-header:hover {
+            background-color: #f3f4f6;
+        }
+        
+        /* NGO Card Hover Effects */
+        .ngo-card {
+            transition: all 0.3s ease;
+        }
+        .ngo-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Category Tab Styles */
+        .category-tab {
+            transition: all 0.2s ease;
+        }
+        
+        /* Pagination Styles */
+        .pagination-btn {
+            transition: all 0.2s ease-in-out;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pagination-btn::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(139, 92, 246, 0.1);
+            top: 0;
+            left: -100%;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .pagination-btn:hover::after {
+            left: 0;
+        }
+        
+        .pagination-number {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pagination-number.active {
+            background-color: #7C3AED;
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 2px 4px rgba(124, 58, 237, 0.2);
+        }
+        
+        .pagination-number:hover:not(.active) {
+            background-color: #F5F3FF;
+            color: #7C3AED;
+            transform: translateY(-1px);
+        }
+        
+        .pagination-number:active:not(.active) {
+            transform: translateY(0);
+        }
+        
+        #pagination {
+            position: relative;
+        }
+        
+        #pagination::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 0.5rem;
+            padding: 2px;
+            background: linear-gradient(to right, #7C3AED, #C084FC);
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        
+        #pagination:hover::before {
+            opacity: 1;
+        }
+        
+        /* Ripple Effect */
+        .ripple {
+            position: absolute;
+            background: rgba(124, 58, 237, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            width: 100px;
+            height: 100px;
+            animation: ripple-effect 1s ease-out;
+        }
+        
+        @keyframes ripple-effect {
+            from {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 1;
+            }
+            to {
+                transform: translate(-50%, -50%) scale(2);
+                opacity: 0;
+            }
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .filters-panel {
+                position: static;
+                width: 100%;
+                margin-bottom: 1rem;
+            }
+            
+            .category-tabs {
+                overflow-x: auto;
+                white-space: nowrap;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 0.5rem;
+            }
+            
+            #pagination {
+                padding: 0.5rem;
+            }
+            
+            .pagination-btn {
+                padding: 0.5rem 0.75rem;
+            }
+        }
     </style>
 </body>
 </html>
