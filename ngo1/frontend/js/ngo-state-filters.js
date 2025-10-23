@@ -16,7 +16,9 @@ function flattenNGOData(data) {
 // Load NGO data
 async function loadNGOData() {
     try {
-        const response = await fetch('data/ngos_by_state_2023.json');
+        // Use a relative path from the HTML page. If the page is served from the folder
+        // `ngo1/frontend/`, the JSON lives in `data/` relative to that.
+        const response = await fetch('./data/ngos_by_state_2023.json');
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -29,20 +31,33 @@ async function loadNGOData() {
         updateCategoryTabs();
     } catch (error) {
         console.error('Error loading NGO data:', error);
-        document.getElementById('resultsCount').textContent = 'Error loading NGOs: ' + error.message;
+        const rc = document.getElementById('resultsCount');
+        if (rc) rc.textContent = 'Error loading NGOs: ' + error.message;
     }
 }
 
 // Populate state select with available states
 function populateStateSelect() {
     const stateSelect = document.querySelector('.filter-content select');
-    const states = Object.keys(ngoData.ngos).sort();
-    
-    // Clear existing options except "All States"
+    if (!stateSelect) return;
+
+    // Gather states from JSON
+    const dataStates = Object.keys(ngoData.ngos || {});
+
+    // Gather any existing hard-coded options (except the empty "All States")
+    const existingOptions = Array.from(stateSelect.options)
+        .map(o => o.value)
+        .filter(v => v && v.trim() !== '');
+
+    // Merge and dedupe
+    const merged = Array.from(new Set([...existingOptions, ...dataStates]));
+
+    // Sort alphabetically
+    merged.sort((a, b) => a.localeCompare(b));
+
+    // Rebuild select but keep the top "All States" option
     stateSelect.innerHTML = '<option value="">All States</option>';
-    
-    // Add states from the data
-    states.forEach(state => {
+    merged.forEach(state => {
         const option = document.createElement('option');
         option.value = state;
         option.textContent = state;
@@ -54,6 +69,7 @@ function populateStateSelect() {
 function updateServiceFilters() {
     const services = ngoData.metadata.serviceTypes;
     const filterGroup = document.getElementById('services-options');
+    if (!filterGroup) return;
     filterGroup.innerHTML = '';
 
     services.forEach(service => {
@@ -73,13 +89,16 @@ function filterNGOs() {
     if (!ngoData) return [];
 
     const searchText = document.getElementById('searchInput').value.toLowerCase();
-    const selectedState = document.querySelector('.filter-content select').value;
+    const stateSel = document.querySelector('.filter-content select');
+    const selectedState = stateSel ? stateSel.value : '';
     const selectedGenders = Array.from(document.querySelectorAll('.filter-group:nth-of-type(2) input[type="checkbox"]:checked'))
         .map(cb => cb.id.replace('filter-', ''));
-    const selectedServices = Array.from(document.getElementById('services-options').querySelectorAll('input[type="checkbox"]:checked'))
-        .map(cb => cb.id.replace('filter-', ''));
-    const safeSpaceOnly = document.getElementById('filter-safespace').checked;
-    const activeCategory = document.querySelector('.category-tab.active').dataset.category;
+    const servicesContainer = document.getElementById('services-options');
+    const selectedServices = servicesContainer ? Array.from(servicesContainer.querySelectorAll('input[type="checkbox"]:checked')).map(cb => cb.id.replace('filter-', '')) : [];
+    const safeSpaceEl = document.getElementById('filter-safespace');
+    const safeSpaceOnly = safeSpaceEl ? safeSpaceEl.checked : false;
+    const activeTab = document.querySelector('.category-tab.active');
+    const activeCategory = activeTab ? activeTab.dataset.category : 'all';
 
     let filtered = flattenNGOData(ngoData);
 
@@ -232,7 +251,7 @@ function updateResults() {
     const resultsCount = document.getElementById('resultsCount');
     
     // Update results count
-    resultsCount.textContent = `${filteredNGOs.length} NGOs found`;
+    if (resultsCount) resultsCount.textContent = `${filteredNGOs.length} NGOs found`;
     
     // Clear existing cards
     ngoGrid.innerHTML = '';
@@ -296,7 +315,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     // Sort options
-    document.getElementById('sortBy').addEventListener('change', (e) => {
+    const sortByEl = document.getElementById('sortBy');
+    if (sortByEl) {
+        sortByEl.addEventListener('change', (e) => {
         const sortBy = e.target.value;
         filteredNGOs.sort((a, b) => {
             switch (sortBy) {
@@ -314,17 +335,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         currentPage = 1;
         updateResults();
-    });
+        });
+    }
     
     // Reset button
-    document.getElementById('resetBtn').addEventListener('click', () => {
+    const resetBtn = document.getElementById('resetBtn');
+    if (resetBtn) {
+        resetBtn.addEventListener('click', () => {
         // Reset all filters
         document.getElementById('searchInput').value = '';
-        document.querySelector('.filter-content select').value = '';
+        const stateSel = document.querySelector('.filter-content select');
+        if (stateSel) stateSel.value = '';
         document.querySelectorAll('.filter-options input[type="checkbox"]').forEach(cb => cb.checked = true);
-        document.getElementById('sortBy').value = 'name';
-        document.querySelector('.category-tab[data-category="all"]').click();
+        const sortByEl2 = document.getElementById('sortBy');
+        if (sortByEl2) sortByEl2.value = 'name';
+        const allTab = document.querySelector('.category-tab[data-category="all"]');
+        if (allTab) allTab.click();
         currentPage = 1;
         updateResults();
     });
+    }
 });
